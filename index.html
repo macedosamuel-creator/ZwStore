@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Capivaras & Cia: capinhas, acessórios, delícias e achadinhos. Peça pelo WhatsApp e pague com Pix."
+    />
+    <meta name="theme-color" content="#f7f5ef" />
+    <title>Capivaras & Cia — Achadinhos que você ama</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="announcement">
+      <span>Um monte de coisa boa, pertinho de você.</span>
+      <span class="announcement-detail">Peça pelo WhatsApp · Pague com Pix</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Capivaras e Cia — início">
+        <span class="brand-icon" aria-hidden="true">c</span>
+        <span class="brand-name">capivaras <span>& cia.</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#produtos">Produtos</a>
+        <a href="#sobre">Sobre a loja</a>
+      </nav>
+      <button class="header-cta cart-trigger" id="cart-open" type="button" aria-haspopup="dialog" aria-controls="cart-dialog">
+        Carrinho <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> SEU NOVO ACHADINHO FAVORITO</span>
+          <h1 id="hero-title">Coisas boas<br />que dão <span>vontade.</span></h1>
+          <p>Da capinha nova àquela delícia do dia: escolha o que você ama e a gente combina a entrega.</p>
+          <a class="primary-button" href="#produtos">Encontrar meu achadinho <span aria-hidden="true">↓</span></a>
+          <div class="hero-note">
+            <span class="note-icon" aria-hidden="true">♡</span>
+            <span>Atendimento de verdade, pertinho de você.</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Seleção especial de produtos">
+          <div class="hero-orbit orbit-one"></div>
+          <div class="hero-orbit orbit-two"></div>
+          <div class="hero-photo"></div>
+          <div class="hero-sticker"><span>feito pra<br />alegrar seu dia</span><b>✳</b></div>
+          <div class="hero-tag"><span>♡</span> achadinhos com carinho</div>
+        </div>
+      </section>
+
+      <section class="catalog section-wrap" id="produtos" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">ESCOLHIDOS A DEDO</span>
+            <h2 id="catalog-title">Tem de tudo um pouco.</h2>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="search" type="search" placeholder="O que você procura?" aria-label="Buscar produtos" />
+          </label>
+        </div>
+
+        <div class="category-list" role="group" aria-label="Filtrar por categoria">
+          <button class="category-chip active" type="button" data-category="Todos">Tudo</button>
+          <button class="category-chip" type="button" data-category="Capinhas">Capinhas</button>
+          <button class="category-chip" type="button" data-category="Acessórios">Acessórios</button>
+          <button class="category-chip" type="button" data-category="Comidinhas">Comidinhas</button>
+          <button class="category-chip" type="button" data-category="Achadinhos">Achadinhos</button>
+        </div>
+
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <p class="empty-state" id="empty-state" hidden>Nenhum produto encontrado. Tente outra busca.</p>
+      </section>
+
+      <div class="cart-backdrop" id="cart-backdrop" hidden>
+        <section class="cart-dialog" id="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+          <div class="cart-heading">
+            <div>
+              <span class="eyebrow">SEUS ACHADINHOS</span>
+              <h2 id="cart-title">Meu carrinho</h2>
+            </div>
+            <button class="cart-close" id="cart-close" type="button" aria-label="Fechar carrinho">×</button>
+          </div>
+          <div class="cart-items" id="cart-items" aria-live="polite"></div>
+          <p class="cart-empty" id="cart-empty">Seu carrinho ainda está vazio. Escolha seus produtos favoritos!</p>
+          <div class="cart-summary" id="cart-summary" hidden>
+            <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
+            <p>Entrega combinada pelo WhatsApp.</p>
+            <button class="checkout-button" id="checkout-button" type="button">Finalizar pedido pelo WhatsApp <span aria-hidden="true">↗</span></button>
+          </div>
+        </section>
+      </div>
+
+      <section class="how-it-works" id="sobre">
+        <div class="how-copy">
+          <span class="eyebrow">FÁCIL ASSIM</span>
+          <h2>Você escolhe.<br />A gente combina.</h2>
+          <p>Adicione seus favoritos ao carrinho e confira o total. Ao finalizar, enviamos a lista do pedido e os dados de Pix para o nosso WhatsApp.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <div><h3>Monte seu carrinho</h3><p>Adicione os produtos que quiser e ajuste as quantidades.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">02</span>
+            <div><h3>Finalize pelo WhatsApp</h3><p>A mensagem leva os itens, quantidades, total e chave Pix.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-number">03</span>
+            <div><h3>Combine e receba</h3><p>Acertamos o pagamento e os detalhes da entrega por lá.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing-banner">
+        <div>
+          <span class="eyebrow">TEM UMA DÚVIDA?</span>
+          <h2>Estamos a uma mensagem de distância.</h2>
+        </div>
+        <a class="light-button" id="contact-link" href="#produtos">Falar com a loja <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#">
+        <span class="brand-icon" aria-hidden="true">c</span>
+        <span class="brand-name">capivaras <span>& cia.</span></span>
+      </a>
+      <p>Feito com carinho. Pedido e entrega combinados pelo WhatsApp.</p>
+      <span class="copyright">© <span id="year"></span> Capivaras & Cia</span>
+    </footer>
+    <div class="setup-notice" id="setup-notice" role="status" hidden></div>
+  </body>
+</html>

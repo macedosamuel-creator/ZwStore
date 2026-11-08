@@ -238,7 +238,12 @@ h1, h2 { font-family: Manrope, sans-serif; }
   .site-footer { padding: 22px 6%; flex-wrap: wrap; }
   .site-footer p { order: 3; width: 100%; }
   .copyright { margin-left: auto; }
-}(--line); }.cart-heading h2 { margin: 6px 0 0; font-size: 27px; letter-spacing: -.05em; }
+}
+
+/*
+  Legacy duplicate rules below were overriding the premium theme.
+*/
+/*(--line); }.cart-heading h2 { margin: 6px 0 0; font-size: 27px; letter-spacing: -.05em; }
 .cart-close { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: white; font-size: 25px; line-height: 1; cursor: pointer; }
 .cart-items { display: grid; }
 .cart-item { display: grid; grid-template-columns: 67px minmax(0, 1fr) auto; gap: 13px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
@@ -324,6 +329,7 @@ h1, h2 { font-family: Manrope, sans-serif; }
   .site-footer p { order: 3; width: 100%; }
   .copyright { margin-left: auto; }
 }
+*/
 
 .how-it-works {
   color: var(--white);

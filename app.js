@@ -397,6 +397,26 @@ const products = [
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
   discount: 10
+},
+{
+  id: 41,
+  name: "Passe Booyah FF",
+  category: "Jogos",
+  price: 15.50,
+  stock: 1000,
+  label: "envio pelo ID",
+  image: "./Passe.jpg.jpeg",
+  discount: 10
+},
+{
+  id: 42,
+  name: "Passe Booyah Premium Plus FF ",
+  category: "Jogos",
+  price: 45.50,
+  stock: 1000,
+  label: "envio pelo ID",
+  image: "./Passe.jpg.jpeg",
+  discount: 20
 }
 ];
 

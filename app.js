@@ -367,6 +367,36 @@ const products = [
   label: "robux",
   image: "./caixarubux.jpg.jpeg",
   discount: 10
+},
+{
+  id: 38,
+  name: "Assinatura Semanal FF (7 dias)",
+  category: "Achadinhos",
+  price: 11.50,
+  stock: 1000,
+  label: "assinatura pelo ID",
+  image: "./FF.jpg.jpeg",
+  discount: 10
+},
+{
+  id: 39,
+  name: "Assinatura Mensal FF (30 dias)",
+  category: "Achadinhos",
+  price: 52.50,
+  stock: 1000,
+  label: "assinatura pelo ID",
+  image: "./FF.jpg.jpeg",
+  discount: 10
+},
+{
+  id: 40,
+  name: "Semanal Econômica FF (7 dias)",
+  category: "Achadinhos",
+  price: 2.22,
+  stock: 1000,
+  label: "assinatura pelo ID",
+  image: "./FF.jpg.jpeg",
+  discount: 10
 }
 ];
 

@@ -107,13 +107,16 @@ h1, h2 { font-family: Manrope, sans-serif; }
 .product-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .35s; }
 .product-card:hover .product-image img { transform: scale(1.045); }
 .product-label { position: absolute; top: 10px; left: 10px; padding: 6px 9px; border-radius: 20px; color: #4a594b; background: #fffefaeb; font-size: 9px; }
+.product-discount-badge { position: absolute; top: 10px; right: 10px; padding: 6px 9px; border-radius: 20px; color: white; background: #a36350; font-size: 9px; font-weight: 700; }
 .product-details { padding: 12px 1px 0; }
 .product-category { color: #879181; font-size: 9px; letter-spacing: .07em; text-transform: uppercase; }
 .product-title { margin: 5px 0 9px; font-family: Manrope, sans-serif; font-size: 13px; font-weight: 600; }
 .product-stock { margin: -3px 0 10px; color: #788078; font-size: 10px; }
 .product-stock-empty { color: #a36350; font-weight: 700; }
 .product-bottom { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.product-pricing { display: grid; gap: 2px; }
 .product-price { color: var(--green); font-size: 14px; font-weight: 700; }
+.product-original-price { color: var(--muted); font-size: 10px; text-decoration: line-through; }
 .order-button { padding: 8px 10px; border: 1px solid #dfe5da; border-radius: 4px; color: var(--green); background: white; font-size: 9px; font-weight: 700; cursor: pointer; }
 .order-button:hover { color: white; background: var(--green); border-color: var(--green); }
 .order-button:disabled { cursor: not-allowed; }
@@ -139,6 +142,9 @@ h1, h2 { font-family: Manrope, sans-serif; }
 .cart-summary[hidden] { display: none; }
 .cart-total { display: flex; justify-content: space-between; font-size: 13px; }
 .cart-total strong { color: var(--green); font-size: 16px; }
+.cart-discount { display: flex; justify-content: space-between; margin-top: 8px; color: #738967; font-size: 12px; }
+.cart-discount[hidden] { display: none; }
+.cart-discount strong { font-size: 13px; }
 .cart-summary > p { margin: 8px 0 18px; color: var(--muted); font-size: 10px; }
 .checkout-button { width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 12px; border: 0; border-radius: 4px; color: white; background: var(--green); font-size: 12px; font-weight: 700; cursor: pointer; }
 .checkout-button:hover { background: var(--green-dark); }

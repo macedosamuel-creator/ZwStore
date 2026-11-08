@@ -8,6 +8,7 @@ const STORE = {
 const products = [
   // Edite o campo stock de cada produto para atualizar as quantidades disponíveis.
   // Com stock: 0, o produto aparece como esgotado e não pode ser comprado.
+  // Para dar desconto, adicione discount: 10 ao produto (percentual; omita ou use 0 para não dar desconto).
   {
     id: 1,
     name: "Capinha iPhone 12 Transparente",
@@ -16,6 +17,7 @@ const products = [
     stock: 3,
     label: "transparente",
     image: "./ip12transp.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 2,
@@ -25,6 +27,7 @@ const products = [
     stock: 1,
     label: "azul",
     image: "./ip13PMazul.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 3,
@@ -34,6 +37,7 @@ const products = [
     stock: 1,
     label: "bege",
     image: "./ip13PMbege.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 4,
@@ -43,6 +47,7 @@ const products = [
     stock: 1,
     label: "marrom",
     image: "./ip13PMmarrom.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ const products = [
     stock: 1,
     label: "verde",
     image: "./ip13PMverde.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ const products = [
     stock: 1,
     label: "preta",
     image: "./ip13PMpreta.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ const products = [
     stock: 3,
     label: "transparente",
     image: "./ip15transp.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 9,
@@ -79,6 +87,7 @@ const products = [
     stock: 1,
     label: "azul",
     image: "./ip12azul.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 10,
@@ -88,6 +97,7 @@ const products = [
     stock: 1,
     label: "bege escuro",
     image: "./ip12begeescuru.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 11,
@@ -97,6 +107,7 @@ const products = [
     stock: 1,
     label: "marrom",
     image: "./ip12marrom.jpg.jpeg",
+    discount: 0,
   },
   {
     id: 12,
@@ -106,6 +117,7 @@ const products = [
     stock: 1,
     label: "verde",
     image: "./ip12verde..jpg.jpeg",
+    discount: 0
   },
   {id: 13,
     name: "Capinha iPhone 17 Pro Max transparente",
@@ -113,7 +125,8 @@ const products = [
     price: 19.99,
     stock: 2,
     label: "transparente",
-    image: "./ip17PMtransp.jpg.jpeg"
+    image: "./ip17PMtransp.jpg.jpeg",
+    discount: 0
   },
   {
     id: 14,
@@ -122,7 +135,8 @@ const products = [
     price: 39.99,
     stock: 1,
     label: "kit",
-    image: "./kitPilotos.jpg.jpeg"
+    image: "./kitPilotos.jpg.jpeg",
+    discount: 0
   },
   {
     id: 15,
@@ -131,7 +145,8 @@ const products = [
     price: 24.99,
     stock: 1,
     label: "azul",
-    image: "./ip11azul.jpg.jpeg"
+    image: "./ip11azul.jpg.jpeg",
+    discount: 0 
   },
   {
     id: 16,
@@ -140,7 +155,8 @@ const products = [
     price: 24.99,
     stock: 1,
     label: "bege escuro",
-    image: "./ip11bege_cinza.jpg.jpeg"
+    image: "./ip11bege_cinza.jpg.jpeg",
+    discount: 0
   },
   {
     id: 17,
@@ -149,7 +165,8 @@ const products = [
     price: 24.99,
     stock: 1,
     label: "marrom",
-    image: "./ip11marrom.jpg.jpeg"
+    image: "./ip11marrom.jpg.jpeg",
+    discount: 0
   },
   {
     id: 18,
@@ -158,7 +175,8 @@ const products = [
     price: 24.99,
     stock: 1,
     label: "verde",
-    image: "./ip11verde.jpg.jpeg"
+    image: "./ip11verde.jpg.jpeg",
+    discount: 0
   },
   {
     id: 19,
@@ -167,7 +185,8 @@ const products = [
     price: 24.99,
     stock: 1,
     label: "roxa escura",
-    image: "./ip11roxaescuro.jpg.jpeg"
+    image: "./ip11roxaescuro.jpg.jpeg",
+    discount: 0
   },
   {
     id: 20,
@@ -176,7 +195,8 @@ const products = [
     price: 19.99,
     stock: 2,
     label: "transparente",
-    image: "./ip11transp.jpg.jpeg"
+    image: "./ip11transp.jpg.jpeg",
+    discount: 0
   },
   {
     id: 21,
@@ -185,7 +205,8 @@ const products = [
     price: 24.99,
     stock: 1,
     label: "azul",
-    image: "./ip13azul.jpg.jpeg"
+    image: "./ip13azul.jpg.jpeg",
+    discount: 0
   },
   {
     id: 22,
@@ -194,7 +215,8 @@ const products = [
     price: 24.99,
     stock: 1,
     label: "branca",
-    image: "./ip13branca.jpg.jpeg"
+    image: "./ip13branca.jpg.jpeg",
+    discount: 0
   },
   {
     id: 23,
@@ -203,7 +225,8 @@ const products = [
     price: 24.99,
     stock: 1,
     label: "verde",
-    image: "./ip13verde.jpg.jpeg"
+    image: "./ip13verde.jpg.jpeg",
+    discount: 0
     },
     {
     id: 24,
@@ -212,8 +235,70 @@ const products = [
     price: 19.99,
     stock: 3,
     label: "transparente",
-    image: "./ip13transp.jpg.jpeg"
-  }
+    image: "./ip13transp.jpg.jpeg",
+    discount: 0
+  },
+  {
+    id: 25,
+    name: "78 Diamantes FF",
+    category: "Achadinhos",
+    price: 4,
+    stock: 100,
+    label: "diamantes",
+    image: "./78dimas.jpg.jpeg",
+    discount: 6
+  },
+  {
+    id: 26,
+    name: "120 Diamantes FF",
+    category: "Achadinhos",
+    price: 6,
+    stock: 100,
+    label: "diamantes",
+    image: "./120dimas.jpg.jpeg",
+    discount: 10
+  },
+
+{
+  id: 27,
+  name: "372 Diamantes FF",
+  category: "Achadinhos",
+  price: 16,
+  stock: 100,
+  label: "diamantes",
+  image: "./372dimas.jpg.jpeg",
+  discount: 5
+},
+{
+  id: 28,
+  name: "624 Diamantes FF",
+  category: "Achadinhos",
+  price: 25,
+  stock: 100,
+  label: "diamantes",
+  image: "./624dimas.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 29,
+  name: "1272 Diamantes FF",
+  category: "Achadinhos",
+  price: 50,
+  stock: 100,
+  label: "diamantes",
+  image: "./1272dimas.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 30,
+  name: "2616 Diamantes FF",
+  category: "Achadinhos",
+  price: 99,
+  stock: 100,
+  label: "diamantes",
+  image: "./2616dimas.jpg.jpeg",
+  discount: 7
+}
 ];
 
 const productGrid = document.querySelector("#product-grid");
@@ -226,6 +311,9 @@ const cartEmpty = document.querySelector("#cart-empty");
 const cartSummary = document.querySelector("#cart-summary");
 const cartCount = document.querySelector("#cart-count");
 const cartTotal = document.querySelector("#cart-total");
+const cartSubtotal = document.querySelector("#cart-subtotal");
+const cartDiscountRow = document.querySelector("#cart-discount-row");
+const cartDiscount = document.querySelector("#cart-discount");
 const CART_STORAGE_KEY = "capivaras-cia-cart";
 let activeCategory = "Todos";
 let cart = loadCart();
@@ -236,6 +324,15 @@ function formatPrice(price) {
     style: "currency",
     currency: "BRL",
   }).format(price);
+}
+
+function getDiscountPercent(product) {
+  if (!Number.isFinite(product.discount)) return 0;
+  return Math.min(100, Math.max(0, product.discount));
+}
+
+function getDiscountedPrice(product) {
+  return Math.round(product.price * (1 - getDiscountPercent(product) / 100) * 100) / 100;
 }
 
 function renderProducts() {
@@ -255,11 +352,14 @@ function renderProducts() {
         const quantityInCart = cart[product.id] || 0;
         const outOfStock = product.stock <= 0;
         const cannotAddMore = outOfStock || quantityInCart >= product.stock;
+        const discountPercent = getDiscountPercent(product);
+        const discountedPrice = getDiscountedPrice(product);
         return `
         <article class="product-card">
           <div class="product-image">
             <img src="${product.image}" alt="${product.name}" loading="lazy" />
             <span class="product-label">${product.label}</span>
+            ${discountPercent ? `<span class="product-discount-badge">${discountPercent}% OFF</span>` : ""}
           </div>
           <div class="product-details">
             <span class="product-category">${product.category}</span>
@@ -268,7 +368,10 @@ function renderProducts() {
               ${outOfStock ? "Estoque: 0 unidades" : `Estoque: ${product.stock} ${product.stock === 1 ? "unidade" : "unidades"}`}
             </p>
             <div class="product-bottom">
-              <span class="product-price">${formatPrice(product.price)}</span>
+              <div class="product-pricing">
+                ${discountPercent ? `<span class="product-original-price">${formatPrice(product.price)}</span>` : ""}
+                <span class="product-price">${formatPrice(discountedPrice)}</span>
+              </div>
               <button class="order-button${cannotAddMore ? " out-of-stock" : ""}" type="button" data-add-to-cart="${product.id}" ${cannotAddMore ? "disabled" : ""}>
                 ${outOfStock ? "Esgotado" : cannotAddMore ? "Estoque no carrinho" : "Adicionar ao carrinho +"}
               </button>
@@ -335,22 +438,33 @@ function renderCart() {
     .filter((entry) => entry.product);
   const itemCount = entries.reduce((sum, entry) => sum + entry.quantity, 0);
   const total = entries.reduce(
+    (sum, entry) => sum + getDiscountedPrice(entry.product) * entry.quantity,
+    0,
+  );
+  const subtotal = entries.reduce(
     (sum, entry) => sum + entry.product.price * entry.quantity,
     0,
   );
+  const savings = subtotal - total;
 
   cartCount.textContent = itemCount;
   cartEmpty.hidden = entries.length > 0;
   cartSummary.hidden = entries.length === 0;
+  cartSubtotal.textContent = formatPrice(subtotal);
+  cartDiscountRow.hidden = savings <= 0;
+  cartDiscount.textContent = `− ${formatPrice(savings)}`;
   cartTotal.textContent = formatPrice(total);
   cartItems.innerHTML = entries
     .map(
-      ({ product, quantity }) => `
+      ({ product, quantity }) => {
+        const discountPercent = getDiscountPercent(product);
+        const discountedPrice = getDiscountedPrice(product);
+        return `
         <article class="cart-item">
           <img src="${product.image}" alt="" />
           <div class="cart-item-info">
             <h3>${product.name}</h3>
-            <span>${formatPrice(product.price)} cada</span>
+            <span>${discountPercent ? `<s>${formatPrice(product.price)}</s> ${formatPrice(discountedPrice)} cada · ${discountPercent}% OFF` : `${formatPrice(product.price)} cada`}</span>
             <div class="quantity-controls" aria-label="Quantidade de ${product.name}">
               <button type="button" data-cart-action="decrease" data-product-id="${product.id}" aria-label="Diminuir quantidade">−</button>
               <span>${quantity}</span>
@@ -358,8 +472,9 @@ function renderCart() {
               <button class="remove-item" type="button" data-cart-action="remove" data-product-id="${product.id}">Remover</button>
             </div>
           </div>
-          <strong class="cart-line-total">${formatPrice(product.price * quantity)}</strong>
-        </article>`,
+          <strong class="cart-line-total">${formatPrice(discountedPrice * quantity)}</strong>
+        </article>`;
+      },
     )
     .join("");
 }
@@ -391,17 +506,24 @@ function finalizeOrder() {
   }
 
   const total = entries.reduce(
+    (sum, entry) => sum + getDiscountedPrice(entry.product) * entry.quantity,
+    0,
+  );
+  const subtotal = entries.reduce(
     (sum, entry) => sum + entry.product.price * entry.quantity,
     0,
   );
+  const savings = subtotal - total;
   const message = [
     `Olá! Quero fazer um pedido na ${STORE.name}:`,
     "",
     ...entries.map(
       ({ product, quantity }) =>
-        `• ${product.name} — ${quantity} x ${formatPrice(product.price)} = ${formatPrice(product.price * quantity)}`,
+        `• ${product.name} — ${quantity} x ${formatPrice(getDiscountedPrice(product))}${getDiscountPercent(product) ? ` (${getDiscountPercent(product)}% OFF)` : ""} = ${formatPrice(getDiscountedPrice(product) * quantity)}`,
     ),
     "",
+    `Subtotal: ${formatPrice(subtotal)}`,
+    ...(savings > 0 ? [`Descontos: − ${formatPrice(savings)}`] : []),
     `Total dos produtos: ${formatPrice(total)}`,
     `Chave Pix: ${STORE.pixKey}`,
     "Podemos combinar a entrega?",

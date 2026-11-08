@@ -256,7 +256,7 @@ const products = [
     stock: 100,
     label: "diamantes",
     image: "./120dimas.jpg.jpeg",
-    discount: 10
+    discount: 16
   },
 
 {
@@ -267,7 +267,7 @@ const products = [
   stock: 100,
   label: "diamantes",
   image: "./372dimas.jpg.jpeg",
-  discount: 5
+  discount: 6
 },
 {
   id: 28,
@@ -297,7 +297,76 @@ const products = [
   stock: 100,
   label: "diamantes",
   image: "./2616dimas.jpg.jpeg",
-  discount: 7
+  discount: 9
+},
+{
+  id: 31,
+  name: "Conta Blox Fruits | Level 2800 + Godhuman + 2 Frutas Míticas Garantidas + Outros",
+  category: "Achadinhos",
+  price: 25,
+  stock: 15,
+  label: "blox-fruits",
+  image: "./contas.jpg.jpeg",
+  discount: 20
+},
+{id: 32,
+  name: "Conta Blox Fruits | 3-5 Frutas Míticas Garantidas + Level 2800 + Godhuman + Outros",
+  category: "Achadinhos",
+  price: 35,
+  stock: 11,
+  label: "blox-fruits",
+  image: "./contas.jpg.jpeg",
+  discount: 20
+},
+{
+  id: 33,
+  name: "Conta Blox Fruits | 4-6 Frutas Míticas Garantidas + Level 2800 + Godhuman + Outros",
+  category: "Achadinhos",
+  price: 55,
+  stock: 7,
+  label: "blox-fruits",
+  image: "./contas.jpg.jpeg",
+  discount: 30
+},
+{
+  id: 34, 
+  name: "Conta Blox Fruits | Level 2800 + Godhuman + Portal + Outros",
+  category: "Achadinhos",
+  price: 15,
+  stock: 7,
+  label: "blox-fruits",
+  image: "./portal.jpg.jpeg",
+  discount: 15
+},
+{
+  id: 35,
+  name: "Conta Blox Fruits | Level 2800 + Godhuman + Lightning (Rumble) + Outros",
+  category: "Achadinhos",
+  price: 20,
+  stock: 3,
+  label: "blox-fruits",
+  image: "./rumble.jpg.jpeg",
+  discount: 25
+},
+{
+  id: 36,
+  name: "Conta Blox Fruits | Level 2800 + Godhuman + Gás + Outros",
+  category: "Achadinhos",
+  price: 20,
+  stock: 2,
+  label: "blox-fruits",
+  image: "./gas.jpg.jpeg",
+  discount: 25
+},
+{
+  id: 37,
+  name: "💎 CAIXA ROBUX (SORTE🍀) de 1000 até 50.000 Robux! 🔥",
+  category: "Achadinhos",
+  price: 25,
+  stock: 1000,
+  label: "robux",
+  image: "./caixarubux.jpg.jpeg",
+  discount: 10
 }
 ];
 

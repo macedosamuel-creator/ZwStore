@@ -413,7 +413,7 @@ const cartTotal = document.querySelector("#cart-total");
 const cartSubtotal = document.querySelector("#cart-subtotal");
 const cartDiscountRow = document.querySelector("#cart-discount-row");
 const cartDiscount = document.querySelector("#cart-discount");
-const CART_STORAGE_KEY = "capivaras-cia-cart";
+const CART_STORAGE_KEY = "nexora-cia-cart";
 const HIDDEN_FROM_ALL_PRODUCTS = new Set([
   "jogos",
   "pagina de jogos",

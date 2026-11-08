@@ -241,7 +241,7 @@ const products = [
   {
     id: 25,
     name: "78 Diamantes FF",
-    category: "Achadinhos",
+    category: "Jogos",
     price: 4,
     stock: 100,
     label: "diamantes",
@@ -251,7 +251,7 @@ const products = [
   {
     id: 26,
     name: "120 Diamantes FF",
-    category: "Achadinhos",
+    category: "Jogos",
     price: 6,
     stock: 100,
     label: "diamantes",
@@ -262,7 +262,7 @@ const products = [
 {
   id: 27,
   name: "372 Diamantes FF",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 16,
   stock: 100,
   label: "diamantes",
@@ -272,7 +272,7 @@ const products = [
 {
   id: 28,
   name: "624 Diamantes FF",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 25,
   stock: 100,
   label: "diamantes",
@@ -282,7 +282,7 @@ const products = [
 {
   id: 29,
   name: "1272 Diamantes FF",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 50,
   stock: 100,
   label: "diamantes",
@@ -292,7 +292,7 @@ const products = [
 {
   id: 30,
   name: "2616 Diamantes FF",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 99,
   stock: 100,
   label: "diamantes",
@@ -302,7 +302,7 @@ const products = [
 {
   id: 31,
   name: "Conta Blox Fruits | Level 2800 + Godhuman + 2 Frutas Míticas Garantidas + Outros",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 25,
   stock: 15,
   label: "blox-fruits",
@@ -311,7 +311,7 @@ const products = [
 },
 {id: 32,
   name: "Conta Blox Fruits | 3-5 Frutas Míticas Garantidas + Level 2800 + Godhuman + Outros",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 35,
   stock: 11,
   label: "blox-fruits",
@@ -321,7 +321,7 @@ const products = [
 {
   id: 33,
   name: "Conta Blox Fruits | 4-6 Frutas Míticas Garantidas + Level 2800 + Godhuman + Outros",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 55,
   stock: 7,
   label: "blox-fruits",
@@ -331,7 +331,7 @@ const products = [
 {
   id: 34, 
   name: "Conta Blox Fruits | Level 2800 + Godhuman + Portal + Outros",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 15,
   stock: 7,
   label: "blox-fruits",
@@ -341,7 +341,7 @@ const products = [
 {
   id: 35,
   name: "Conta Blox Fruits | Level 2800 + Godhuman + Lightning (Rumble) + Outros",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 20,
   stock: 3,
   label: "blox-fruits",
@@ -351,7 +351,7 @@ const products = [
 {
   id: 36,
   name: "Conta Blox Fruits | Level 2800 + Godhuman + Gás + Outros",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 20,
   stock: 2,
   label: "blox-fruits",
@@ -361,7 +361,7 @@ const products = [
 {
   id: 37,
   name: "💎 CAIXA ROBUX (SORTE🍀) de 1000 até 50.000 Robux! 🔥",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 25,
   stock: 1000,
   label: "robux",
@@ -371,7 +371,7 @@ const products = [
 {
   id: 38,
   name: "Assinatura Semanal FF (7 dias)",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 11.50,
   stock: 1000,
   label: "assinatura pelo ID",
@@ -381,7 +381,7 @@ const products = [
 {
   id: 39,
   name: "Assinatura Mensal FF (30 dias)",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 52.50,
   stock: 1000,
   label: "assinatura pelo ID",
@@ -391,7 +391,7 @@ const products = [
 {
   id: 40,
   name: "Semanal Econômica FF (7 dias)",
-  category: "Achadinhos",
+  category: "Jogos",
   price: 2.22,
   stock: 1000,
   label: "assinatura pelo ID",
@@ -414,9 +414,40 @@ const cartSubtotal = document.querySelector("#cart-subtotal");
 const cartDiscountRow = document.querySelector("#cart-discount-row");
 const cartDiscount = document.querySelector("#cart-discount");
 const CART_STORAGE_KEY = "capivaras-cia-cart";
+const HIDDEN_FROM_ALL_PRODUCTS = new Set([
+  "jogos",
+  "pagina de jogos",
+  "página de jogos",
+]);
+const CATEGORY_ALIASES = {
+  jogos: new Set(["jogos", "pagina de jogos", "página de jogos"]),
+  "pagina de jogos": new Set(["jogos", "pagina de jogos", "página de jogos"]),
+  "página de jogos": new Set(["jogos", "pagina de jogos", "página de jogos"]),
+};
 let activeCategory = "Todos";
 let cart = loadCart();
 saveCart();
+
+function normalizeCategory(category) {
+  return String(category ?? "")
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase("pt-BR")
+    .replace(/\s+/g, " ");
+}
+
+function matchesCategory(productCategory, selectedCategory) {
+  const normalizedProductCategory = normalizeCategory(productCategory);
+  const normalizedSelectedCategory = normalizeCategory(selectedCategory);
+
+  if (normalizedSelectedCategory === "todos") {
+    return !HIDDEN_FROM_ALL_PRODUCTS.has(normalizedProductCategory);
+  }
+
+  const aliases = CATEGORY_ALIASES[normalizedSelectedCategory] || new Set([normalizedSelectedCategory]);
+  return aliases.has(normalizedProductCategory);
+}
 
 function formatPrice(price) {
   return new Intl.NumberFormat("pt-BR", {
@@ -437,12 +468,11 @@ function getDiscountedPrice(product) {
 function renderProducts() {
   const searchTerm = searchInput.value.trim().toLocaleLowerCase("pt-BR");
   const visibleProducts = products.filter((product) => {
-    const matchesCategory =
-      activeCategory === "Todos" || product.category === activeCategory;
+    const matchesCategoryFilter = matchesCategory(product.category, activeCategory);
     const matchesSearch = `${product.name} ${product.category}`
       .toLocaleLowerCase("pt-BR")
       .includes(searchTerm);
-    return matchesCategory && matchesSearch;
+    return matchesCategoryFilter && matchesSearch;
   });
 
   productGrid.innerHTML = visibleProducts

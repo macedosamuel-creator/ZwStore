@@ -416,7 +416,7 @@ const products = [
   stock: 1000,
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
-  discount: 20
+  discount: 28
 }
 ];
 

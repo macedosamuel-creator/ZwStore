@@ -310,6 +310,26 @@ const products = [
   discount: 9
 },
 {
+  id: 57,
+  name: "6720 Diamantes FF",
+  category: "Jogos",
+  price: 235,
+  stock: 100,
+  label: "diamantes",
+  image: "./6729dimas.jpg.jpeg",
+  discount: 5
+},
+{
+  id: 58,
+  name: "26880 Diamantes FF",
+  category: "Jogos",
+  price: 929,
+  stock: 100,
+  label: "diamantes",
+  image: "./26880dimas.jpg.jpeg",
+  discount: 3
+},
+{
   id: 31,
   name: "Conta Blox Fruits | Level 2800 + Godhuman + 2 Frutas Míticas Garantidas + Outros",
   category: "Jogos",
@@ -524,7 +544,7 @@ const products = [
   category: "Achadinhos",
   price: 100,
   stock: 5,
-  label: "praso 30 dias",
+  label: "prazo 30 dias",
   image: "./mousepadgojo.jpg.jpeg",
   discount: 42
 },
@@ -534,7 +554,7 @@ const products = [
   category: "Achadinhos",
   price: 100,
   stock: 5,
-  label: "praso 30 dias",
+  label: "prazo 30 dias",
   image: "./mousepadbleach.jpg.jpeg",
   discount: 40
 },
@@ -544,7 +564,7 @@ const products = [
   category: "Achadinhos",
   price: 100,
   stock: 5,
-  label: "praso 30 dias",
+  label: "prazo 30 dias",
   image: "./mousepadsukuna.jpg.jpeg",
   discount: 45
 },
@@ -585,6 +605,7 @@ const paymentNotice = document.querySelector("#payment-notice");
 const sendOrderButton = document.querySelector("#send-order-button");
 const ORDER_SEND_CLICK_LIMIT = 5;
 const CART_STORAGE_KEY = "nexora-cia-cart";
+const HIDDEN_FROM_ALL_PRODUCTS = new Set(["jogos"]);
 const CATEGORY_ALIASES = {
   jogos: new Set(["jogos", "pagina de jogos", "página de jogos"]),
   "pagina de jogos": new Set(["jogos", "pagina de jogos", "página de jogos"]),
@@ -609,7 +630,7 @@ function matchesCategory(productCategory, selectedCategory) {
   const normalizedSelectedCategory = normalizeCategory(selectedCategory);
 
   if (normalizedSelectedCategory === "todos") {
-    return true;
+    return !HIDDEN_FROM_ALL_PRODUCTS.has(normalizedProductCategory);
   }
 
   const aliases = CATEGORY_ALIASES[normalizedSelectedCategory] || new Set([normalizedSelectedCategory]);
@@ -837,20 +858,27 @@ function renderCart() {
     cartDiscount.textContent = `− ${formatPrice(order.productSavingsCents / 100)}`;
     cartVolumeDiscountRow.hidden = order.cartDiscountCents <= 0;
     cartVolumeDiscountLabel.textContent =
-      `Desconto no carrinho (${order.cartDiscountPercent}%)`;
+      `Desconto no carrinho (${order.cartDiscountPercent}%)${order.hasGames ? " · jogos não inclusos" : ""}`;
     cartVolumeDiscount.textContent =
       `− ${formatPrice(order.cartDiscountCents / 100)}`;
-    const { activeTier, nextTier } = getCartDiscountProgress(order.productDiscountedSubtotalCents);
-    cartDiscountHint.hidden = !activeTier && !nextTier;
+    const { activeTier, nextTier } = getCartDiscountProgress(order.eligibleSubtotalCents);
+    cartDiscountHint.hidden =
+      !order.hasCartDiscountEligibleItems || (!activeTier && !nextTier);
+    let discountHintText = "";
     if (activeTier && nextTier) {
-      cartDiscountHint.textContent =
+      discountHintText =
         `Desconto de ${Math.min(100, activeTier.percent)}% aplicado! Próximo: ${Math.min(100, nextTier.percent)}% a partir de ${formatPrice(nextTier.minimum)}.`;
     } else if (activeTier) {
-      cartDiscountHint.textContent =
+      discountHintText =
         `Você atingiu o maior desconto: ${Math.min(100, activeTier.percent)}%.`;
     } else if (nextTier) {
-      cartDiscountHint.textContent =
+      discountHintText =
         `Próximo desconto: ${Math.min(100, nextTier.percent)} a partir de ${formatPrice(nextTier.minimum)}.`;
+    }
+    if (!cartDiscountHint.hidden) {
+      cartDiscountHint.textContent = order.hasGames
+        ? `${discountHintText} Itens de Jogos não estão inclusos no desconto do carrinho.`
+        : discountHintText;
     }
     cartTotal.textContent = formatPrice(order.total);
   } else {
@@ -906,15 +934,35 @@ function getOrderDetails() {
       sum + Math.round(getDiscountedPrice(entry.product) * 100) * entry.quantity,
     0,
   );
+  const eligibleSubtotalCents = entries.reduce(
+    (sum, entry) => {
+      if (normalizeCategory(entry.product.category) === "jogos") return sum;
+      return sum + Math.round(getDiscountedPrice(entry.product) * 100) * entry.quantity;
+    },
+    0,
+  );
+  const gamesSubtotalCents = entries.reduce(
+    (sum, entry) => {
+      if (normalizeCategory(entry.product.category) !== "jogos") return sum;
+      return sum + Math.round(getDiscountedPrice(entry.product) * 100) * entry.quantity;
+    },
+    0,
+  );
+  const hasGames = entries.some(
+    (entry) => normalizeCategory(entry.product.category) === "jogos",
+  );
+  const hasCartDiscountEligibleItems = entries.some(
+    (entry) => normalizeCategory(entry.product.category) !== "jogos",
+  );
   const subtotalCents = entries.reduce(
     (sum, entry) => sum + Math.round(entry.product.price * 100) * entry.quantity,
     0,
   );
-  const cartDiscountPercent = getCartDiscountPercent(productDiscountedSubtotalCents);
+  const cartDiscountPercent = getCartDiscountPercent(eligibleSubtotalCents);
   const cartDiscountCents = Math.round(
-    productDiscountedSubtotalCents * cartDiscountPercent / 100,
+    eligibleSubtotalCents * cartDiscountPercent / 100,
   );
-  const totalCents = productDiscountedSubtotalCents - cartDiscountCents;
+  const totalCents = gamesSubtotalCents + eligibleSubtotalCents - cartDiscountCents;
   return {
     entries,
     total: totalCents / 100,
@@ -922,6 +970,9 @@ function getOrderDetails() {
     subtotalCents,
     totalCents,
     productDiscountedSubtotalCents,
+    eligibleSubtotalCents,
+    hasGames,
+    hasCartDiscountEligibleItems,
     productSavingsCents: subtotalCents - productDiscountedSubtotalCents,
     cartDiscountPercent,
     cartDiscountCents,

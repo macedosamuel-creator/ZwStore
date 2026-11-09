@@ -1067,7 +1067,6 @@ function sendOrderToWhatsApp() {
       ? [`Total de descontos: − ${formatPrice(savings / 100)}`]
       : []),
     `Total dos produtos: ${formatPrice(order.total)}`,
-    "Solicito a conferência do pagamento Pix deste pedido. O pagamento ainda não foi confirmado automaticamente pelo site; posso enviar o comprovante para verificação.",
   ].join("\n");
   const whatsappUrl = `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, "_blank", "noopener,noreferrer");

@@ -632,6 +632,7 @@ const CATEGORY_ALIASES = {
 let activeCategory = "Todos";
 let cart = loadCart();
 let paymentConfirmationAttempts = 0;
+let paymentTabWasHidden = false;
 saveCart();
 
 function normalizeCategory(category) {
@@ -1018,8 +1019,7 @@ function startPixPayment() {
     pixCode.value = payload;
     pixQrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&format=png&data=${encodeURIComponent(payload)}`;
     pixQrCode.alt = `QR Code Pix para pagamento de ${formatPrice(order.total)}`;
-    paymentNotice.textContent =
-      "Depois de pagar no aplicativo do banco, use o botão abaixo para enviar o pedido.";
+    paymentNotice.textContent = "";
     sendOrderButton.hidden = false;
     paymentDetails.hidden = false;
     paymentDetails.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -1152,6 +1152,18 @@ document.querySelector("#copy-pix-button").addEventListener("click", async () =>
 pixQrCode.addEventListener("error", () => {
   paymentNotice.textContent =
     "Não foi possível carregar o QR Code. Você ainda pode copiar o código Pix abaixo.";
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    paymentTabWasHidden = !paymentDetails.hidden;
+    return;
+  }
+
+  if (!paymentTabWasHidden || paymentDetails.hidden) return;
+  paymentTabWasHidden = false;
+  paymentDetails.classList.remove("return-animation");
+  void paymentDetails.offsetWidth;
+  paymentDetails.classList.add("return-animation");
 });
 cartBackdrop.addEventListener("click", (event) => {
   if (event.target === cartBackdrop) closeCart();

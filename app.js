@@ -419,16 +419,6 @@ const products = [
   discount: 28
 },
 {
-  id: 43,
-  name: "Lapis Infinito",
-  category: "Achadinhos",
-  price: 10,
-  stock: 47,
-  label: "cores variadas",
-  image: "./lapisinfinito.jpg.jpeg",
-  discount: 10
-},
-{
   id: 44,
   name: "Suporte Ventosa Para Celular",
   category: "Acessórios",
@@ -547,7 +537,17 @@ const products = [
   label: "praso 30 dias",
   image: "./mousepadsukuna.jpg.jpeg",
   discount: 45
-}
+},
+{
+  id: 55,
+  name: "Lapis Infinito",
+  category: "Achadinhos",
+  price: 10,
+  stock: 47,
+  label: "cores variadas",
+  image: "./lapisinfinito.jpg.jpeg",
+  discount: 10
+},
 ];
 
 const productGrid = document.querySelector("#product-grid");

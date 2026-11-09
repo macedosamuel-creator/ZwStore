@@ -578,6 +578,26 @@ const products = [
   image: "./lapisinfinito.jpg.jpeg",
   discount: 10
 },
+{
+  id: 59,
+  name: "Monitor Led 20' Tronos Trs-hk20wy Preto Vesa Widescreen",
+  category: "Ofertas",
+  price: 359.99,
+  stock: 50,
+  label: "Prazo 30 dias",
+  image: "./monitor20.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 60,
+  name: "Placa De Vídeo Nvidia Gddr3 200 Series Gt 210 Revenger 1gb",
+  category: "Ofertas",
+  price: 279.99,
+  stock: 50,
+  label: "Prazo 30 dias",
+  image: "./placagddr3.jpg.jpeg",
+  discount: 25
+}
 ];
 
 const productGrid = document.querySelector("#product-grid");
@@ -744,7 +764,11 @@ function createPixPayload(amount) {
 function renderProducts() {
   const searchTerm = searchInput.value.trim().toLocaleLowerCase("pt-BR");
   const visibleProducts = products.filter((product) => {
-    const matchesCategoryFilter = matchesCategory(product.category, activeCategory);
+    const matchesCategoryFilter =
+      normalizeCategory(activeCategory) === "ofertas"
+        ? normalizeCategory(product.category) === "ofertas" ||
+          getDiscountPercent(product) >= 45
+        : matchesCategory(product.category, activeCategory);
     const matchesSearch = `${product.name} ${product.category}`
       .toLocaleLowerCase("pt-BR")
       .includes(searchTerm);
@@ -1048,15 +1072,27 @@ function sendOrderToWhatsApp() {
   window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 }
 
+function selectCategory(category) {
+  activeCategory = category;
+  document.querySelectorAll(".category-chip").forEach((chip) => {
+    const isActive = chip.dataset.category === category;
+    chip.classList.toggle("active", isActive);
+    chip.setAttribute("aria-pressed", String(isActive));
+  });
+  const offersButton = document.querySelector("#offers-feature-button");
+  const offersActive = normalizeCategory(category) === "ofertas";
+  offersButton.classList.toggle("active", offersActive);
+  offersButton.setAttribute("aria-pressed", String(offersActive));
+  renderProducts();
+}
+
 document.querySelector(".category-list").addEventListener("click", (event) => {
   const button = event.target.closest("[data-category]");
   if (!button) return;
-
-  activeCategory = button.dataset.category;
-  document.querySelectorAll(".category-chip").forEach((chip) => {
-    chip.classList.toggle("active", chip === button);
-  });
-  renderProducts();
+  selectCategory(button.dataset.category);
+});
+document.querySelector("#offers-feature-button").addEventListener("click", () => {
+  selectCategory("Ofertas");
 });
 
 productGrid.addEventListener("click", (event) => {

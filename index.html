@@ -61,9 +61,14 @@
 
       <section class="catalog section-wrap" id="produtos" aria-labelledby="catalog-title">
         <div class="section-heading">
-          <div>
-            <span class="eyebrow">ESCOLHIDOS A DEDO</span>
-            <h2 id="catalog-title">Tem de tudo um pouco.</h2>
+          <div class="catalog-title-group">
+            <div class="catalog-title-copy">
+              <span class="eyebrow">ESCOLHIDOS A DEDO</span>
+              <h2 id="catalog-title">Tem de tudo um pouco.</h2>
+            </div>
+            <button class="offers-feature-button" id="offers-feature-button" type="button" data-category="Ofertas" aria-pressed="false">
+              <span aria-hidden="true">✦</span> Ofertas
+            </button>
           </div>
           <label class="search-box">
             <span aria-hidden="true">⌕</span>
@@ -72,12 +77,13 @@
         </div>
 
         <div class="category-list" role="group" aria-label="Filtrar por categoria">
-          <button class="category-chip active" type="button" data-category="Todos">Tudo</button>
-          <button class="category-chip" type="button" data-category="Celular">Celular</button>
-          <button class="category-chip" type="button" data-category="Acessórios">Acessórios</button>
-          <button class="category-chip" type="button" data-category="Comidinhas">Comidinhas</button>
-          <button class="category-chip" type="button" data-category="Achadinhos">Achadinhos</button>
-          <button class="category-chip" type="button" data-category="Jogos"> Pagina de Jogos</button>
+          <button class="category-chip active" type="button" data-category="Todos" aria-pressed="true">Tudo</button>
+          <button class="category-chip" type="button" data-category="Celular" aria-pressed="false">Celular</button>
+          <button class="category-chip" type="button" data-category="Acessórios" aria-pressed="false">Acessórios</button>
+          <button class="category-chip" type="button" data-category="Comidinhas" aria-pressed="false">Comidinhas</button>
+          <button class="category-chip" type="button" data-category="Achadinhos" aria-pressed="false">Achadinhos</button>
+          <button class="category-chip" type="button" data-category="Jogos" aria-pressed="false"> Pagina de Jogos</button>
+          <button class="category-chip" type="button" data-category="Ofertas" aria-pressed="false">Ofertas</button>
         </div>
 
         <div class="product-grid" id="product-grid" aria-live="polite"></div>

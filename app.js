@@ -451,7 +451,7 @@ const products = [
   name: "Suporte Ventosa Para Celular",
   category: "Acessórios",
   price: 8,
-  stock: 2,
+  stock: 1,
   label: "preto",
   image: "./suporteventosa.jpg.jpeg",
   discount: 0

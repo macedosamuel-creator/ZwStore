@@ -1,8 +1,18 @@
 // Configure os dados da sua loja antes de divulgar o site.
 const STORE = {
-  name: "Capivaras & Cia",
+  name: "ZWStore & Cia",
   whatsapp: "5584981142531",
-  pixKey: "10738074446",
+  pixKey: "ef303c07-7e05-4d5b-8a9c-aba04ac818cd",
+  pixPayload:
+    "00020126580014BR.GOV.BCB.PIX0136ef303c07-7e05-4d5b-8a9c-aba04ac818cd5204000053039865802BR5925Samuel Ferreira de Macedo6009SAO PAULO621405100GPLHLUiO86304BA9C",
+  // Configure faixas de desconto sobre o subtotal já com descontos dos produtos.
+  // Somente a maior faixa atingida é aplicada; não acumula com as anteriores.
+  cartDiscounts: [
+    { minimum: 200, percent: 3 },
+    { minimum: 350, percent: 3.8},
+    { minimum: 850, percent: 6.5 },
+    { minimum: 1400, percent: 10 },
+  ],
 };
 
 const products = [
@@ -246,7 +256,7 @@ const products = [
     stock: 100,
     label: "diamantes",
     image: "./78dimas.jpg.jpeg",
-    discount: 6
+    discount: 96
   },
   {
     id: 26,
@@ -563,6 +573,16 @@ const cartTotal = document.querySelector("#cart-total");
 const cartSubtotal = document.querySelector("#cart-subtotal");
 const cartDiscountRow = document.querySelector("#cart-discount-row");
 const cartDiscount = document.querySelector("#cart-discount");
+const cartVolumeDiscountRow = document.querySelector("#cart-volume-discount-row");
+const cartVolumeDiscountLabel = document.querySelector("#cart-volume-discount-label");
+const cartVolumeDiscount = document.querySelector("#cart-volume-discount");
+const cartDiscountHint = document.querySelector("#cart-discount-hint");
+const paymentDetails = document.querySelector("#payment-details");
+const pixAmount = document.querySelector("#pix-amount");
+const pixCode = document.querySelector("#pix-code");
+const pixQrCode = document.querySelector("#pix-qr-code");
+const paymentNotice = document.querySelector("#payment-notice");
+const sendOrderButton = document.querySelector("#send-order-button");
 const CART_STORAGE_KEY = "nexora-cia-cart";
 const HIDDEN_FROM_ALL_PRODUCTS = new Set([
   "jogos",
@@ -576,6 +596,7 @@ const CATEGORY_ALIASES = {
 };
 let activeCategory = "Todos";
 let cart = loadCart();
+let paymentConfirmationAttempts = 0;
 saveCart();
 
 function normalizeCategory(category) {
@@ -613,6 +634,94 @@ function getDiscountPercent(product) {
 
 function getDiscountedPrice(product) {
   return Math.round(product.price * (1 - getDiscountPercent(product) / 100) * 100) / 100;
+}
+
+function getCartDiscountPercent(eligibleSubtotalCents) {
+  const eligibleTiers = STORE.cartDiscounts
+    .filter(
+      ({ minimum, percent }) =>
+        Number.isFinite(minimum) &&
+        minimum > 0 &&
+        Number.isFinite(percent) &&
+        percent > 0,
+    )
+    .sort((a, b) => a.minimum - b.minimum);
+  const activeTier = eligibleTiers
+    .filter(({ minimum }) => eligibleSubtotalCents >= Math.round(minimum * 100))
+    .at(-1);
+  return activeTier ? Math.min(100, activeTier.percent) : 0;
+}
+
+function getCartDiscountProgress(eligibleSubtotalCents) {
+  const tiers = STORE.cartDiscounts
+    .filter(
+      ({ minimum, percent }) =>
+        Number.isFinite(minimum) &&
+        minimum > 0 &&
+        Number.isFinite(percent) &&
+        percent > 0,
+    )
+    .sort((a, b) => a.minimum - b.minimum);
+  const nextTier = tiers.find(
+    ({ minimum }) => eligibleSubtotalCents < Math.round(minimum * 100),
+  );
+  const activeTier = tiers
+    .filter(({ minimum }) => eligibleSubtotalCents >= Math.round(minimum * 100))
+    .at(-1);
+
+  return { activeTier, nextTier };
+}
+
+function parsePixFields(payload) {
+  const fields = [];
+  let position = 0;
+
+  while (position < payload.length) {
+    const tag = payload.slice(position, position + 2);
+    const length = Number(payload.slice(position + 2, position + 4));
+    if (!/^\d{2}$/.test(tag) || !Number.isInteger(length) || length < 0) {
+      throw new Error("O código Pix da loja está inválido.");
+    }
+
+    const valueStart = position + 4;
+    const value = payload.slice(valueStart, valueStart + length);
+    if (value.length !== length) {
+      throw new Error("O código Pix da loja está incompleto.");
+    }
+    fields.push({ tag, value });
+    position = valueStart + length;
+  }
+
+  return fields;
+}
+
+function calculatePixCrc16(payload) {
+  let crc = 0xffff;
+  for (const character of payload) {
+    crc ^= character.charCodeAt(0) << 8;
+    for (let bit = 0; bit < 8; bit += 1) {
+      crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
+      crc &= 0xffff;
+    }
+  }
+  return crc.toString(16).toUpperCase().padStart(4, "0");
+}
+
+function createPixPayload(amount) {
+  const fields = parsePixFields(STORE.pixPayload).filter(
+    ({ tag }) => tag !== "54" && tag !== "63",
+  );
+  const amountField = { tag: "54", value: amount.toFixed(2) };
+  const merchantAccountIndex = fields.findIndex(({ tag }) => tag === "58");
+  if (merchantAccountIndex < 0) {
+    throw new Error("O código Pix da loja está sem os dados de pagamento.");
+  }
+  fields.splice(merchantAccountIndex, 0, amountField);
+
+  const payload = `${fields
+    .map(({ tag, value }) => `${tag}${String(value.length).padStart(2, "0")}${value}`)
+    .join("")}6304`;
+  return `${payload}${calculatePixCrc16(payload)}`;
 }
 
 function renderProducts() {
@@ -709,6 +818,11 @@ function saveCart() {
 }
 
 function renderCart() {
+  paymentConfirmationAttempts = 0;
+  paymentDetails.hidden = true;
+  sendOrderButton.hidden = true;
+  sendOrderButton.textContent = "Já paguei — enviar pedido pelo WhatsApp";
+  paymentNotice.textContent = "";
   const entries = Object.entries(cart)
     .map(([id, quantity]) => ({
       product: products.find((item) => item.id === Number(id)),
@@ -716,23 +830,36 @@ function renderCart() {
     }))
     .filter((entry) => entry.product);
   const itemCount = entries.reduce((sum, entry) => sum + entry.quantity, 0);
-  const total = entries.reduce(
-    (sum, entry) => sum + getDiscountedPrice(entry.product) * entry.quantity,
-    0,
-  );
-  const subtotal = entries.reduce(
-    (sum, entry) => sum + entry.product.price * entry.quantity,
-    0,
-  );
-  const savings = subtotal - total;
+  const order = getOrderDetails();
 
   cartCount.textContent = itemCount;
   cartEmpty.hidden = entries.length > 0;
   cartSummary.hidden = entries.length === 0;
-  cartSubtotal.textContent = formatPrice(subtotal);
-  cartDiscountRow.hidden = savings <= 0;
-  cartDiscount.textContent = `− ${formatPrice(savings)}`;
-  cartTotal.textContent = formatPrice(total);
+  if (order) {
+    cartSubtotal.textContent = formatPrice(order.subtotal);
+    cartDiscountRow.hidden = order.productSavingsCents <= 0;
+    cartDiscount.textContent = `− ${formatPrice(order.productSavingsCents / 100)}`;
+    cartVolumeDiscountRow.hidden = order.cartDiscountCents <= 0;
+    cartVolumeDiscountLabel.textContent =
+      `Desconto no carrinho (${order.cartDiscountPercent}%)`;
+    cartVolumeDiscount.textContent =
+      `− ${formatPrice(order.cartDiscountCents / 100)}`;
+    const { activeTier, nextTier } = getCartDiscountProgress(order.productDiscountedSubtotalCents);
+    cartDiscountHint.hidden = !activeTier && !nextTier;
+    if (activeTier && nextTier) {
+      cartDiscountHint.textContent =
+        `Desconto de ${Math.min(100, activeTier.percent)}% aplicado! Próximo: ${Math.min(100, nextTier.percent)}% a partir de ${formatPrice(nextTier.minimum)}.`;
+    } else if (activeTier) {
+      cartDiscountHint.textContent =
+        `Você atingiu o maior desconto: ${Math.min(100, activeTier.percent)}%.`;
+    } else if (nextTier) {
+      cartDiscountHint.textContent =
+        `Próximo desconto: ${Math.min(100, nextTier.percent)} a partir de ${formatPrice(nextTier.minimum)}.`;
+    }
+    cartTotal.textContent = formatPrice(order.total);
+  } else {
+    cartDiscountHint.hidden = true;
+  }
   cartItems.innerHTML = entries
     .map(
       ({ product, quantity }) => {
@@ -768,7 +895,7 @@ function closeCart() {
   document.querySelector("#cart-open").focus();
 }
 
-function finalizeOrder() {
+function getOrderDetails() {
   const entries = Object.entries(cart)
     .map(([id, quantity]) => ({
       product: products.find((item) => item.id === Number(id)),
@@ -776,36 +903,100 @@ function finalizeOrder() {
     }))
     .filter((entry) => entry.product);
 
-  if (entries.length === 0) return;
+  if (entries.length === 0) return null;
+
+  const productDiscountedSubtotalCents = entries.reduce(
+    (sum, entry) =>
+      sum + Math.round(getDiscountedPrice(entry.product) * 100) * entry.quantity,
+    0,
+  );
+  const subtotalCents = entries.reduce(
+    (sum, entry) => sum + Math.round(entry.product.price * 100) * entry.quantity,
+    0,
+  );
+  const cartDiscountPercent = getCartDiscountPercent(productDiscountedSubtotalCents);
+  const cartDiscountCents = Math.round(
+    productDiscountedSubtotalCents * cartDiscountPercent / 100,
+  );
+  const totalCents = productDiscountedSubtotalCents - cartDiscountCents;
+  return {
+    entries,
+    total: totalCents / 100,
+    subtotal: subtotalCents / 100,
+    subtotalCents,
+    totalCents,
+    productDiscountedSubtotalCents,
+    productSavingsCents: subtotalCents - productDiscountedSubtotalCents,
+    cartDiscountPercent,
+    cartDiscountCents,
+  };
+}
+
+function startPixPayment() {
+  const order = getOrderDetails();
+  if (!order) return;
   if (!STORE.whatsapp || !STORE.pixKey) {
     setupNotice.textContent =
-      "Para finalizar o pedido, preencha o WhatsApp e a chave Pix no início do arquivo app.js.";
+      "Para finalizar o pedido, preencha o WhatsApp e os dados Pix no início do arquivo app.js.";
     setupNotice.hidden = false;
     return;
   }
 
-  const total = entries.reduce(
-    (sum, entry) => sum + getDiscountedPrice(entry.product) * entry.quantity,
-    0,
-  );
-  const subtotal = entries.reduce(
-    (sum, entry) => sum + entry.product.price * entry.quantity,
-    0,
-  );
-  const savings = subtotal - total;
+  try {
+    const payload = createPixPayload(order.total);
+    paymentConfirmationAttempts = 0;
+    pixAmount.textContent = formatPrice(order.total);
+    pixCode.value = payload;
+    pixQrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&format=png&data=${encodeURIComponent(payload)}`;
+    pixQrCode.alt = `QR Code Pix para pagamento de ${formatPrice(order.total)}`;
+    paymentNotice.textContent =
+      "Depois de pagar no aplicativo do banco, use o botão abaixo para enviar o pedido.";
+    sendOrderButton.hidden = false;
+    paymentDetails.hidden = false;
+    paymentDetails.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  } catch (error) {
+    console.error("Não foi possível gerar o código Pix.", error);
+    sendOrderButton.hidden = true;
+    paymentNotice.textContent =
+      "Não foi possível gerar o Pix. Confira os dados Pix da loja e tente novamente.";
+    paymentDetails.hidden = false;
+  }
+}
+
+function sendOrderToWhatsApp() {
+  if (paymentDetails.hidden || !pixCode.value) return;
+  if (paymentConfirmationAttempts === 0) {
+    paymentConfirmationAttempts = 1;
+    paymentNotice.textContent =
+      "Pix não encontrado. Realize o pagamento antes de enviar o pedido. Se já pagou, clique novamente para solicitar a conferência à loja.";
+    sendOrderButton.textContent = "Enviar pedido para conferência no WhatsApp";
+    return;
+  }
+
+  const order = getOrderDetails();
+  if (!order) return;
+  const savings = order.subtotalCents - order.totalCents;
+
   const message = [
     `Olá! Quero fazer um pedido na ${STORE.name}:`,
     "",
-    ...entries.map(
+    ...order.entries.map(
       ({ product, quantity }) =>
         `• ${product.name} — ${quantity} x ${formatPrice(getDiscountedPrice(product))}${getDiscountPercent(product) ? ` (${getDiscountPercent(product)}% OFF)` : ""} = ${formatPrice(getDiscountedPrice(product) * quantity)}`,
     ),
     "",
-    `Subtotal: ${formatPrice(subtotal)}`,
-    ...(savings > 0 ? [`Descontos: − ${formatPrice(savings)}`] : []),
-    `Total dos produtos: ${formatPrice(total)}`,
-    `Chave Pix: ${STORE.pixKey}`,
-    "Podemos combinar a entrega?",
+    `Subtotal: ${formatPrice(order.subtotal)}`,
+    ...(order.productSavingsCents > 0
+      ? [`Descontos nos produtos: − ${formatPrice(order.productSavingsCents / 100)}`]
+      : []),
+    ...(order.cartDiscountCents > 0
+      ? [`Desconto no carrinho (${order.cartDiscountPercent}%): − ${formatPrice(order.cartDiscountCents / 100)}`]
+      : []),
+    ...(savings > 0
+      ? [`Total de descontos: − ${formatPrice(savings / 100)}`]
+      : []),
+    `Total dos produtos: ${formatPrice(order.total)}`,
+    "Solicito a conferência do pagamento Pix deste pedido. O pagamento ainda não foi confirmado automaticamente pelo site; posso enviar o comprovante para verificação.",
   ].join("\n");
   const whatsappUrl = `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, "_blank", "noopener,noreferrer");
@@ -862,7 +1053,24 @@ cartItems.addEventListener("click", (event) => {
 searchInput.addEventListener("input", renderProducts);
 document.querySelector("#cart-open").addEventListener("click", openCart);
 document.querySelector("#cart-close").addEventListener("click", closeCart);
-document.querySelector("#checkout-button").addEventListener("click", finalizeOrder);
+document.querySelector("#checkout-button").addEventListener("click", startPixPayment);
+document.querySelector("#send-order-button").addEventListener("click", sendOrderToWhatsApp);
+document.querySelector("#copy-pix-button").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(pixCode.value);
+    paymentNotice.textContent = "Código Pix copiado.";
+  } catch (error) {
+    console.error("Não foi possível copiar o código Pix.", error);
+    pixCode.focus();
+    pixCode.select();
+    paymentNotice.textContent =
+      "Não foi possível copiar automaticamente. Selecione e copie o código Pix.";
+  }
+});
+pixQrCode.addEventListener("error", () => {
+  paymentNotice.textContent =
+    "Não foi possível carregar o QR Code. Você ainda pode copiar o código Pix abaixo.";
+});
 cartBackdrop.addEventListener("click", (event) => {
   if (event.target === cartBackdrop) closeCart();
 });

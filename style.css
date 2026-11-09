@@ -154,7 +154,7 @@ h1, h2 { font-family: Manrope, sans-serif; }
 .cart-heading { display: flex; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
 .cart-heading h2 { margin: 6px 0 0; font-size: 27px; letter-spacing: -.05em; color: var(--white); }
 .cart-close { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; color: var(--white); background: rgba(255,255,255,0.03); font-size: 25px; line-height: 1; cursor: pointer; }
-.cart-items { display: grid; }
+.cart-items { display: grid; align-content: start; max-height: min(45vh, 500px); overflow-y: auto; overscroll-behavior: contain; }
 .cart-item { display: grid; grid-template-columns: 67px minmax(0, 1fr) auto; gap: 13px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .cart-item > img { width: 67px; height: 75px; border-radius: 12px; object-fit: cover; background: #111711; border: 1px solid rgba(186, 252, 74, 0.12); }
 .cart-item-info { min-width: 0; }
@@ -345,3 +345,24 @@ h1, h2 { font-family: Manrope, sans-serif; }
   border-radius: 16px;
 }
 .how-it-works .step-number { color: var(--green); }
+
+.payment-details {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 18px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: center;
+}
+.payment-details[hidden] { display: none; }
+.payment-details h3 { margin: 0; color: var(--white); font-size: 17px; }
+.pix-amount { color: var(--green); font-size: 21px; }
+.payment-details > p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.pix-qr-code { width: min(100%, 240px); height: auto; aspect-ratio: 1; padding: 8px; border-radius: 10px; background: white; }
+.pix-code-label { justify-self: start; color: var(--white); font-size: 11px; font-weight: 700; }
+.pix-code { width: 100%; padding: 10px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; color: var(--white); background: var(--panel); font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }
+.copy-pix-button, .send-order-button { width: 100%; min-height: 42px; padding: 10px; border: 1px solid var(--line-strong); border-radius: 11px; color: var(--green); background: var(--panel-2); font-size: 11px; font-weight: 700; cursor: pointer; }
+.send-order-button { color: var(--black); background: linear-gradient(135deg, var(--green), #d8ff86); }
+.payment-details small { color: var(--muted); font-size: 10px; line-height: 1.5; }

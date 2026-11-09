@@ -539,7 +539,7 @@ const products = [
   discount: 40
 },
 {
-  id: 54,
+  id: 55,
   name: "Tapete Mousepad 80x30cm Ilustrações Mangá Monocromático com Efeitos Luminosos Azul Laranja Superfície à Água Setup Gamer",
   category: "Achadinhos",
   price: 100,
@@ -549,7 +549,7 @@ const products = [
   discount: 45
 },
 {
-  id: 55,
+  id: 56,
   name: "Lapis Infinito",
   category: "Achadinhos",
   price: 10,
@@ -584,11 +584,6 @@ const pixQrCode = document.querySelector("#pix-qr-code");
 const paymentNotice = document.querySelector("#payment-notice");
 const sendOrderButton = document.querySelector("#send-order-button");
 const CART_STORAGE_KEY = "nexora-cia-cart";
-const HIDDEN_FROM_ALL_PRODUCTS = new Set([
-  "jogos",
-  "pagina de jogos",
-  "página de jogos",
-]);
 const CATEGORY_ALIASES = {
   jogos: new Set(["jogos", "pagina de jogos", "página de jogos"]),
   "pagina de jogos": new Set(["jogos", "pagina de jogos", "página de jogos"]),
@@ -613,7 +608,7 @@ function matchesCategory(productCategory, selectedCategory) {
   const normalizedSelectedCategory = normalizeCategory(selectedCategory);
 
   if (normalizedSelectedCategory === "todos") {
-    return !HIDDEN_FROM_ALL_PRODUCTS.has(normalizedProductCategory);
+    return true;
   }
 
   const aliases = CATEGORY_ALIASES[normalizedSelectedCategory] || new Set([normalizedSelectedCategory]);

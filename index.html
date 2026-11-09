@@ -97,10 +97,24 @@
           <p class="cart-empty" id="cart-empty">Seu carrinho ainda está vazio. Escolha seus produtos favoritos!</p>
           <div class="cart-summary" id="cart-summary" hidden>
             <div class="cart-total"><span>Subtotal</span><strong id="cart-subtotal"></strong></div>
-            <div class="cart-discount" id="cart-discount-row" hidden><span>Descontos</span><strong id="cart-discount"></strong></div>
+            <div class="cart-discount" id="cart-discount-row" hidden><span>Descontos nos produtos</span><strong id="cart-discount"></strong></div>
+            <div class="cart-discount" id="cart-volume-discount-row" hidden><span id="cart-volume-discount-label"></span><strong id="cart-volume-discount"></strong></div>
             <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
+            <p class="cart-promotion-hint" id="cart-discount-hint" hidden></p>
             <p>Entrega combinada pelo WhatsApp.</p>
-            <button class="checkout-button" id="checkout-button" type="button">Finalizar pedido pelo WhatsApp <span aria-hidden="true">↗</span></button>
+            <button class="checkout-button" id="checkout-button" type="button">Gerar Pix para pagar <span aria-hidden="true">↗</span></button>
+            <section class="payment-details" id="payment-details" aria-labelledby="payment-title" hidden>
+              <h3 id="payment-title">Pague com Pix</h3>
+              <strong class="pix-amount" id="pix-amount"></strong>
+              <p>Escaneie o QR Code no aplicativo do seu banco ou copie o código Pix. O valor já corresponde ao total do carrinho.</p>
+              <img class="pix-qr-code" id="pix-qr-code" alt="" width="240" height="240" />
+              <label class="pix-code-label" for="pix-code">Código Pix copia e cola</label>
+              <textarea id="pix-code" class="pix-code" readonly rows="4" aria-label="Código Pix copia e cola"></textarea>
+              <button class="copy-pix-button" id="copy-pix-button" type="button">Copiar código Pix</button>
+              <p class="payment-notice" id="payment-notice" role="status"></p>
+              <button class="send-order-button" id="send-order-button" type="button" hidden>Já paguei — enviar pedido pelo WhatsApp</button>
+              <small>O site não confirma pagamentos automaticamente. O segundo clique envia o pedido à loja para conferência; a loja deve verificar o recebimento antes de liberar os produtos.</small>
+            </section>
           </div>
         </section>
       </div>
@@ -109,7 +123,7 @@
         <div class="how-copy">
           <span class="eyebrow">FÁCIL ASSIM</span>
           <h2>Você escolhe.<br />A gente combina.</h2>
-          <p>Adicione seus favoritos ao carrinho e confira o total. Ao finalizar, enviamos a lista do pedido e os dados de Pix para o nosso WhatsApp.</p>
+          <p>Adicione seus favoritos ao carrinho, gere o Pix com o total e, depois de pagar, envie o pedido pelo WhatsApp.</p>
         </div>
         <div class="steps">
           <article class="step">
@@ -118,11 +132,11 @@
           </article>
           <article class="step">
             <span class="step-number">02</span>
-            <div><h3>Finalize pelo WhatsApp</h3><p>A mensagem leva os itens, quantidades, total e chave Pix.</p></div>
+            <div><h3>Pague com Pix</h3><p>O QR Code e o código copia e cola são gerados com o total do carrinho.</p></div>
           </article>
           <article class="step">
             <span class="step-number">03</span>
-            <div><h3>Combine e receba</h3><p>Acertamos o pagamento e os detalhes da entrega por lá.</p></div>
+            <div><h3>Envie seu pedido</h3><p>Depois de confirmar o pagamento no banco, libere a mensagem para a loja.</p></div>
           </article>
         </div>
       </section>

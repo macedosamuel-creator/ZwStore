@@ -425,7 +425,7 @@ const products = [
   price: 10,
   stock: 47,
   label: "cores variadas",
-  image: "./laIn.jpg.jpeg",
+  image: "./lapis.jpg.jpeg",
   discount: 10
 },
 {

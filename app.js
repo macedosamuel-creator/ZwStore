@@ -256,7 +256,7 @@ const products = [
     stock: 100,
     label: "diamantes",
     image: "./78dimas.jpg.jpeg",
-    discount: 96
+    discount: 5
   },
   {
     id: 26,
@@ -266,7 +266,7 @@ const products = [
     stock: 100,
     label: "diamantes",
     image: "./120dimas.jpg.jpeg",
-    discount: 16
+    discount: 10
   },
 
 {
@@ -583,6 +583,7 @@ const pixCode = document.querySelector("#pix-code");
 const pixQrCode = document.querySelector("#pix-qr-code");
 const paymentNotice = document.querySelector("#payment-notice");
 const sendOrderButton = document.querySelector("#send-order-button");
+const ORDER_SEND_CLICK_LIMIT = 5;
 const CART_STORAGE_KEY = "nexora-cia-cart";
 const CATEGORY_ALIASES = {
   jogos: new Set(["jogos", "pagina de jogos", "página de jogos"]),
@@ -960,11 +961,10 @@ function startPixPayment() {
 
 function sendOrderToWhatsApp() {
   if (paymentDetails.hidden || !pixCode.value) return;
-  if (paymentConfirmationAttempts === 0) {
-    paymentConfirmationAttempts = 1;
+  paymentConfirmationAttempts += 1;
+  if (paymentConfirmationAttempts < ORDER_SEND_CLICK_LIMIT) {
     paymentNotice.textContent =
-      "Pix não encontrado. Realize o pagamento antes de enviar o pedido. Se já pagou, clique novamente para solicitar a conferência à loja.";
-    sendOrderButton.textContent = "Enviar pedido para conferência no WhatsApp";
+      "Pix não enviado. Confira o pagamento e tente novamente.";
     return;
   }
 

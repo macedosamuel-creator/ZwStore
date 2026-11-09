@@ -8,10 +8,8 @@ const STORE = {
   // Configure faixas de desconto sobre o subtotal já com descontos dos produtos.
   // Somente a maior faixa atingida é aplicada; não acumula com as anteriores.
   cartDiscounts: [
-    { minimum: 200, percent: 3 },
-    { minimum: 350, percent: 3.8},
-    { minimum: 850, percent: 6.5 },
-    { minimum: 1400, percent: 10 },
+    { minimum: 500, percent: 1 },
+    { minimum: 1400, percent: 5 },
   ],
 };
 

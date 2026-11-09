@@ -12,7 +12,7 @@ const products = [
   {
     id: 1,
     name: "Capinha iPhone 12 Transparente",
-    category: "Capinhas",
+    category: "Celular",
     price: 19.99,
     stock: 3,
     label: "transparente",
@@ -22,7 +22,7 @@ const products = [
   {
     id: 2,
     name: "Capinha iPhone 13 Pro Max Azul",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "azul",
@@ -32,7 +32,7 @@ const products = [
   {
     id: 3,
     name: "Capinha iPhone 13 Pro Max Bege",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "bege",
@@ -42,7 +42,7 @@ const products = [
   {
     id: 4,
     name: "Capinha iPhone 13 Pro Max Marrom",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "marrom",
@@ -52,7 +52,7 @@ const products = [
   {
     id: 6,
     name: "Capinha iPhone 13 Pro Max Verde",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "verde",
@@ -62,7 +62,7 @@ const products = [
   {
     id: 7,
     name: "Capinha iPhone 13 Pro Max Preta",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "preta",
@@ -72,7 +72,7 @@ const products = [
   {
     id: 8,
     name: "Capinha iPhone 15 Transparente",
-    category: "Capinhas",
+    category: "Celular",
     price: 19.99,
     stock: 3,
     label: "transparente",
@@ -82,7 +82,7 @@ const products = [
   {
     id: 9,
     name: "Capinha iPhone 12 Azul",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "azul",
@@ -92,7 +92,7 @@ const products = [
   {
     id: 10,
     name: "Capinha iPhone 12 Bege Escuro",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "bege escuro",
@@ -102,7 +102,7 @@ const products = [
   {
     id: 11,
     name: "Capinha iPhone 12 Marrom",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "marrom",
@@ -112,7 +112,7 @@ const products = [
   {
     id: 12,
     name: "Capinha iPhone 12 Verde",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "verde",
@@ -121,7 +121,7 @@ const products = [
   },
   {id: 13,
     name: "Capinha iPhone 17 Pro Max transparente",
-    category: "Capinhas",
+    category: "Celular",
     price: 19.99,
     stock: 2,
     label: "transparente",
@@ -136,12 +136,12 @@ const products = [
     stock: 1,
     label: "kit",
     image: "./kitPilotos.jpg.jpeg",
-    discount: 0
+    discount: 15
   },
   {
     id: 15,
     name: "Capinha iPhone 11 Azul",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "azul",
@@ -151,7 +151,7 @@ const products = [
   {
     id: 16,
     name: "Capinha iPhone 11 Bege Escuro",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "bege escuro",
@@ -161,7 +161,7 @@ const products = [
   {
     id: 17,
     name: "Capinha iPhone 11 Marrom",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "marrom",
@@ -171,7 +171,7 @@ const products = [
   {
     id: 18,
     name: "Capinha iPhone 11 Verde",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "verde",
@@ -181,7 +181,7 @@ const products = [
   {
     id: 19,
     name: "Capinha iPhone 11 Roxa Escura",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "roxa escura",
@@ -191,7 +191,7 @@ const products = [
   {
     id: 20,
     name: "Capinha iPhone 11 Transparente",
-    category: "Capinhas",
+    category: "Celular",
     price: 19.99,
     stock: 2,
     label: "transparente",
@@ -201,7 +201,7 @@ const products = [
   {
     id: 21,
     name: "Capinha iPhone 13 Azul",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "azul",
@@ -211,7 +211,7 @@ const products = [
   {
     id: 22,
     name: "Capinha iPhone 13 Branca",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "branca",
@@ -221,7 +221,7 @@ const products = [
   {
     id: 23,
     name: "Capinha iPhone 13 Verde",
-    category: "Capinhas",
+    category: "Celular",
     price: 24.99,
     stock: 1,
     label: "verde",
@@ -231,7 +231,7 @@ const products = [
     {
     id: 24,
     name: "Capinha iPhone 13 Transparente",
-    category: "Capinhas",
+    category: "Celular",
     price: 19.99,
     stock: 3,
     label: "transparente",
@@ -417,6 +417,136 @@ const products = [
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
   discount: 28
+},
+{
+  id: 43,
+  name: "Lapis Infinito",
+  category: "Achadinhos",
+  price: 10,
+  stock: 47,
+  label: "cores variadas",
+  image: "./laIn.jpg.jpeg",
+  discount: 10
+},
+{
+  id: 44,
+  name: "Suporte Ventosa Para Celular",
+  category: "Acessórios",
+  price: 8,
+  stock: 2,
+  label: "preto",
+  image: "./suporteventosa.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 45,
+  name: "Pelicula de Vidro iPhone 13",
+  category: "Celular",
+  price: 15,
+  stock: 5,
+  label: "pelicula 3d",
+  image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 46,
+  name: "Pelicula de Vidro iPhone 13 Pro",
+  category: "Celular",
+  price: 15,
+  stock: 5,
+  label: "pelicula 3d",
+  image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 47,
+  name: "Pelicula de Vidro iPhone 13 Pro Max",
+  category: "Celular",
+  price: 15,
+  stock: 5,
+  label: "pelicula 3d",
+  image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 48,
+  name: "Pelicula de Vidro iPhone 14",
+  category: "Celular",
+  price: 15,
+  stock: 5,
+  label: "pelicula 3d",
+  image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 49,
+  name: "Pelicula de Vidro iPhone 15",
+  category: "Celular",
+  price: 15,
+  stock: 5,
+  label: "pelicula 3d",
+  image: "./ip16pelicula.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 50,
+  name: "Pelicula de Vidro iPhone 16",
+  category: "Celular",
+  price: 15,
+  stock: 5,
+  label: "pelicula 3d",
+  image: "./ip16pelicula.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 51,
+  name: "Pelicula de Vidro iPhone 16e",
+  category: "Celular",
+  price: 15,
+  stock: 5,
+  label: "pelicula 3d",
+  image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 52,
+  name: "Pelicula de Vidro iPhone 17e",
+  category: "Celular",
+  price: 15,
+  stock: 5,
+  label: "pelicula 3d",
+  image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 53,
+  name: "Tapete Mousepad 80x30cm Ilustrações Mangá Monocromático com Efeitos Luminosos Azul Laranja Superfície à Água Setup Gamer",
+  category: "Achadinhos",
+  price: 100,
+  stock: 5,
+  label: "praso 30 dias",
+  image: "./mousepadgojo.jpg.jpeg",
+  discount: 42
+},
+{
+  id: 54,
+  name: "Tapete Mousepad 80x30cm Ilustrações Mangá Monocromático com Efeitos Luminosos Azul Laranja Superfície à Água Setup Gamer",
+  category: "Achadinhos",
+  price: 100,
+  stock: 5,
+  label: "praso 30 dias",
+  image: "./mousepadbleach.jpg.jpeg",
+  discount: 40
+},
+{
+  id: 54,
+  name: "Tapete Mousepad 80x30cm Ilustrações Mangá Monocromático com Efeitos Luminosos Azul Laranja Superfície à Água Setup Gamer",
+  category: "Achadinhos",
+  price: 100,
+  stock: 5,
+  label: "praso 30 dias",
+  image: "./mousepadsukuna.jpg.jpeg",
+  discount: 45
 }
 ];
 

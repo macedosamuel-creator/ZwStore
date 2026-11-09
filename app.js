@@ -1,6 +1,6 @@
 // Configure os dados da sua loja antes de divulgar o site.
 const STORE = {
-  name: "ZWStore & Cia",
+  name: "ZW Store RN",
   whatsapp: "5584981142531",
   pixKey: "ef303c07-7e05-4d5b-8a9c-aba04ac818cd",
   pixPayload:
@@ -13,16 +13,21 @@ const STORE = {
   ],
 };
 
-const products = [
+const allProducts = [
   // Edite o campo stock de cada produto para atualizar as quantidades disponíveis.
   // Com stock: 0, o produto aparece como esgotado e não pode ser comprado.
   // Para dar desconto, adicione discount: 10 ao produto (percentual; omita ou use 0 para não dar desconto).
+  // Edite rating (0 a 5) e purchaseCount em cada produto para mostrar estrelas e vendas.
+  // Use null quando ainda não tiver uma avaliação ou quantidade de vendas real.
+  // Detalhes opcionais: description e reviewCount.
   {
     id: 1,
     name: "Capinha iPhone 12 Transparente",
     category: "Celular",
     price: 19.99,
     stock: 3,
+    rating: 5,
+    purchaseCount: 1,
     label: "transparente",
     image: "./ip12transp.jpg.jpeg",
     discount: 0,
@@ -33,6 +38,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.5,
+    purchaseCount: 4,
     label: "azul",
     image: "./ip13PMazul.jpg.jpeg",
     discount: 0,
@@ -43,6 +50,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4,
+    purchaseCount: 3,
     label: "bege",
     image: "./ip13PMbege.jpg.jpeg",
     discount: 0,
@@ -53,6 +62,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.5,
+    purchaseCount: 2,
     label: "marrom",
     image: "./ip13PMmarrom.jpg.jpeg",
     discount: 0,
@@ -63,6 +74,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.6,
+    purchaseCount: 5,
     label: "verde",
     image: "./ip13PMverde.jpg.jpeg",
     discount: 0,
@@ -73,6 +86,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 5,
+    purchaseCount: 2,
     label: "preta",
     image: "./ip13PMpreta.jpg.jpeg",
     discount: 0,
@@ -83,6 +98,8 @@ const products = [
     category: "Celular",
     price: 19.99,
     stock: 3,
+    rating: 4.8,
+    purchaseCount: 10,
     label: "transparente",
     image: "./ip15transp.jpg.jpeg",
     discount: 0,
@@ -93,6 +110,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 3.8,
+    purchaseCount: 2,
     label: "azul",
     image: "./ip12azul.jpg.jpeg",
     discount: 0,
@@ -103,6 +122,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.2,
+    purchaseCount: 3,
     label: "bege escuro",
     image: "./ip12begeescuru.jpg.jpeg",
     discount: 0,
@@ -113,6 +134,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.5,
+    purchaseCount: 2,
     label: "marrom",
     image: "./ip12marrom.jpg.jpeg",
     discount: 0,
@@ -123,6 +146,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.0,
+    purchaseCount: 1,
     label: "verde",
     image: "./ip12verde..jpg.jpeg",
     discount: 0
@@ -132,6 +157,8 @@ const products = [
     category: "Celular",
     price: 19.99,
     stock: 2,
+    rating: 4.8,
+    purchaseCount: 10,
     label: "transparente",
     image: "./ip17PMtransp.jpg.jpeg",
     discount: 0
@@ -142,6 +169,8 @@ const products = [
     category: "Achadinhos",
     price: 39.99,
     stock: 1,
+    rating: 4.5,
+    purchaseCount: 5,
     label: "kit",
     image: "./kitPilotos.jpg.jpeg",
     discount: 15
@@ -152,6 +181,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 5,
+    purchaseCount: 2,
     label: "azul",
     image: "./ip11azul.jpg.jpeg",
     discount: 0 
@@ -162,6 +193,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.2,
+    purchaseCount: 3,
     label: "bege escuro",
     image: "./ip11bege_cinza.jpg.jpeg",
     discount: 0
@@ -172,6 +205,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.5,
+    purchaseCount: 2,
     label: "marrom",
     image: "./ip11marrom.jpg.jpeg",
     discount: 0
@@ -182,6 +217,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.0,
+    purchaseCount: 1,
     label: "verde",
     image: "./ip11verde.jpg.jpeg",
     discount: 0
@@ -192,6 +229,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 5,
+    purchaseCount: 1,
     label: "roxa escura",
     image: "./ip11roxaescuro.jpg.jpeg",
     discount: 0
@@ -202,6 +241,8 @@ const products = [
     category: "Celular",
     price: 19.99,
     stock: 2,
+    rating: 4.0,
+    purchaseCount: 1,
     label: "transparente",
     image: "./ip11transp.jpg.jpeg",
     discount: 0
@@ -212,6 +253,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.6,
+    purchaseCount: 9,
     label: "azul",
     image: "./ip13azul.jpg.jpeg",
     discount: 0
@@ -222,6 +265,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.0,
+    purchaseCount: 1,
     label: "branca",
     image: "./ip13branca.jpg.jpeg",
     discount: 0
@@ -232,6 +277,8 @@ const products = [
     category: "Celular",
     price: 24.99,
     stock: 1,
+    rating: 4.5,
+    purchaseCount: 2,
     label: "verde",
     image: "./ip13verde.jpg.jpeg",
     discount: 0
@@ -242,6 +289,8 @@ const products = [
     category: "Celular",
     price: 19.99,
     stock: 3,
+    rating: 4.0,
+    purchaseCount: 1,
     label: "transparente",
     image: "./ip13transp.jpg.jpeg",
     discount: 0
@@ -252,6 +301,8 @@ const products = [
     category: "Jogos",
     price: 4,
     stock: 100,
+    rating: 4.9,
+    purchaseCount: 861,
     label: "diamantes",
     image: "./78dimas.jpg.jpeg",
     discount: 5
@@ -262,6 +313,8 @@ const products = [
     category: "Jogos",
     price: 6,
     stock: 100,
+    rating: 4.5,
+    purchaseCount: 297,
     label: "diamantes",
     image: "./120dimas.jpg.jpeg",
     discount: 10
@@ -273,6 +326,8 @@ const products = [
   category: "Jogos",
   price: 16,
   stock: 100,
+  rating: 4.8,
+  purchaseCount: 197,
   label: "diamantes",
   image: "./372dimas.jpg.jpeg",
   discount: 6
@@ -283,6 +338,8 @@ const products = [
   category: "Jogos",
   price: 25,
   stock: 100,
+  rating: 4.0,
+  purchaseCount: 951,
   label: "diamantes",
   image: "./624dimas.jpg.jpeg",
   discount: 0
@@ -293,6 +350,8 @@ const products = [
   category: "Jogos",
   price: 50,
   stock: 100,
+  rating: 4.0,
+  purchaseCount: 51,
   label: "diamantes",
   image: "./1272dimas.jpg.jpeg",
   discount: 0
@@ -303,6 +362,8 @@ const products = [
   category: "Jogos",
   price: 99,
   stock: 100,
+  rating: 4.7,
+  purchaseCount: 21,
   label: "diamantes",
   image: "./2616dimas.jpg.jpeg",
   discount: 9
@@ -313,6 +374,8 @@ const products = [
   category: "Jogos",
   price: 235,
   stock: 100,
+  rating: 5,
+  purchaseCount: 11,
   label: "diamantes",
   image: "./6729dimas.jpg.jpeg",
   discount: 5
@@ -323,6 +386,8 @@ const products = [
   category: "Jogos",
   price: 929,
   stock: 100,
+  rating: 4.8,
+  purchaseCount: 10,
   label: "diamantes",
   image: "./26880dimas.jpg.jpeg",
   discount: 3
@@ -333,6 +398,8 @@ const products = [
   category: "Jogos",
   price: 25,
   stock: 15,
+  rating: 4.7,
+  purchaseCount: 14,
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 20
@@ -342,6 +409,8 @@ const products = [
   category: "Jogos",
   price: 35,
   stock: 11,
+  rating: 4.5,
+  purchaseCount: 29,
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 20
@@ -352,6 +421,8 @@ const products = [
   category: "Jogos",
   price: 55,
   stock: 7,
+  rating: 4.8,
+  purchaseCount: 10,
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 30
@@ -362,6 +433,8 @@ const products = [
   category: "Jogos",
   price: 15,
   stock: 7,
+  rating: 4.5,
+  purchaseCount: 23,
   label: "blox-fruits",
   image: "./portal.jpg.jpeg",
   discount: 15
@@ -372,6 +445,8 @@ const products = [
   category: "Jogos",
   price: 20,
   stock: 3,
+  rating: 4.5,
+  purchaseCount: 37,
   label: "blox-fruits",
   image: "./rumble.jpg.jpeg",
   discount: 25
@@ -382,6 +457,8 @@ const products = [
   category: "Jogos",
   price: 20,
   stock: 2,
+  rating: 4.2,
+  purchaseCount: 98,
   label: "blox-fruits",
   image: "./gas.jpg.jpeg",
   discount: 25
@@ -392,6 +469,8 @@ const products = [
   category: "Jogos",
   price: 25,
   stock: 1000,
+  rating: 4.9,
+  purchaseCount: 951,
   label: "robux",
   image: "./caixarubux.jpg.jpeg",
   discount: 10
@@ -402,6 +481,8 @@ const products = [
   category: "Jogos",
   price: 11.50,
   stock: 1000,
+  rating: 4.0,
+  purchaseCount: 129,
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
   discount: 10
@@ -412,6 +493,8 @@ const products = [
   category: "Jogos",
   price: 52.50,
   stock: 1000,
+  rating: 4.0,
+  purchaseCount: 124,
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
   discount: 10
@@ -422,6 +505,8 @@ const products = [
   category: "Jogos",
   price: 2.22,
   stock: 1000,
+  rating: 4.0,
+  purchaseCount: 210,
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
   discount: 10
@@ -432,6 +517,8 @@ const products = [
   category: "Jogos",
   price: 15.50,
   stock: 1000,
+  rating: 4.5,
+  purchaseCount: 10,
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
   discount: 10
@@ -442,6 +529,8 @@ const products = [
   category: "Jogos",
   price: 45.50,
   stock: 1000,
+  rating: 4.8,
+  purchaseCount: 8,
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
   discount: 28
@@ -452,6 +541,8 @@ const products = [
   category: "Acessórios",
   price: 8,
   stock: 1,
+  rating: 4.5,
+  purchaseCount: 9,
   label: "preto",
   image: "./suporteventosa.jpg.jpeg",
   discount: 0
@@ -462,6 +553,8 @@ const products = [
   category: "Celular",
   price: 15,
   stock: 5,
+  rating: 4.5,
+  purchaseCount: 91,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
   discount: 0
@@ -472,6 +565,8 @@ const products = [
   category: "Celular",
   price: 15,
   stock: 5,
+  rating: 4.5,
+  purchaseCount: 91,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
   discount: 0
@@ -482,6 +577,8 @@ const products = [
   category: "Celular",
   price: 15,
   stock: 5,
+  rating: 4.7,
+  purchaseCount: 51,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
   discount: 0
@@ -492,6 +589,8 @@ const products = [
   category: "Celular",
   price: 15,
   stock: 5,
+  rating: 4.5,
+  purchaseCount: 35,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
   discount: 0
@@ -502,6 +601,8 @@ const products = [
   category: "Celular",
   price: 15,
   stock: 5,
+  rating: 4.7,
+  purchaseCount: 20,
   label: "pelicula 3d",
   image: "./ip16pelicula.jpg.jpeg",
   discount: 0
@@ -512,6 +613,8 @@ const products = [
   category: "Celular",
   price: 15,
   stock: 5,
+  rating: 4.7,
+  purchaseCount: 20,
   label: "pelicula 3d",
   image: "./ip16pelicula.jpg.jpeg",
   discount: 0
@@ -522,6 +625,8 @@ const products = [
   category: "Celular",
   price: 15,
   stock: 5,
+  rating: 4.1,
+  purchaseCount: 50,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
   discount: 0
@@ -532,6 +637,8 @@ const products = [
   category: "Celular",
   price: 15,
   stock: 5,
+  rating: 4.5,
+  purchaseCount: 10,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
   discount: 0
@@ -542,6 +649,8 @@ const products = [
   category: "Achadinhos",
   price: 100,
   stock: 5,
+  rating: 4.5,
+  purchaseCount: 100,
   label: "prazo 30 dias",
   image: "./mousepadgojo.jpg.jpeg",
   discount: 42
@@ -552,6 +661,8 @@ const products = [
   category: "Achadinhos",
   price: 100,
   stock: 5,
+  rating: 4.7,
+  purchaseCount: 100,
   label: "prazo 30 dias",
   image: "./mousepadbleach.jpg.jpeg",
   discount: 40
@@ -562,6 +673,8 @@ const products = [
   category: "Achadinhos",
   price: 100,
   stock: 5,
+  rating: 4.5,
+  purchaseCount: 170,
   label: "prazo 30 dias",
   image: "./mousepadsukuna.jpg.jpeg",
   discount: 45
@@ -572,6 +685,8 @@ const products = [
   category: "Achadinhos",
   price: 10,
   stock: 47,
+  rating: 4.5,
+  purchaseCount: 953,
   label: "cores variadas",
   image: "./lapisinfinito.jpg.jpeg",
   discount: 10
@@ -582,6 +697,8 @@ const products = [
   category: "Ofertas",
   price: 359.99,
   stock: 50,
+  rating: 4.8,
+  purchaseCount: 96,
   label: "Prazo 30 dias",
   image: "./monitor20.jpg.jpeg",
   discount: 0
@@ -592,16 +709,36 @@ const products = [
   category: "Ofertas",
   price: 279.99,
   stock: 50,
+  rating: 4.7,
+  purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./placagddr3.jpg.jpeg",
   discount: 25
 }
 ];
 
+const IS_GAMES_STORE = document.body.dataset.catalog === "games";
+const products = allProducts.filter((product) => {
+  const isGameProduct = normalizeCategory(product.category) === "jogos";
+  return IS_GAMES_STORE ? isGameProduct : !isGameProduct;
+});
+
 const productGrid = document.querySelector("#product-grid");
 const emptyState = document.querySelector("#empty-state");
 const searchInput = document.querySelector("#search");
 const setupNotice = document.querySelector("#setup-notice");
+const productDetailBackdrop = document.querySelector("#product-detail-backdrop");
+const productDetailDialog = document.querySelector("#product-detail-dialog");
+const productDetailImage = document.querySelector("#product-detail-image");
+const productDetailTitle = document.querySelector("#product-detail-title");
+const productDetailCategory = document.querySelector("#product-detail-category");
+const productDetailPrice = document.querySelector("#product-detail-price");
+const productDetailDescription = document.querySelector("#product-detail-description");
+const productDetailStars = document.querySelector("#product-detail-stars");
+const productDetailRating = document.querySelector("#product-detail-rating");
+const productDetailPurchases = document.querySelector("#product-detail-purchases");
+const productDetailAddButton = document.querySelector("#product-detail-add");
+const productDetailBuyButton = document.querySelector("#product-detail-buy");
 const cartBackdrop = document.querySelector("#cart-backdrop");
 const cartItems = document.querySelector("#cart-items");
 const cartEmpty = document.querySelector("#cart-empty");
@@ -615,6 +752,8 @@ const cartVolumeDiscountRow = document.querySelector("#cart-volume-discount-row"
 const cartVolumeDiscountLabel = document.querySelector("#cart-volume-discount-label");
 const cartVolumeDiscount = document.querySelector("#cart-volume-discount");
 const cartDiscountHint = document.querySelector("#cart-discount-hint");
+const cartTitle = document.querySelector("#cart-title");
+const checkoutButton = document.querySelector("#checkout-button");
 const paymentDetails = document.querySelector("#payment-details");
 const pixAmount = document.querySelector("#pix-amount");
 const pixCode = document.querySelector("#pix-code");
@@ -622,7 +761,9 @@ const pixQrCode = document.querySelector("#pix-qr-code");
 const paymentNotice = document.querySelector("#payment-notice");
 const sendOrderButton = document.querySelector("#send-order-button");
 const ORDER_SEND_CLICK_LIMIT = 5;
-const CART_STORAGE_KEY = "nexora-cia-cart";
+const CART_STORAGE_KEY = IS_GAMES_STORE
+  ? "zw-store-rn-games-cart"
+  : "nexora-cia-cart";
 const HIDDEN_FROM_ALL_PRODUCTS = new Set(["jogos"]);
 const CATEGORY_ALIASES = {
   jogos: new Set(["jogos", "pagina de jogos", "página de jogos"]),
@@ -631,6 +772,9 @@ const CATEGORY_ALIASES = {
 };
 let activeCategory = "Todos";
 let cart = loadCart();
+let cartBeforeDirectPurchase = null;
+let activeDetailProductId = null;
+let productDetailTrigger = null;
 let paymentConfirmationAttempts = 0;
 let paymentTabWasHidden = false;
 saveCart();
@@ -649,7 +793,9 @@ function matchesCategory(productCategory, selectedCategory) {
   const normalizedSelectedCategory = normalizeCategory(selectedCategory);
 
   if (normalizedSelectedCategory === "todos") {
-    return !HIDDEN_FROM_ALL_PRODUCTS.has(normalizedProductCategory);
+    return IS_GAMES_STORE
+      ? normalizedProductCategory === "jogos"
+      : !HIDDEN_FROM_ALL_PRODUCTS.has(normalizedProductCategory);
   }
 
   const aliases = CATEGORY_ALIASES[normalizedSelectedCategory] || new Set([normalizedSelectedCategory]);
@@ -762,9 +908,21 @@ function createPixPayload(amount) {
 
 function renderProducts() {
   const searchTerm = searchInput.value.trim().toLocaleLowerCase("pt-BR");
-  const visibleProducts = products.filter((product) => {
-    const matchesCategoryFilter =
-      normalizeCategory(activeCategory) === "ofertas"
+  const isTopSellers = normalizeCategory(activeCategory) === "mais vendidos";
+  const topSellers = isTopSellers
+    ? products
+        .filter(
+          (product) =>
+            Number.isSafeInteger(product.purchaseCount) &&
+            product.purchaseCount > 0,
+        )
+        .sort((a, b) => b.purchaseCount - a.purchaseCount)
+        .slice(0, 10)
+    : products;
+  const visibleProducts = topSellers.filter((product) => {
+    const matchesCategoryFilter = isTopSellers
+      ? true
+      : normalizeCategory(activeCategory) === "ofertas"
         ? normalizeCategory(product.category) === "ofertas" ||
           getDiscountPercent(product) >= 45
         : matchesCategory(product.category, activeCategory);
@@ -782,27 +940,48 @@ function renderProducts() {
         const cannotAddMore = outOfStock || quantityInCart >= product.stock;
         const discountPercent = getDiscountPercent(product);
         const discountedPrice = getDiscountedPrice(product);
+        const rating = Number.isFinite(product.rating)
+          ? Math.min(5, Math.max(0, product.rating))
+          : null;
+        const roundedRating = rating === null ? 0 : Math.round(rating);
+        const purchaseCount = Number.isSafeInteger(product.purchaseCount) && product.purchaseCount >= 0
+          ? product.purchaseCount
+          : null;
         return `
         <article class="product-card">
           <div class="product-image">
-            <img src="${product.image}" alt="${product.name}" loading="lazy" />
+            <button class="product-detail-trigger" type="button" data-product-details="${product.id}" aria-label="Ver detalhes de ${product.name}">
+              <img src="${product.image}" alt="" loading="lazy" />
+            </button>
             <span class="product-label">${product.label}</span>
             ${discountPercent ? `<span class="product-discount-badge">${discountPercent}% OFF</span>` : ""}
           </div>
           <div class="product-details">
             <span class="product-category">${product.category}</span>
-            <h3 class="product-title">${product.name}${outOfStock ? " (Esgotado)" : ""}</h3>
+            <h3 class="product-title"><button class="product-detail-title-trigger" type="button" data-product-details="${product.id}">${product.name}${outOfStock ? " (Esgotado)" : ""}</button></h3>
             <p class="product-stock${outOfStock ? " product-stock-empty" : ""}">
               ${outOfStock ? "Estoque: 0 unidades" : `Estoque: ${product.stock} ${product.stock === 1 ? "unidade" : "unidades"}`}
             </p>
+            <div class="product-social-proof">
+              <span class="product-card-rating" aria-label="${rating === null ? "Sem avaliações" : `Avaliação ${rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} de 5`}">
+                <span class="product-card-stars" aria-hidden="true">${"★".repeat(roundedRating)}${"☆".repeat(5 - roundedRating)}</span>
+                <span>${rating === null ? "Sem avaliações" : rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}</span>
+              </span>
+              <span class="product-card-purchases">${purchaseCount === null ? "Vendas não informadas" : `${purchaseCount} vendidos`}</span>
+            </div>
             <div class="product-bottom">
               <div class="product-pricing">
                 ${discountPercent ? `<span class="product-original-price">${formatPrice(product.price)}</span>` : ""}
                 <span class="product-price">${formatPrice(discountedPrice)}</span>
               </div>
-              <button class="order-button${cannotAddMore ? " out-of-stock" : ""}" type="button" data-add-to-cart="${product.id}" ${cannotAddMore ? "disabled" : ""}>
-                ${outOfStock ? "Esgotado" : cannotAddMore ? "Estoque no carrinho" : "Adicionar ao carrinho +"}
-              </button>
+              <div class="product-actions">
+                <button class="order-button${cannotAddMore ? " out-of-stock" : ""}" type="button" data-add-to-cart="${product.id}" ${cannotAddMore ? "disabled" : ""}>
+                  ${outOfStock ? "Esgotado" : cannotAddMore ? "Estoque no carrinho" : "Adicionar ao carrinho +"}
+                </button>
+                <button class="direct-buy-button" type="button" data-buy-now="${product.id}" ${outOfStock ? "disabled" : ""}>
+                  ${outOfStock ? "Esgotado" : "Comprar"}
+                </button>
+              </div>
             </div>
           </div>
         </article>`;
@@ -810,6 +989,9 @@ function renderProducts() {
     )
     .join("");
 
+  emptyState.textContent = isTopSellers
+    ? "Cadastre purchaseCount nos produtos para mostrar os 10 mais vendidos."
+    : "Nenhum produto encontrado. Tente outra busca.";
   emptyState.hidden = visibleProducts.length > 0;
 }
 
@@ -858,6 +1040,9 @@ function saveCart() {
 }
 
 function renderCart() {
+  const isDirectPurchase = cartBeforeDirectPurchase !== null;
+  cartTitle.textContent = isDirectPurchase ? "Compra direta" : "Meu carrinho";
+  checkoutButton.textContent = isDirectPurchase ? "Gerar Pix do pedido" : "Gerar Pix para pagar";
   paymentConfirmationAttempts = 0;
   paymentDetails.hidden = true;
   sendOrderButton.hidden = true;
@@ -932,6 +1117,30 @@ function renderCart() {
     .join("");
 }
 
+function showCartAddedAnimation(productId, targetButton = null) {
+  const addButton =
+    targetButton ||
+    productGrid.querySelector(`[data-add-to-cart="${productId}"]`);
+  if (!addButton) return;
+
+  const target = addButton.getBoundingClientRect();
+  const animation = document.createElement("div");
+  animation.className = "cart-added-animation";
+  animation.setAttribute("role", "status");
+  animation.setAttribute("aria-live", "polite");
+  animation.innerHTML = '<span aria-hidden="true">✓</span> Item adicionado ao carrinho';
+  document.body.append(animation);
+
+  const startX = window.innerWidth / 2;
+  const startY = window.innerHeight - 22 - animation.offsetHeight / 2;
+  animation.style.setProperty("--cart-fly-x", `${target.left + target.width / 2 - startX}px`);
+  animation.style.setProperty("--cart-fly-y", `${target.top + target.height / 2 - startY}px`);
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => animation.classList.add("is-flying"));
+  });
+  window.setTimeout(() => animation.remove(), 1200);
+}
+
 function openCart() {
   cartBackdrop.hidden = false;
   document.querySelector("#cart-close").focus();
@@ -939,7 +1148,88 @@ function openCart() {
 
 function closeCart() {
   cartBackdrop.hidden = true;
+  if (cartBeforeDirectPurchase !== null) {
+    cart = cartBeforeDirectPurchase;
+    cartBeforeDirectPurchase = null;
+    renderCart();
+    renderProducts();
+  }
   document.querySelector("#cart-open").focus();
+}
+
+function openProductDetails(productId, trigger) {
+  const product = products.find((item) => item.id === productId);
+  if (!product) {
+    throw new Error(`Produto não encontrado: ${productId}`);
+  }
+
+  activeDetailProductId = product.id;
+  productDetailTrigger = trigger;
+  const discountPercent = getDiscountPercent(product);
+  const rating = Number.isFinite(product.rating)
+    ? Math.min(5, Math.max(0, product.rating))
+    : null;
+  const reviewCount = Number.isSafeInteger(product.reviewCount)
+    ? Math.max(0, product.reviewCount)
+    : null;
+  const purchaseCount = Number.isSafeInteger(product.purchaseCount)
+    ? Math.max(0, product.purchaseCount)
+    : null;
+
+  productDetailImage.src = product.image;
+  productDetailImage.alt = product.name;
+  productDetailTitle.textContent = product.name;
+  productDetailCategory.textContent = product.category;
+  productDetailPrice.innerHTML = discountPercent
+    ? `<s>${formatPrice(product.price)}</s><strong>${formatPrice(getDiscountedPrice(product))}</strong>`
+    : `<strong>${formatPrice(product.price)}</strong>`;
+  productDetailDescription.textContent =
+    product.description ||
+    `${product.name}. Produto da categoria ${product.category}. Confira o modelo e os detalhes na imagem antes de comprar.`;
+  productDetailStars.textContent = rating === null
+    ? "☆☆☆☆☆"
+    : `${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))}`;
+  productDetailRating.textContent = rating === null
+    ? "Sem avaliações"
+    : `${rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}/5${reviewCount ? ` (${reviewCount} avaliações)` : ""}`;
+  productDetailPurchases.textContent =
+    purchaseCount === null ? "Vendas não informadas" : `${purchaseCount} vendidos`;
+  const outOfStock = product.stock <= 0;
+  productDetailAddButton.disabled =
+    outOfStock || (cart[product.id] || 0) >= product.stock;
+  productDetailAddButton.textContent = outOfStock
+    ? "Esgotado"
+    : productDetailAddButton.disabled
+      ? "Estoque no carrinho"
+      : "Adicionar ao carrinho";
+  productDetailBuyButton.disabled = outOfStock;
+  productDetailBuyButton.textContent = outOfStock ? "Esgotado" : "Comprar";
+  productDetailBackdrop.hidden = false;
+  document.querySelector("#product-detail-close").focus();
+}
+
+function closeProductDetails(restoreFocus = true) {
+  productDetailBackdrop.hidden = true;
+  activeDetailProductId = null;
+  if (restoreFocus && productDetailTrigger?.isConnected) {
+    productDetailTrigger.focus();
+  }
+  productDetailTrigger = null;
+}
+
+function buyProductDirectly(productId) {
+  const product = products.find((item) => item.id === productId);
+  if (!product) {
+    throw new Error(`Produto não encontrado: ${productId}`);
+  }
+  if (product.stock <= 0 || cartBeforeDirectPurchase !== null) return;
+
+  cartBeforeDirectPurchase = { ...cart };
+  cart = { [product.id]: 1 };
+  renderCart();
+  renderProducts();
+  openCart();
+  startPixPayment();
 }
 
 function getOrderDetails() {
@@ -1083,6 +1373,10 @@ function selectCategory(category) {
   const offersActive = normalizeCategory(category) === "ofertas";
   offersButton.classList.toggle("active", offersActive);
   offersButton.setAttribute("aria-pressed", String(offersActive));
+  const bestsellersButton = document.querySelector("#bestsellers-feature-button");
+  const bestsellersActive = normalizeCategory(category) === "mais vendidos";
+  bestsellersButton.classList.toggle("active", bestsellersActive);
+  bestsellersButton.setAttribute("aria-pressed", String(bestsellersActive));
   renderProducts();
 }
 
@@ -1094,8 +1388,23 @@ document.querySelector(".category-list").addEventListener("click", (event) => {
 document.querySelector("#offers-feature-button").addEventListener("click", () => {
   selectCategory("Ofertas");
 });
+document.querySelector("#bestsellers-feature-button").addEventListener("click", () => {
+  selectCategory("Mais vendidos");
+});
 
 productGrid.addEventListener("click", (event) => {
+  const detailTrigger = event.target.closest("[data-product-details]");
+  if (detailTrigger) {
+    openProductDetails(Number(detailTrigger.dataset.productDetails), detailTrigger);
+    return;
+  }
+
+  const buyNowButton = event.target.closest("[data-buy-now]");
+  if (buyNowButton) {
+    buyProductDirectly(Number(buyNowButton.dataset.buyNow));
+    return;
+  }
+
   const button = event.target.closest("[data-add-to-cart]");
   if (!button) return;
 
@@ -1106,9 +1415,46 @@ productGrid.addEventListener("click", (event) => {
   }
   if (product.stock <= (cart[productId] || 0)) return;
   cart[productId] = (cart[productId] || 0) + 1;
-  saveCart();
+  if (cartBeforeDirectPurchase === null) saveCart();
   renderCart();
   renderProducts();
+  showCartAddedAnimation(productId);
+});
+
+productDetailDialog.addEventListener("click", (event) => {
+  if (event.target.closest("#product-detail-close")) {
+    closeProductDetails();
+    return;
+  }
+
+  if (activeDetailProductId === null) return;
+  if (event.target.closest("#product-detail-add")) {
+    const productId = activeDetailProductId;
+    const product = products.find((item) => item.id === productId);
+    if (!product || product.stock <= (cart[productId] || 0)) return;
+    cart[productId] = (cart[productId] || 0) + 1;
+    if (cartBeforeDirectPurchase === null) saveCart();
+    renderCart();
+    renderProducts();
+    showCartAddedAnimation(productId, productDetailAddButton);
+    const reachedStockLimit = cart[productId] >= product.stock;
+    productDetailAddButton.disabled = reachedStockLimit;
+    productDetailAddButton.textContent = reachedStockLimit
+      ? "Estoque no carrinho"
+      : "Adicionar ao carrinho";
+    productDetailAddButton.focus();
+    return;
+  }
+
+  if (event.target.closest("#product-detail-buy")) {
+    const productId = activeDetailProductId;
+    closeProductDetails(false);
+    buyProductDirectly(productId);
+  }
+});
+
+productDetailBackdrop.addEventListener("click", (event) => {
+  if (event.target === productDetailBackdrop) closeProductDetails();
 });
 
 cartItems.addEventListener("click", (event) => {
@@ -1127,7 +1473,7 @@ cartItems.addEventListener("click", (event) => {
   } else if (button.dataset.cartAction === "increase" && product && quantity < product.stock) {
     cart[productId] += 1;
   }
-  saveCart();
+  if (cartBeforeDirectPurchase === null) saveCart();
   renderCart();
   renderProducts();
 });
@@ -1169,6 +1515,10 @@ cartBackdrop.addEventListener("click", (event) => {
   if (event.target === cartBackdrop) closeCart();
 });
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !productDetailBackdrop.hidden) {
+    closeProductDetails();
+    return;
+  }
   if (event.key === "Escape" && !cartBackdrop.hidden) closeCart();
 });
 document.querySelector("#year").textContent = new Date().getFullYear();

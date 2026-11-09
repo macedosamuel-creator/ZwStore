@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jogos na ZW Store RN: diamantes, Robux, contas e passes. Peça pelo WhatsApp e pague com Pix."
+    />
+    <meta name="theme-color" content="#050505" />
+    <title>Jogos — ZW Store RN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body data-catalog="games">
+    <div class="announcement">
+      <span>Seu próximo item de jogo está aqui.</span>
+      <span class="announcement-detail">Peça pelo WhatsApp · Pague com Pix</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="ZW Store RN — loja principal">
+        <span class="brand-icon" aria-hidden="true">c</span>
+        <span class="brand-name">ZW Store RN <span>· Jogos</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#produtos">Jogos</a>
+        <a href="./index.html">Loja principal</a>
+      </nav>
+      <button class="header-cta cart-trigger" id="cart-open" type="button" aria-haspopup="dialog" aria-controls="cart-dialog">
+        Carrinho <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> SEU UNIVERSO GAMER</span>
+          <h1 id="hero-title">ZW Store<br /><span>Jogos</span></h1>
+          <p>Diamantes, Robux, contas, passes e outros itens para seus jogos favoritos. Escolha o que procura e a gente combina seu pedido.</p>
+          <a class="primary-button" href="#produtos">Explorar jogos <span aria-hidden="true">↓</span></a>
+          <div class="hero-note">
+            <span class="note-icon" aria-hidden="true">✦</span>
+            <span>Seus itens e jogos favoritos em um só lugar.</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Destaque da loja de jogos">
+          <div class="hero-orbit orbit-one"></div>
+          <div class="hero-orbit orbit-two"></div>
+          <div class="hero-photo"></div>
+          <div class="hero-sticker"><span>seu jogo<br />do seu jeito</span><b>✳</b></div>
+          <div class="hero-tag"><span>✦</span> itens para jogar mais</div>
+        </div>
+      </section>
+
+      <section class="catalog section-wrap" id="produtos" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div class="catalog-title-group">
+            <div class="catalog-title-copy">
+              <span class="eyebrow">ITENS PARA SEUS JOGOS</span>
+              <h2 id="catalog-title">Encontre seu próximo item.</h2>
+            </div>
+            <div class="catalog-feature-buttons">
+              <button class="offers-feature-button" id="offers-feature-button" type="button" data-category="Ofertas" aria-pressed="false">
+                <span aria-hidden="true">✦</span> Ofertas
+              </button>
+              <button class="offers-feature-button" id="bestsellers-feature-button" type="button" data-category="Mais vendidos" aria-pressed="false">
+                <span aria-hidden="true">↗</span> Mais vendidos
+              </button>
+            </div>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="search" type="search" placeholder="Busque um jogo ou item" aria-label="Buscar itens de jogos" />
+          </label>
+        </div>
+
+        <div class="category-list" role="group" aria-label="Catálogo de jogos">
+          <button class="category-chip active" type="button" data-category="Todos" aria-pressed="true">Todos os jogos</button>
+          <a class="category-chip" href="./index.html">Loja principal ↗</a>
+        </div>
+
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <p class="empty-state" id="empty-state" hidden>Nenhum item encontrado. Tente outra busca.</p>
+      </section>
+
+      <div class="product-detail-backdrop" id="product-detail-backdrop" hidden>
+        <section class="product-detail-dialog" id="product-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="product-detail-title">
+          <button class="product-detail-close" id="product-detail-close" type="button" aria-label="Fechar detalhes do produto">×</button>
+          <img class="product-detail-image" id="product-detail-image" alt="" />
+          <div class="product-detail-content">
+            <span class="product-category" id="product-detail-category"></span>
+            <h2 id="product-detail-title"></h2>
+            <div class="product-detail-price" id="product-detail-price"></div>
+            <p class="product-detail-description" id="product-detail-description"></p>
+            <div class="product-detail-stats">
+              <div>
+                <span class="product-detail-stat-label">Avaliação</span>
+                <div class="product-detail-rating">
+                  <span class="product-detail-stars" id="product-detail-stars" aria-hidden="true"></span>
+                  <span id="product-detail-rating"></span>
+                </div>
+              </div>
+              <div>
+                <span class="product-detail-stat-label">Comprados</span>
+                <strong id="product-detail-purchases"></strong>
+              </div>
+            </div>
+            <div class="product-detail-actions">
+              <button class="order-button" id="product-detail-add" type="button">Adicionar ao carrinho</button>
+              <button class="direct-buy-button" id="product-detail-buy" type="button">Comprar</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="cart-backdrop" id="cart-backdrop" hidden>
+        <section class="cart-dialog" id="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+          <div class="cart-heading">
+            <div>
+              <span class="eyebrow">SEUS ITENS DE JOGO</span>
+              <h2 id="cart-title">Meu carrinho</h2>
+            </div>
+            <button class="cart-close" id="cart-close" type="button" aria-label="Fechar carrinho">×</button>
+          </div>
+          <div class="cart-items" id="cart-items" aria-live="polite"></div>
+          <p class="cart-empty" id="cart-empty">Seu carrinho ainda está vazio. Escolha seus itens favoritos!</p>
+          <div class="cart-summary" id="cart-summary" hidden>
+            <div class="cart-total"><span>Subtotal</span><strong id="cart-subtotal"></strong></div>
+            <div class="cart-discount" id="cart-discount-row" hidden><span>Descontos nos produtos</span><strong id="cart-discount"></strong></div>
+            <div class="cart-discount" id="cart-volume-discount-row" hidden><span id="cart-volume-discount-label"></span><strong id="cart-volume-discount"></strong></div>
+            <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
+            <p class="cart-promotion-hint" id="cart-discount-hint" hidden></p>
+            <p>Entrega ou envio combinados pelo WhatsApp.</p>
+            <button class="checkout-button" id="checkout-button" type="button">Gerar Pix para pagar</button>
+            <section class="payment-details" id="payment-details" aria-labelledby="payment-title" hidden>
+              <h3 id="payment-title">Pague com Pix</h3>
+              <strong class="pix-amount" id="pix-amount"></strong>
+              <p>Escaneie o QR Code no aplicativo do seu banco ou copie o código Pix. O valor corresponde ao total do pedido.</p>
+              <img class="pix-qr-code" id="pix-qr-code" alt="" width="240" height="240" />
+              <label class="pix-code-label" for="pix-code">Código Pix copia e cola</label>
+              <textarea id="pix-code" class="pix-code" readonly rows="4" aria-label="Código Pix copia e cola"></textarea>
+              <button class="copy-pix-button" id="copy-pix-button" type="button">Copiar código Pix</button>
+              <p class="payment-notice" id="payment-notice" role="status"></p>
+              <button class="send-order-button" id="send-order-button" type="button" hidden>Já paguei — enviar pedido pelo WhatsApp</button>
+            </section>
+          </div>
+        </section>
+      </div>
+
+      <section class="how-it-works" id="sobre">
+        <div class="how-copy">
+          <span class="eyebrow">FÁCIL ASSIM</span>
+          <h2>Escolha seu item.<br />A gente combina.</h2>
+          <p>Adicione ao carrinho ou compre direto. Gere o Pix do pedido e envie a confirmação pelo WhatsApp.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><span class="step-number">01</span><div><h3>Escolha seus itens</h3><p>Confira os itens disponíveis para seus jogos favoritos.</p></div></article>
+          <article class="step"><span class="step-number">02</span><div><h3>Pague com Pix</h3><p>O QR Code e o código copia e cola são gerados com o total do pedido.</p></div></article>
+          <article class="step"><span class="step-number">03</span><div><h3>Envie seu pedido</h3><p>Depois de confirmar o pagamento, envie o pedido pelo WhatsApp.</p></div></article>
+        </div>
+      </section>
+
+      <section class="closing-banner">
+        <div>
+          <span class="eyebrow">TAMBÉM TEMOS MAIS</span>
+          <h2>Precisa de ajuda com seu pedido?</h2>
+        </div>
+        <a class="light-button" id="contact-link" href="#produtos">Falar com a loja <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="./index.html" aria-label="ZW Store RN — loja principal">
+        <span class="brand-icon" aria-hidden="true">c</span>
+        <span class="brand-name">ZW Store RN <span>· Jogos</span></span>
+      </a>
+      <p>Itens de jogos. Pedido e entrega combinados pelo WhatsApp.</p>
+      <span class="copyright">© <span id="year"></span> ZW Store RN</span>
+    </footer>
+    <div class="setup-notice" id="setup-notice" role="status" hidden></div>
+  </body>
+</html>

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Capivaras & Cia: capinhas, acessórios, delícias e achadinhos. Peça pelo WhatsApp e pague com Pix."
+      content="ZW Store RN: tecnologia, acessórios e achadinhos. Peça pelo WhatsApp e pague com Pix."
     />
     <meta name="theme-color" content="#f7f5ef" />
-    <title>Nexora — Achadinhos que você ama</title>
+    <title>ZW Store RN — Tecnologia e acessórios</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,12 +25,13 @@
     </div>
 
     <header class="site-header">
-      <a class="brand" href="#" aria-label="Capivaras e Cia — início">
+      <a class="brand" href="#" aria-label="ZW Store RN — início">
         <span class="brand-icon" aria-hidden="true">c</span>
-        <span class="brand-name">Nexora <span>& cia.</span></span>
+        <span class="brand-name">ZW Store RN</span>
       </a>
       <nav class="main-nav" aria-label="Navegação principal">
         <a href="#produtos">Produtos</a>
+        <a href="./jogos.html">Jogos</a>
         <a href="#sobre">Sobre a loja</a>
       </nav>
       <button class="header-cta cart-trigger" id="cart-open" type="button" aria-haspopup="dialog" aria-controls="cart-dialog">
@@ -41,21 +42,21 @@
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <span class="eyebrow"><span class="eyebrow-dot"></span> SEU NOVO ACHADINHO FAVORITO</span>
-          <h1 id="hero-title">Coisas boas<br />que dão <span>vontade.</span></h1>
-          <p>Da capinha nova àquela delícia do dia: escolha o que você ama e a gente combina a entrega.</p>
-          <a class="primary-button" href="#produtos">Encontrar meu achadinho <span aria-hidden="true">↓</span></a>
+          <span class="eyebrow"><span class="eyebrow-dot"></span> ACHADINHOS PARA O SEU DIA A DIA</span>
+          <h1 id="hero-title">ZW Store<br /><span>RN</span></h1>
+          <p>Achadinhos, acessórios e produtos para deixar seu dia mais interessante. Escolha o que você precisa e a gente combina a entrega.</p>
+          <a class="primary-button" href="#produtos">Explorar produtos <span aria-hidden="true">↓</span></a>
           <div class="hero-note">
-            <span class="note-icon" aria-hidden="true">♡</span>
-            <span>Atendimento de verdade, pertinho de você.</span>
+            <span class="note-icon" aria-hidden="true">✦</span>
+            <span>Tecnologia e atendimento pertinho de você.</span>
           </div>
         </div>
         <div class="hero-art" aria-label="Seleção especial de produtos">
           <div class="hero-orbit orbit-one"></div>
           <div class="hero-orbit orbit-two"></div>
           <div class="hero-photo"></div>
-          <div class="hero-sticker"><span>feito pra<br />alegrar seu dia</span><b>✳</b></div>
-          <div class="hero-tag"><span>♡</span> achadinhos com carinho</div>
+          <div class="hero-sticker"><span>compras<br />que fazem diferença</span><b>✳</b></div>
+          <div class="hero-tag"><span>✦</span> achadinhos & acessórios</div>
         </div>
       </section>
 
@@ -66,9 +67,14 @@
               <span class="eyebrow">ESCOLHIDOS A DEDO</span>
               <h2 id="catalog-title">Tem de tudo um pouco.</h2>
             </div>
-            <button class="offers-feature-button" id="offers-feature-button" type="button" data-category="Ofertas" aria-pressed="false">
-              <span aria-hidden="true">✦</span> Ofertas
-            </button>
+            <div class="catalog-feature-buttons">
+              <button class="offers-feature-button" id="offers-feature-button" type="button" data-category="Ofertas" aria-pressed="false">
+                <span aria-hidden="true">✦</span> Ofertas
+              </button>
+              <button class="offers-feature-button" id="bestsellers-feature-button" type="button" data-category="Mais vendidos" aria-pressed="false">
+                <span aria-hidden="true">↗</span> Mais vendidos
+              </button>
+            </div>
           </div>
           <label class="search-box">
             <span aria-hidden="true">⌕</span>
@@ -82,12 +88,42 @@
           <button class="category-chip" type="button" data-category="Acessórios" aria-pressed="false">Acessórios</button>
           <button class="category-chip" type="button" data-category="Comidinhas" aria-pressed="false">Comidinhas</button>
           <button class="category-chip" type="button" data-category="Achadinhos" aria-pressed="false">Achadinhos</button>
-          <button class="category-chip" type="button" data-category="Jogos" aria-pressed="false"> Pagina de Jogos</button>
+          <a class="category-chip" href="./jogos.html">Jogos ↗</a>
         </div>
 
         <div class="product-grid" id="product-grid" aria-live="polite"></div>
         <p class="empty-state" id="empty-state" hidden>Nenhum produto encontrado. Tente outra busca.</p>
       </section>
+
+      <div class="product-detail-backdrop" id="product-detail-backdrop" hidden>
+        <section class="product-detail-dialog" id="product-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="product-detail-title">
+          <button class="product-detail-close" id="product-detail-close" type="button" aria-label="Fechar detalhes do produto">×</button>
+          <img class="product-detail-image" id="product-detail-image" alt="" />
+          <div class="product-detail-content">
+            <span class="product-category" id="product-detail-category"></span>
+            <h2 id="product-detail-title"></h2>
+            <div class="product-detail-price" id="product-detail-price"></div>
+            <p class="product-detail-description" id="product-detail-description"></p>
+            <div class="product-detail-stats">
+              <div>
+                <span class="product-detail-stat-label">Avaliação</span>
+                <div class="product-detail-rating">
+                  <span class="product-detail-stars" id="product-detail-stars" aria-hidden="true"></span>
+                  <span id="product-detail-rating"></span>
+                </div>
+              </div>
+              <div>
+                <span class="product-detail-stat-label">Comprados</span>
+                <strong id="product-detail-purchases"></strong>
+              </div>
+            </div>
+            <div class="product-detail-actions">
+              <button class="order-button" id="product-detail-add" type="button">Adicionar ao carrinho</button>
+              <button class="direct-buy-button" id="product-detail-buy" type="button">Comprar</button>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <div class="cart-backdrop" id="cart-backdrop" hidden>
         <section class="cart-dialog" id="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cart-title">
@@ -111,7 +147,7 @@
             <section class="payment-details" id="payment-details" aria-labelledby="payment-title" hidden>
               <h3 id="payment-title">Pague com Pix</h3>
               <strong class="pix-amount" id="pix-amount"></strong>
-              <p>Escaneie o QR Code no aplicativo do seu banco ou copie o código Pix. O valor já corresponde ao total do carrinho.</p>
+              <p>Escaneie o QR Code no aplicativo do seu banco ou copie o código Pix. O valor corresponde ao total do pedido.</p>
               <img class="pix-qr-code" id="pix-qr-code" alt="" width="240" height="240" />
               <label class="pix-code-label" for="pix-code">Código Pix copia e cola</label>
               <textarea id="pix-code" class="pix-code" readonly rows="4" aria-label="Código Pix copia e cola"></textarea>
@@ -127,7 +163,7 @@
         <div class="how-copy">
           <span class="eyebrow">FÁCIL ASSIM</span>
           <h2>Você escolhe.<br />A gente combina.</h2>
-          <p>Adicione seus favoritos ao carrinho, gere o Pix com o total e, depois de pagar, envie o pedido pelo WhatsApp.</p>
+          <p>Compre direto ou monte seu carrinho. Gere o Pix do pedido e, depois de pagar, envie a confirmação pelo WhatsApp.</p>
         </div>
         <div class="steps">
           <article class="step">
@@ -155,12 +191,12 @@
     </main>
 
     <footer class="site-footer">
-      <a class="brand footer-brand" href="#">
+      <a class="brand footer-brand" href="#" aria-label="ZW Store RN — início">
         <span class="brand-icon" aria-hidden="true">c</span>
-        <span class="brand-name">Nexora <span>& cia.</span></span>
+        <span class="brand-name">ZW Store RN</span>
       </a>
       <p>Feito com carinho. Pedido e entrega combinados pelo WhatsApp.</p>
-      <span class="copyright">© <span id="year"></span> Nexora & Cia</span>
+      <span class="copyright">© <span id="year"></span> ZW Store RN</span>
     </footer>
     <div class="setup-notice" id="setup-notice" role="status" hidden></div>
   </body>

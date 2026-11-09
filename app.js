@@ -621,7 +621,7 @@ const pixCode = document.querySelector("#pix-code");
 const pixQrCode = document.querySelector("#pix-qr-code");
 const paymentNotice = document.querySelector("#payment-notice");
 const sendOrderButton = document.querySelector("#send-order-button");
-const ORDER_SEND_CLICK_LIMIT = 1000;
+const ORDER_SEND_CLICK_LIMIT = 10;
 const CART_STORAGE_KEY = "nexora-cia-cart";
 const HIDDEN_FROM_ALL_PRODUCTS = new Set(["jogos"]);
 const CATEGORY_ALIASES = {
@@ -1034,6 +1034,9 @@ function startPixPayment() {
 
 function sendOrderToWhatsApp() {
   if (paymentDetails.hidden || !pixCode.value) return;
+  sendOrderButton.classList.remove("click-effect");
+  void sendOrderButton.offsetWidth;
+  sendOrderButton.classList.add("click-effect");
   paymentConfirmationAttempts += 1;
   if (paymentConfirmationAttempts < ORDER_SEND_CLICK_LIMIT) {
     paymentNotice.textContent =

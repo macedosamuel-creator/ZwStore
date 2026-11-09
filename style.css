@@ -373,4 +373,22 @@ h1, h2 { font-family: Manrope, sans-serif; }
 .pix-code { width: 100%; padding: 10px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; color: var(--white); background: var(--panel); font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }
 .copy-pix-button, .send-order-button { width: 100%; min-height: 42px; padding: 10px; border: 1px solid var(--line-strong); border-radius: 11px; color: var(--green); background: var(--panel-2); font-size: 11px; font-weight: 700; cursor: pointer; }
 .send-order-button { color: var(--black); background: linear-gradient(135deg, var(--green), #d8ff86); }
+.send-order-button.click-effect { animation: send-order-click .55s ease-in-out; }
+@keyframes send-order-click {
+  0%, 100% {
+    transform: scale(1);
+    color: var(--black);
+    background: linear-gradient(135deg, var(--green), #d8ff86);
+    box-shadow: 0 0 0 rgba(186, 252, 74, 0);
+  }
+  45% {
+    transform: scale(.96);
+    color: white;
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    box-shadow: 0 0 24px rgba(239, 68, 68, .55);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .send-order-button.click-effect { animation: none; }
+}
 .payment-details small { color: var(--muted); font-size: 10px; line-height: 1.5; }

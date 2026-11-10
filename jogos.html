@@ -177,6 +177,22 @@
             <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
             <p class="cart-promotion-hint" id="cart-discount-hint" hidden></p>
             <p>Entrega ou envio combinados pelo WhatsApp.</p>
+            <form class="customer-form" id="game-customer-form" hidden>
+              <h3>Dados do jogo</h3>
+              <p>Preencha os dados da conta para entregar seu pedido.</p>
+              <label class="customer-field customer-field-wide" id="free-fire-id-field" for="free-fire-id" hidden>
+                ID do Free Fire
+                <input id="free-fire-id" name="freeFireId" type="text" autocomplete="off" />
+              </label>
+              <label class="customer-field customer-field-wide" id="roblox-username-field" for="roblox-username" hidden>
+                Nome de usuário do Roblox
+                <input id="roblox-username" name="robloxUsername" type="text" autocomplete="username" />
+              </label>
+              <label class="customer-field customer-field-wide" id="blox-fruits-email-field" for="blox-fruits-email" hidden>
+                E-mail para receber as informações da conta
+                <input id="blox-fruits-email" name="bloxFruitsEmail" type="email" autocomplete="email" />
+              </label>
+            </form>
             <button class="checkout-button" id="checkout-button" type="button">Gerar Pix para pagar</button>
             <section class="payment-details" id="payment-details" aria-labelledby="payment-title" hidden>
               <h3 id="payment-title">Pague com Pix</h3>

@@ -19,8 +19,7 @@ const allProducts = [
   // Para dar desconto, adicione discount: 10 ao produto (percentual; omita ou use 0 para não dar desconto).
   // Edite rating (0 a 5) e purchaseCount em cada produto para mostrar estrelas e vendas.
   // Use null quando ainda não tiver uma avaliação ou quantidade de vendas real.
-  // Para cadastrar avaliações reais, adicione reviews: [{ name: "Nome", rating: 5, message: "Comentário" }] ao produto.
-  // Ao preencher reviews, os 3 modelos fictícios daquele produto deixam de aparecer.
+  // Cadastre avaliações reais na constante PRODUCT_REVIEWS abaixo, usando o ID do produto.
   // Modelos fictícios não entram na nota ou contagem.
   // Detalhes opcionais: description e reviewCount.
   {
@@ -741,6 +740,39 @@ const allProducts = [
 ];
 
 const IS_GAMES_STORE = document.body.dataset.catalog === "games";
+const PRODUCT_REVIEWS = {
+  // Avaliações aprovadas: use o ID do produto como chave.
+  1: [
+    {
+      name: "me*****r",
+      rating: 5,
+      message: "Produto de alta qualidade e entrega rápida.",
+    },
+  ],
+  7:  [
+    {
+      name:"f******m" ,
+      rating: 5,
+      message: "Slk",
+    },
+  ],
+  21: [
+    {
+      name: "le*****m",
+      rating: 4,
+      message: "Ficou ótimo, recomendo muito",
+    },
+  ],
+  37: [
+    {
+      name: "fa*****o",
+      rating: 5,
+      message: "Veio 5000 Robux vale muito a pena",
+    },
+  ],
+  
+  // Um produto com avaliações cadastradas deixa de exibir os modelos fictícios.
+};
 const REVIEW_EXAMPLES = [
   {
     name: "Modelo 1",
@@ -768,10 +800,10 @@ const products = allProducts
   })
   .map((product) => ({
     ...product,
-    reviews:
-      Array.isArray(product.reviews) && product.reviews.length > 0
+    reviews: PRODUCT_REVIEWS[product.id] ??
+      (Array.isArray(product.reviews) && product.reviews.length > 0
         ? product.reviews
-        : REVIEW_EXAMPLES.map((review) => ({ ...review })),
+        : REVIEW_EXAMPLES.map((review) => ({ ...review }))),
   }));
 const GAME_PRODUCT_IDS = {
   "free fire": new Set([25, 26, 27, 28, 29, 30, 38, 39, 40, 41, 42, 57, 58]),
@@ -810,6 +842,14 @@ const cartVolumeDiscount = document.querySelector("#cart-volume-discount");
 const cartDiscountHint = document.querySelector("#cart-discount-hint");
 const cartTitle = document.querySelector("#cart-title");
 const checkoutButton = document.querySelector("#checkout-button");
+const customerForm = document.querySelector("#customer-form");
+const gameCustomerForm = document.querySelector("#game-customer-form");
+const freeFireIdField = document.querySelector("#free-fire-id-field");
+const freeFireIdInput = document.querySelector("#free-fire-id");
+const robloxUsernameField = document.querySelector("#roblox-username-field");
+const robloxUsernameInput = document.querySelector("#roblox-username");
+const bloxFruitsEmailField = document.querySelector("#blox-fruits-email-field");
+const bloxFruitsEmailInput = document.querySelector("#blox-fruits-email");
 const paymentDetails = document.querySelector("#payment-details");
 const pixAmount = document.querySelector("#pix-amount");
 const pixCode = document.querySelector("#pix-code");
@@ -820,6 +860,8 @@ const ORDER_SEND_CLICK_LIMIT = 5;
 const CART_STORAGE_KEY = IS_GAMES_STORE
   ? "zw-store-rn-games-cart"
   : "nexora-cia-cart";
+const CUSTOMER_STORAGE_KEY = "zw-store-rn-customer";
+const GAME_CUSTOMER_STORAGE_KEY = "zw-store-rn-games-customer";
 const HIDDEN_FROM_ALL_PRODUCTS = new Set(["jogos"]);
 const CATEGORY_ALIASES = {
   jogos: new Set(["jogos", "pagina de jogos", "página de jogos"]),
@@ -1120,10 +1162,131 @@ function saveCart() {
   }
 }
 
+function updateGameCustomerFields(order) {
+  if (!gameCustomerForm) return;
+
+  const gameNames = new Set(
+    (order?.entries || []).flatMap(({ product }) =>
+      Object.entries(GAME_PRODUCT_IDS)
+        .filter(([, productIds]) => productIds.has(product.id))
+        .map(([gameName]) => gameName),
+    ),
+  );
+  const needsFreeFireId = gameNames.has("free fire");
+  const needsRobloxUsername = gameNames.has("roblox");
+  const needsBloxFruitsEmail = gameNames.has("blox fruits");
+
+  freeFireIdField.hidden = !needsFreeFireId;
+  freeFireIdInput.required = needsFreeFireId;
+  robloxUsernameField.hidden = !needsRobloxUsername;
+  robloxUsernameInput.required = needsRobloxUsername;
+  bloxFruitsEmailField.hidden = !needsBloxFruitsEmail;
+  bloxFruitsEmailInput.required = needsBloxFruitsEmail;
+  gameCustomerForm.hidden =
+    !needsFreeFireId && !needsRobloxUsername && !needsBloxFruitsEmail;
+}
+
+function restoreGameCustomerDetails() {
+  if (!gameCustomerForm) return;
+
+  try {
+    const savedDetails = JSON.parse(
+      localStorage.getItem(GAME_CUSTOMER_STORAGE_KEY) || "null",
+    );
+    if (!savedDetails || typeof savedDetails !== "object" || Array.isArray(savedDetails)) {
+      return;
+    }
+
+    if (typeof savedDetails.freeFireId === "string") {
+      freeFireIdInput.value = savedDetails.freeFireId;
+    }
+    if (typeof savedDetails.robloxUsername === "string") {
+      robloxUsernameInput.value = savedDetails.robloxUsername;
+    }
+    if (typeof savedDetails.bloxFruitsEmail === "string") {
+      bloxFruitsEmailInput.value = savedDetails.bloxFruitsEmail;
+    }
+  } catch (error) {
+    console.error("Não foi possível carregar os dados de jogo salvos.", error);
+    setupNotice.textContent =
+      "Não foi possível carregar os dados de jogo salvos neste navegador. Confira o armazenamento do navegador.";
+    setupNotice.hidden = false;
+  }
+}
+
+function saveGameCustomerDetails() {
+  if (!gameCustomerForm || gameCustomerForm.hidden) return true;
+  if (!gameCustomerForm.reportValidity()) return false;
+
+  try {
+    const savedDetails = {
+      freeFireId: freeFireIdInput.value.trim(),
+      robloxUsername: robloxUsernameInput.value.trim(),
+      bloxFruitsEmail: bloxFruitsEmailInput.value.trim(),
+    };
+    localStorage.setItem(GAME_CUSTOMER_STORAGE_KEY, JSON.stringify(savedDetails));
+    setupNotice.hidden = true;
+    return true;
+  } catch (error) {
+    console.error("Não foi possível salvar os dados de jogo neste navegador.", error);
+    setupNotice.textContent =
+      "Não foi possível salvar os dados do jogo neste navegador. Verifique as configurações de armazenamento e tente novamente.";
+    setupNotice.hidden = false;
+    return false;
+  }
+}
+
+function restoreCustomerDetails() {
+  if (!customerForm) return;
+
+  try {
+    const savedDetails = JSON.parse(localStorage.getItem(CUSTOMER_STORAGE_KEY) || "null");
+    if (!savedDetails || typeof savedDetails !== "object" || Array.isArray(savedDetails)) {
+      return;
+    }
+
+    for (const [name, value] of Object.entries(savedDetails)) {
+      const field = customerForm.elements.namedItem(name);
+      if (field instanceof HTMLInputElement && typeof value === "string") {
+        field.value = value;
+      }
+    }
+  } catch (error) {
+    console.error("Não foi possível carregar os dados do cliente salvos.", error);
+    setupNotice.textContent =
+      "Não foi possível carregar os dados salvos neste navegador. Confira o armazenamento do navegador.";
+    setupNotice.hidden = false;
+  }
+}
+
+function saveCustomerDetails() {
+  if (!customerForm) return true;
+
+  try {
+    const details = Object.fromEntries(
+      [...new FormData(customerForm)].map(([name, value]) => [
+        name,
+        String(value).trim(),
+      ]),
+    );
+    localStorage.setItem(CUSTOMER_STORAGE_KEY, JSON.stringify(details));
+    setupNotice.hidden = true;
+    return true;
+  } catch (error) {
+    console.error("Não foi possível salvar os dados do cliente neste navegador.", error);
+    setupNotice.textContent =
+      "Não foi possível salvar seus dados neste navegador. Verifique as configurações de armazenamento e tente novamente.";
+    setupNotice.hidden = false;
+    return false;
+  }
+}
+
 function renderCart() {
   const isDirectPurchase = cartBeforeDirectPurchase !== null;
   cartTitle.textContent = isDirectPurchase ? "Compra direta" : "Meu carrinho";
-  checkoutButton.textContent = isDirectPurchase ? "Gerar Pix do pedido" : "Gerar Pix para pagar";
+  checkoutButton.textContent = IS_GAMES_STORE
+    ? isDirectPurchase ? "Gerar Pix do pedido" : "Gerar Pix para pagar"
+    : isDirectPurchase ? "Salvar dados e gerar Pix do pedido" : "Salvar dados e gerar Pix";
   paymentConfirmationAttempts = 0;
   paymentDetails.hidden = true;
   sendOrderButton.hidden = true;
@@ -1138,6 +1301,7 @@ function renderCart() {
   const itemCount = entries.reduce((sum, entry) => sum + entry.quantity, 0);
   const order = getOrderDetails();
 
+  updateGameCustomerFields(order);
   cartCount.textContent = itemCount;
   cartEmpty.hidden = entries.length > 0;
   cartSummary.hidden = entries.length === 0;
@@ -1399,6 +1563,10 @@ function getOrderDetails() {
 }
 
 function startPixPayment() {
+  if (customerForm && !customerForm.reportValidity()) return;
+  if (!saveCustomerDetails()) return;
+  if (!saveGameCustomerDetails()) return;
+
   const order = getOrderDetails();
   if (!order) return;
   if (!STORE.whatsapp || !STORE.pixKey) {
@@ -1430,6 +1598,10 @@ function startPixPayment() {
 
 function sendOrderToWhatsApp() {
   if (paymentDetails.hidden || !pixCode.value) return;
+  if (customerForm && !customerForm.reportValidity()) return;
+  if (!saveCustomerDetails()) return;
+  if (!saveGameCustomerDetails()) return;
+
   sendOrderButton.classList.remove("click-effect");
   void sendOrderButton.offsetWidth;
   sendOrderButton.classList.add("click-effect");
@@ -1446,6 +1618,33 @@ function sendOrderToWhatsApp() {
 
   const message = [
     `Olá! Quero fazer um pedido na ${STORE.name}:`,
+    ...(customerForm
+      ? [
+          "",
+          "Dados do cliente:",
+          `Nome completo: ${customerForm.elements.namedItem("name").value.trim()}`,
+          `CPF: ${customerForm.elements.namedItem("cpf").value.trim()}`,
+          `CEP: ${customerForm.elements.namedItem("cep").value.trim()}`,
+          `Rua: ${customerForm.elements.namedItem("street").value.trim()}`,
+          `N° de casa: ${customerForm.elements.namedItem("houseNumber").value.trim()}`,
+          `E-mail: ${customerForm.elements.namedItem("email").value.trim()}`,
+        ]
+      : []),
+    ...(gameCustomerForm && !gameCustomerForm.hidden
+      ? [
+          "",
+          "Dados do jogo:",
+          ...(freeFireIdInput.required
+            ? [`ID do Free Fire: ${freeFireIdInput.value.trim()}`]
+            : []),
+          ...(robloxUsernameInput.required
+            ? [`Nome de usuário do Roblox: ${robloxUsernameInput.value.trim()}`]
+            : []),
+          ...(bloxFruitsEmailInput.required
+            ? [`E-mail para receber as informações da conta Blox Fruits: ${bloxFruitsEmailInput.value.trim()}`]
+            : []),
+        ]
+      : []),
     "",
     ...order.entries.map(
       ({ product, quantity }) =>
@@ -1587,7 +1786,19 @@ cartItems.addEventListener("click", (event) => {
 searchInput.addEventListener("input", renderProducts);
 document.querySelector("#cart-open").addEventListener("click", openCart);
 document.querySelector("#cart-close").addEventListener("click", closeCart);
-document.querySelector("#checkout-button").addEventListener("click", startPixPayment);
+if (gameCustomerForm) {
+  gameCustomerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+}
+if (customerForm) {
+  customerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    startPixPayment();
+  });
+} else {
+  checkoutButton.addEventListener("click", startPixPayment);
+}
 document.querySelector("#send-order-button").addEventListener("click", sendOrderToWhatsApp);
 document.querySelector("#copy-pix-button").addEventListener("click", async () => {
   try {
@@ -1661,5 +1872,7 @@ if (STORE.whatsapp) {
   document.querySelector("#contact-link").rel = "noopener noreferrer";
 }
 
+restoreCustomerDetails();
+restoreGameCustomerDetails();
 renderProducts();
 renderCart();

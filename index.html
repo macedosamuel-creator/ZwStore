@@ -178,7 +178,35 @@
             <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
             <p class="cart-promotion-hint" id="cart-discount-hint" hidden></p>
             <p>Entrega combinada pelo WhatsApp.</p>
-            <button class="checkout-button" id="checkout-button" type="button">Gerar Pix para pagar <span aria-hidden="true">↗</span></button>
+            <form class="customer-form" id="customer-form">
+              <h3>Dados para o pedido</h3>
+              <p>Preencha antes de gerar o Pix. Os dados ficam salvos neste navegador e serão enviados pelo WhatsApp junto do pedido.</p>
+              <label class="customer-field customer-field-wide" for="customer-name">
+                Nome completo
+                <input id="customer-name" name="name" type="text" autocomplete="name" minlength="3" required />
+              </label>
+              <label class="customer-field" for="customer-cpf">
+                CPF
+                <input id="customer-cpf" name="cpf" type="text" inputmode="numeric" autocomplete="off" pattern="[0-9]{11}|[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" title="Digite os 11 números do CPF, com ou sem pontuação." required />
+              </label>
+              <label class="customer-field" for="customer-cep">
+                CEP
+                <input id="customer-cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{8}|[0-9]{5}-[0-9]{3}" title="Digite os 8 números do CEP, com ou sem hífen." required />
+              </label>
+              <label class="customer-field customer-field-wide" for="customer-street">
+                Rua
+                <input id="customer-street" name="street" type="text" autocomplete="street-address" required />
+              </label>
+              <label class="customer-field" for="customer-house-number">
+                N° de casa
+                <input id="customer-house-number" name="houseNumber" type="text" autocomplete="off" required />
+              </label>
+              <label class="customer-field" for="customer-email">
+                E-mail
+                <input id="customer-email" name="email" type="email" autocomplete="email" required />
+              </label>
+            </form>
+            <button class="checkout-button" id="checkout-button" type="submit" form="customer-form">Salvar dados e gerar Pix <span aria-hidden="true">↗</span></button>
             <section class="payment-details" id="payment-details" aria-labelledby="payment-title" hidden>
               <h3 id="payment-title">Pague com Pix</h3>
               <strong class="pix-amount" id="pix-amount"></strong>

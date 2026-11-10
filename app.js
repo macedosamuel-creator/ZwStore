@@ -19,6 +19,9 @@ const allProducts = [
   // Para dar desconto, adicione discount: 10 ao produto (percentual; omita ou use 0 para não dar desconto).
   // Edite rating (0 a 5) e purchaseCount em cada produto para mostrar estrelas e vendas.
   // Use null quando ainda não tiver uma avaliação ou quantidade de vendas real.
+  // Para cadastrar avaliações reais, adicione reviews: [{ name: "Nome", rating: 5, message: "Comentário" }] ao produto.
+  // Ao preencher reviews, os 3 modelos fictícios daquele produto deixam de aparecer.
+  // Modelos fictícios não entram na nota ou contagem.
   // Detalhes opcionais: description e reviewCount.
   {
     id: 1,
@@ -168,9 +171,9 @@ const allProducts = [
     name: "Kit 4 Pilotos Para Quadro + Apagador",
     category: "Achadinhos",
     price: 39.99,
-    stock: 1,
+    stock: 10,
     rating: 4.5,
-    purchaseCount: 5,
+    purchaseCount: 85,
     label: "kit",
     image: "./kitPilotos.jpg.jpeg",
     discount: 15
@@ -303,6 +306,7 @@ const allProducts = [
     stock: 100,
     rating: 4.9,
     purchaseCount: 861,
+    reviews: [],
     label: "diamantes",
     image: "./78dimas.jpg.jpeg",
     discount: 5
@@ -315,6 +319,7 @@ const allProducts = [
     stock: 100,
     rating: 4.5,
     purchaseCount: 297,
+    reviews: [],
     label: "diamantes",
     image: "./120dimas.jpg.jpeg",
     discount: 10
@@ -328,6 +333,7 @@ const allProducts = [
   stock: 100,
   rating: 4.8,
   purchaseCount: 197,
+  reviews: [],
   label: "diamantes",
   image: "./372dimas.jpg.jpeg",
   discount: 6
@@ -340,6 +346,7 @@ const allProducts = [
   stock: 100,
   rating: 4.0,
   purchaseCount: 951,
+  reviews: [],
   label: "diamantes",
   image: "./624dimas.jpg.jpeg",
   discount: 0
@@ -352,6 +359,7 @@ const allProducts = [
   stock: 100,
   rating: 4.0,
   purchaseCount: 51,
+  reviews: [],
   label: "diamantes",
   image: "./1272dimas.jpg.jpeg",
   discount: 0
@@ -364,6 +372,7 @@ const allProducts = [
   stock: 100,
   rating: 4.7,
   purchaseCount: 21,
+  reviews: [],
   label: "diamantes",
   image: "./2616dimas.jpg.jpeg",
   discount: 9
@@ -376,6 +385,7 @@ const allProducts = [
   stock: 100,
   rating: 5,
   purchaseCount: 11,
+  reviews: [],
   label: "diamantes",
   image: "./6729dimas.jpg.jpeg",
   discount: 5
@@ -388,6 +398,7 @@ const allProducts = [
   stock: 100,
   rating: 4.8,
   purchaseCount: 10,
+  reviews: [],
   label: "diamantes",
   image: "./26880dimas.jpg.jpeg",
   discount: 3
@@ -400,6 +411,7 @@ const allProducts = [
   stock: 15,
   rating: 4.7,
   purchaseCount: 14,
+  reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 20
@@ -411,6 +423,7 @@ const allProducts = [
   stock: 11,
   rating: 4.5,
   purchaseCount: 29,
+  reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 20
@@ -423,6 +436,7 @@ const allProducts = [
   stock: 7,
   rating: 4.8,
   purchaseCount: 10,
+  reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 30
@@ -435,6 +449,7 @@ const allProducts = [
   stock: 7,
   rating: 4.5,
   purchaseCount: 23,
+  reviews: [],
   label: "blox-fruits",
   image: "./portal.jpg.jpeg",
   discount: 15
@@ -447,6 +462,7 @@ const allProducts = [
   stock: 3,
   rating: 4.5,
   purchaseCount: 37,
+  reviews: [],
   label: "blox-fruits",
   image: "./rumble.jpg.jpeg",
   discount: 25
@@ -459,6 +475,7 @@ const allProducts = [
   stock: 2,
   rating: 4.2,
   purchaseCount: 98,
+  reviews: [],
   label: "blox-fruits",
   image: "./gas.jpg.jpeg",
   discount: 25
@@ -471,6 +488,7 @@ const allProducts = [
   stock: 1000,
   rating: 4.9,
   purchaseCount: 951,
+  reviews: [],
   label: "robux",
   image: "./caixarubux.jpg.jpeg",
   discount: 10
@@ -483,6 +501,7 @@ const allProducts = [
   stock: 1000,
   rating: 4.0,
   purchaseCount: 129,
+  reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
   discount: 10
@@ -495,6 +514,7 @@ const allProducts = [
   stock: 1000,
   rating: 4.0,
   purchaseCount: 124,
+  reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
   discount: 10
@@ -507,6 +527,7 @@ const allProducts = [
   stock: 1000,
   rating: 4.0,
   purchaseCount: 210,
+  reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
   discount: 10
@@ -519,6 +540,7 @@ const allProducts = [
   stock: 1000,
   rating: 4.5,
   purchaseCount: 10,
+  reviews: [],
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
   discount: 10
@@ -531,6 +553,7 @@ const allProducts = [
   stock: 1000,
   rating: 4.8,
   purchaseCount: 8,
+  reviews: [],
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
   discount: 28
@@ -714,14 +737,47 @@ const allProducts = [
   label: "Prazo 30 dias",
   image: "./placagddr3.jpg.jpeg",
   discount: 25
-}
+},
 ];
 
 const IS_GAMES_STORE = document.body.dataset.catalog === "games";
-const products = allProducts.filter((product) => {
-  const isGameProduct = normalizeCategory(product.category) === "jogos";
-  return IS_GAMES_STORE ? isGameProduct : !isGameProduct;
-});
+const REVIEW_EXAMPLES = [
+  {
+    name: "Modelo 1",
+    rating: 5,
+    message: "Exemplo fictício: gostei do produto e ele atendeu às minhas expectativas.",
+    isExample: true,
+  },
+  {
+    name: "Modelo 2",
+    rating: 4,
+    message: "Exemplo fictício: bom produto, com qualidade e preço que valeram a pena.",
+    isExample: true,
+  },
+  {
+    name: "Modelo 3",
+    rating: 5,
+    message: "Exemplo fictício: minha experiência foi positiva. Recomendo conferir os detalhes antes de comprar.",
+    isExample: true,
+  },
+];
+const products = allProducts
+  .filter((product) => {
+    const isGameProduct = normalizeCategory(product.category) === "jogos";
+    return IS_GAMES_STORE ? isGameProduct : !isGameProduct;
+  })
+  .map((product) => ({
+    ...product,
+    reviews:
+      Array.isArray(product.reviews) && product.reviews.length > 0
+        ? product.reviews
+        : REVIEW_EXAMPLES.map((review) => ({ ...review })),
+  }));
+const GAME_PRODUCT_IDS = {
+  "free fire": new Set([25, 26, 27, 28, 29, 30, 38, 39, 40, 41, 42, 57, 58]),
+  roblox: new Set([37]),
+  "blox fruits": new Set([31, 32, 33, 34, 35, 36]),
+};
 
 const productGrid = document.querySelector("#product-grid");
 const emptyState = document.querySelector("#empty-state");
@@ -800,6 +856,14 @@ function matchesCategory(productCategory, selectedCategory) {
 
   const aliases = CATEGORY_ALIASES[normalizedSelectedCategory] || new Set([normalizedSelectedCategory]);
   return aliases.has(normalizedProductCategory);
+}
+
+function getGameName(product) {
+  if (!IS_GAMES_STORE) return product.category;
+  return Object.entries(GAME_PRODUCT_IDS).find(([, productIds]) =>
+    productIds.has(product.id),
+  )?.[0]
+    .replace(/\b\w/g, (letter) => letter.toLocaleUpperCase("pt-BR")) || "Jogos";
 }
 
 function formatPrice(price) {
@@ -920,13 +984,16 @@ function renderProducts() {
         .slice(0, 10)
     : products;
   const visibleProducts = topSellers.filter((product) => {
+    const selectedGameIds = GAME_PRODUCT_IDS[normalizeCategory(activeCategory)];
     const matchesCategoryFilter = isTopSellers
       ? true
-      : normalizeCategory(activeCategory) === "ofertas"
+      : selectedGameIds
+        ? selectedGameIds.has(product.id)
+        : normalizeCategory(activeCategory) === "ofertas"
         ? normalizeCategory(product.category) === "ofertas" ||
           getDiscountPercent(product) >= 45
         : matchesCategory(product.category, activeCategory);
-    const matchesSearch = `${product.name} ${product.category}`
+    const matchesSearch = `${product.name} ${product.category} ${getGameName(product)}`
       .toLocaleLowerCase("pt-BR")
       .includes(searchTerm);
     return matchesCategoryFilter && matchesSearch;
@@ -940,7 +1007,21 @@ function renderProducts() {
         const cannotAddMore = outOfStock || quantityInCart >= product.stock;
         const discountPercent = getDiscountPercent(product);
         const discountedPrice = getDiscountedPrice(product);
-        const rating = Number.isFinite(product.rating)
+        const productReviews = Array.isArray(product.reviews)
+          ? product.reviews.filter(
+              (review) =>
+               !review.isExample &&
+               Number.isInteger(review.rating) &&
+                review.rating >= 1 &&
+                review.rating <= 5,
+            )
+          : [];
+        const rating = product.reviewCount > 0 && Number.isFinite(product.rating)
+          ? product.rating
+          : productReviews.length
+          ? productReviews.reduce((sum, review) => sum + review.rating, 0) /
+            productReviews.length
+          : Number.isFinite(product.rating)
           ? Math.min(5, Math.max(0, product.rating))
           : null;
         const roundedRating = rating === null ? 0 : Math.round(rating);
@@ -957,7 +1038,7 @@ function renderProducts() {
             ${discountPercent ? `<span class="product-discount-badge">${discountPercent}% OFF</span>` : ""}
           </div>
           <div class="product-details">
-            <span class="product-category">${product.category}</span>
+            <span class="product-category">${getGameName(product)}</span>
             <h3 class="product-title"><button class="product-detail-title-trigger" type="button" data-product-details="${product.id}">${product.name}${outOfStock ? " (Esgotado)" : ""}</button></h3>
             <p class="product-stock${outOfStock ? " product-stock-empty" : ""}">
               ${outOfStock ? "Estoque: 0 unidades" : `Estoque: ${product.stock} ${product.stock === 1 ? "unidade" : "unidades"}`}
@@ -1166,12 +1247,28 @@ function openProductDetails(productId, trigger) {
   activeDetailProductId = product.id;
   productDetailTrigger = trigger;
   const discountPercent = getDiscountPercent(product);
-  const rating = Number.isFinite(product.rating)
+  const productReviews = Array.isArray(product.reviews)
+    ? product.reviews.filter(
+        (review) =>
+         !review.isExample &&
+         Number.isInteger(review.rating) &&
+          review.rating >= 1 &&
+          review.rating <= 5,
+      )
+    : [];
+  const rating = product.reviewCount > 0 && Number.isFinite(product.rating)
+    ? product.rating
+    : productReviews.length
+    ? productReviews.reduce((sum, review) => sum + review.rating, 0) /
+      productReviews.length
+    : Number.isFinite(product.rating)
     ? Math.min(5, Math.max(0, product.rating))
     : null;
-  const reviewCount = Number.isSafeInteger(product.reviewCount)
+  const reviewCount = product.reviewCount > 0 && Number.isSafeInteger(product.reviewCount)
+    ? product.reviewCount
+    : productReviews.length || (Number.isSafeInteger(product.reviewCount)
     ? Math.max(0, product.reviewCount)
-    : null;
+    : null);
   const purchaseCount = Number.isSafeInteger(product.purchaseCount)
     ? Math.max(0, product.purchaseCount)
     : null;
@@ -1179,7 +1276,7 @@ function openProductDetails(productId, trigger) {
   productDetailImage.src = product.image;
   productDetailImage.alt = product.name;
   productDetailTitle.textContent = product.name;
-  productDetailCategory.textContent = product.category;
+  productDetailCategory.textContent = getGameName(product);
   productDetailPrice.innerHTML = discountPercent
     ? `<s>${formatPrice(product.price)}</s><strong>${formatPrice(getDiscountedPrice(product))}</strong>`
     : `<strong>${formatPrice(product.price)}</strong>`;
@@ -1205,6 +1302,15 @@ function openProductDetails(productId, trigger) {
   productDetailBuyButton.disabled = outOfStock;
   productDetailBuyButton.textContent = outOfStock ? "Esgotado" : "Comprar";
   productDetailBackdrop.hidden = false;
+  document.dispatchEvent(
+    new CustomEvent("product-detail-opened", {
+    detail: {
+      productId: product.id,
+      productName: product.name,
+      reviews: Array.isArray(product.reviews) ? product.reviews : [],
+    },
+    }),
+  );
   document.querySelector("#product-detail-close").focus();
 }
 
@@ -1510,6 +1616,32 @@ document.addEventListener("visibilitychange", () => {
   paymentDetails.classList.remove("return-animation");
   void paymentDetails.offsetWidth;
   paymentDetails.classList.add("return-animation");
+});
+document.addEventListener("approved-product-reviews-loaded", (event) => {
+  const ratings = event.detail?.ratings;
+  if (!ratings || typeof ratings !== "object") return;
+
+  for (const product of products) {
+    const productRating = ratings[product.id];
+    if (
+      productRating &&
+      Number.isFinite(productRating.rating) &&
+      Number.isSafeInteger(productRating.count)
+    ) {
+      product.rating = productRating.rating;
+      product.reviewCount = productRating.count;
+    }
+  }
+  renderProducts();
+
+  if (activeDetailProductId === null) return;
+  const product = products.find((item) => item.id === activeDetailProductId);
+  if (!product || !Number.isFinite(product.rating)) return;
+  const roundedRating = Math.round(product.rating);
+  productDetailStars.textContent =
+    `${"★".repeat(roundedRating)}${"☆".repeat(5 - roundedRating)}`;
+  productDetailRating.textContent =
+    `${product.rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}/5 (${product.reviewCount} avaliações)`;
 });
 cartBackdrop.addEventListener("click", (event) => {
   if (event.target === cartBackdrop) closeCart();

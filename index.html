@@ -117,6 +117,41 @@
                 <strong id="product-detail-purchases"></strong>
               </div>
             </div>
+            <section class="product-reviews" aria-labelledby="product-reviews-title">
+              <h3 id="product-reviews-title">Avaliações deste produto</h3>
+              <div class="reviews-list" id="product-reviews-list" aria-live="polite">
+                <p class="reviews-empty" id="product-reviews-empty">Carregando avaliações...</p>
+              </div>
+              <div class="reviews-import">
+                <label class="reviews-import-button" for="approved-reviews-file">Carregar avaliações aprovadas</label>
+                <input id="approved-reviews-file" type="file" accept=".json,application/json" />
+                <p class="reviews-import-status" id="reviews-import-status" role="status"></p>
+              </div>
+              <form class="review-form" id="review-form">
+                <h3>Avalie este produto</h3>
+                <p>Ao enviar, seu aplicativo de e-mail abrirá com a avaliação pronta para macedo.samuel@escolar.ifrn.edu.br. Se não abrir, você poderá compor a mensagem pelo Gmail no navegador. Revise e confirme o envio; seu e-mail não será publicado nas avaliações.</p>
+                <div class="review-form-fields">
+                  <label for="review-name">Seu nome</label>
+                  <input id="review-name" name="name" type="text" maxlength="50" autocomplete="name" required />
+                  <label for="review-email">Seu e-mail</label>
+                  <input id="review-email" name="email" type="email" maxlength="254" autocomplete="email" required />
+                  <label for="review-rating">Sua nota</label>
+                  <select id="review-rating" name="rating" required>
+                    <option value="">Escolha de 1 a 5 estrelas</option>
+                    <option value="5">★★★★★ — 5 estrelas</option>
+                    <option value="4">★★★★☆ — 4 estrelas</option>
+                    <option value="3">★★★☆☆ — 3 estrelas</option>
+                    <option value="2">★★☆☆☆ — 2 estrelas</option>
+                    <option value="1">★☆☆☆☆ — 1 estrela</option>
+                  </select>
+                  <label for="review-message">Comentário</label>
+                  <textarea id="review-message" name="message" rows="3" maxlength="500" required></textarea>
+                </div>
+                <button class="checkout-button review-submit" type="submit">Enviar avaliação por e-mail</button>
+                <a class="review-email-fallback" id="review-email-fallback" target="_blank" rel="noopener noreferrer" hidden>Se o app não abrir, compor pelo Gmail no navegador</a>
+                <p class="review-status" id="review-status" role="status"></p>
+              </form>
+            </section>
             <div class="product-detail-actions">
               <button class="order-button" id="product-detail-add" type="button">Adicionar ao carrinho</button>
               <button class="direct-buy-button" id="product-detail-buy" type="button">Comprar</button>
@@ -199,5 +234,6 @@
       <span class="copyright">© <span id="year"></span> ZW Store RN</span>
     </footer>
     <div class="setup-notice" id="setup-notice" role="status" hidden></div>
+    <script src="comments.js" defer></script>
   </body>
 </html>

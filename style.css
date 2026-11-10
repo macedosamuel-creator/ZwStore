@@ -423,7 +423,7 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 .product-detail-backdrop { position: fixed; inset: 0; z-index: 12; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, .78); }
 .product-detail-backdrop[hidden] { display: none; }
 .product-detail-dialog { position: relative; width: min(100%, 760px); max-height: min(90vh, 760px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow-y: auto; border: 1px solid var(--line-strong); border-radius: 22px; color: var(--white); background: #0b0f0c; box-shadow: 0 24px 80px rgba(0, 0, 0, .65); }
-.product-detail-image { width: 100%; height: 100%; min-height: 400px; object-fit: cover; background: var(--panel); }
+.product-detail-image { width: 100%; height: min(70vh, 560px); min-height: 0; align-self: start; object-fit: contain; background: var(--panel); }
 .product-detail-content { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 38px 30px; }
 .product-detail-content h2 { margin: 0; font-size: clamp(22px, 3vw, 30px); line-height: 1.2; letter-spacing: -.04em; }
 .product-detail-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
@@ -441,6 +441,36 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 .product-detail-actions button:disabled { cursor: not-allowed; opacity: .55; }
 .product-detail-close { position: absolute; z-index: 1; top: 12px; right: 12px; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--white); background: rgba(5, 5, 5, .82); font-size: 25px; line-height: 1; cursor: pointer; }
 
+.product-reviews { display: grid; gap: 10px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(17, 23, 17, .45); }
+.product-reviews > h3 { margin: 0; font-family: Manrope, sans-serif; font-size: 14px; }
+.review-form > p { color: var(--muted); font-size: 12px; line-height: 1.6; }
+.reviews-list { display: grid; align-content: start; gap: 12px; }
+.reviews-empty { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.customer-review { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: rgba(17, 23, 17, .7); }
+.customer-review-heading { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.customer-review-name { font-size: 12px; font-weight: 700; }
+.customer-review-example { padding: 3px 6px; border: 1px solid var(--green); border-radius: 999px; color: var(--green); font-size: 8px; font-weight: 800; letter-spacing: .04em; }
+.customer-review-stars { color: var(--green); font-size: 13px; letter-spacing: 1px; white-space: nowrap; }
+.customer-review-message { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.reviews-import { display: grid; justify-items: start; gap: 5px; }
+.reviews-import input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+.reviews-import-button { padding: 8px 11px; border: 1px solid var(--line); border-radius: 9px; color: var(--green); background: var(--panel-2); font-size: 10px; font-weight: 700; cursor: pointer; }
+.reviews-import-button:hover, .reviews-import:focus-within .reviews-import-button { border-color: var(--green); }
+.reviews-import-status { min-height: 0; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.review-form { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: rgba(17, 23, 17, .7); }
+.review-form h3 { margin: 0 0 7px; font-family: Manrope, sans-serif; font-size: 17px; }
+.review-form > p { margin-bottom: 15px; }
+.review-form-fields { display: grid; gap: 8px; }
+.review-form-fields label { margin-top: 7px; color: var(--white); font-size: 11px; font-weight: 700; }
+.review-form-fields input, .review-form-fields select, .review-form-fields textarea { width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 10px; outline: none; color: var(--white); background: var(--panel); font: inherit; font-size: 12px; }
+.review-form-fields input:focus, .review-form-fields select:focus, .review-form-fields textarea:focus { border-color: var(--green); }
+.review-form-fields select option { color: var(--white); background: var(--panel); }
+.review-form-fields textarea { resize: vertical; }
+.review-submit { margin-top: 15px; }
+.review-email-fallback { color: var(--green); font-size: 11px; text-decoration: underline; cursor: pointer; }
+.review-email-fallback[hidden] { display: none; }
+.review-status { min-height: 18px; margin: 10px 0 0 !important; color: var(--green) !important; font-size: 11px !important; }
+
 @media (max-width: 600px) {
   .product-detail-backdrop { padding: 12px; }
   .product-detail-dialog { width: min(100%, 420px); max-height: 92vh; grid-template-columns: 1fr; }
@@ -448,4 +478,5 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
   .product-detail-content { gap: 10px; padding: 22px; }
   .product-detail-content h2 { padding-right: 28px; font-size: 22px; }
   .product-detail-description { font-size: 12px; }
+  .product-reviews { padding: 12px; }
 }

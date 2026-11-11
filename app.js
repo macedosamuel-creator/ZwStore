@@ -816,20 +816,6 @@ const allProducts = [
   name: " Relógio Esporte Led unissex à prova d'agua da moda original watch U9",
   category: "Ofertas",
   variantGroup:"relogios",
-  variantName:"Amostra",
-  price: 59.99,
-  stock: 0,
-  rating: 4.7,
-  purchaseCount: 74,
-  label: "Prazo 30 dias",
-  image: "./relogios.jpeg",
-  discount: 0
-},
-{
-  id: 64,
-  name: " Relógio Esporte Led unissex à prova d'agua da moda original watch U9",
-  category: "Ofertas",
-  variantGroup:"relogios",
   variantName:"Preto",
   price: 59.99,
   stock: 64,
@@ -840,7 +826,7 @@ const allProducts = [
   discount: 0
 },
 {
-  id: 65,
+  id: 64,
   name: " Relógio Esporte Led unissex à prova d'agua da moda original watch U9",
   category: "Ofertas",
   variantGroup:"relogios",
@@ -854,7 +840,7 @@ const allProducts = [
   discount: 0
 },
 {
-  id: 66,
+  id: 65,
   name: " Relógio Esporte Led unissex à prova d'agua da moda original watch U9",
   category: "Ofertas",
   variantGroup:"relogios",

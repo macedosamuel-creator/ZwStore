@@ -822,7 +822,7 @@ const allProducts = [
   rating: 4.7,
   purchaseCount: 74,
   label: "Prazo 30 dias",
-  image: "./Relogios.jpeg",
+  image: "./relogios.jpeg",
   discount: 0
 },
 {

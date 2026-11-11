@@ -102,7 +102,7 @@ h1, h2 { font-family: Manrope, sans-serif; }
 .hero-art { position: relative; width: min(100%, 430px); height: 360px; justify-self: center; }
 .hero-photo {
   position: absolute; inset: 20px 35px 20px 30px; z-index: 1; border-radius: 48% 48% 43% 43%;
-  background: #101410 url("./placagddr3.jpg.jpeg") center / cover;
+  background: #101410 url("./Sacola.jpg.jpeg") center / cover;
   box-shadow: 0 15px 40px rgba(0,0,0,0.45), 0 0 28px rgba(186, 252, 74, 0.08);
   border: 1px solid rgba(186, 252, 74, 0.2);
 }
@@ -173,7 +173,7 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 .cart-added-animation.is-flying { opacity: 0; transform: translate(calc(-50% + var(--cart-fly-x)), var(--cart-fly-y)) scale(.72); }
 .cart-backdrop { position: fixed; inset: 0; z-index: 10; display: flex; justify-content: flex-end; background: rgba(0,0,0,0.7); }
 .cart-backdrop[hidden] { display: none; }
-.cart-dialog { width: min(100%, 470px); height: 100%; display: flex; flex-direction: column; padding: 29px; overflow-y: auto; background: #0b0f0c; box-shadow: -15px 0 45px rgba(0,0,0,0.7); border-left: 1px solid var(--line); }
+.cart-dialog { width: min(100%, 470px); height: 100%; display: flex; flex-direction: column; padding: 29px; overflow-y: auto; overscroll-behavior: contain; scroll-behavior: smooth; background: #0b0f0c; box-shadow: -15px 0 45px rgba(0,0,0,0.7); border-left: 1px solid var(--line); }
 .cart-heading { display: flex; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
 .cart-heading h2 { margin: 6px 0 0; font-size: 27px; letter-spacing: -.05em; color: var(--white); }
 .cart-close { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; color: var(--white); background: rgba(255,255,255,0.03); font-size: 25px; line-height: 1; cursor: pointer; }
@@ -196,8 +196,10 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 .cart-discount[hidden] { display: none; }
 .cart-discount strong { font-size: 13px; }
 .cart-summary > p { margin: 8px 0 18px; color: var(--muted); font-size: 10px; }
-.checkout-button { width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 12px; border: 0; border-radius: 14px; color: var(--black); background: linear-gradient(135deg, var(--green), #d8ff86); font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 12px 30px rgba(186, 252, 74, 0.24); }
-.checkout-button:hover { box-shadow: 0 16px 36px rgba(186, 252, 74, 0.28); }
+.checkout-button { width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 12px; border: 0; border-radius: 14px; color: var(--black); background: linear-gradient(135deg, var(--green), #d8ff86); font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 12px 30px rgba(186, 252, 74, 0.24); transition: transform .2s ease, box-shadow .25s ease, filter .2s ease; }
+.checkout-button:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(186, 252, 74, 0.28); filter: brightness(1.04); }
+.checkout-button:active { transform: translateY(0) scale(.99); }
+.checkout-button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 .empty-state { padding: 36px 0; color: var(--muted); text-align: center; font-size: 13px; }
 .how-it-works { padding: 75px 12.5%; display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 10%; background: linear-gradient(180deg, rgba(13,17,13,1), rgba(8,10,8,1)); }
 .how-copy h2 { margin: 10px 0 15px; }
@@ -377,32 +379,52 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid rgba(186, 252, 74, .19);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 100% 0, rgba(186, 252, 74, .07), transparent 48%),
+    linear-gradient(145deg, rgba(19, 27, 20, .92), rgba(11, 15, 12, .96));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 10px 24px rgba(0,0,0,.12);
   text-align: left;
 }
 .customer-form[hidden],
 .customer-field[hidden] { display: none; }
+.customer-form:not([hidden]) { animation: customer-form-in .28s cubic-bezier(.2, .7, .25, 1) both; }
+@keyframes customer-form-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .customer-form h3,
 .customer-form > p { grid-column: 1 / -1; margin: 0; }
-.customer-form h3 { color: var(--white); font-size: 15px; }
-.customer-form > p { color: var(--muted); font-size: 11px; line-height: 1.5; }
-.customer-field { display: grid; gap: 6px; color: var(--white); font-size: 11px; font-weight: 700; }
+.customer-form h3 { color: var(--white); font-size: 16px; letter-spacing: -.02em; }
+.customer-form > p { margin-top: -7px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.customer-field { display: grid; gap: 7px; color: #e8eee5; font-size: 11px; font-weight: 700; }
 .customer-field-wide { grid-column: 1 / -1; }
 .customer-field input {
   width: 100%;
   min-width: 0;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 11px;
   color: var(--white);
-  background: var(--panel);
+  background: rgba(5, 8, 6, .62);
   font: inherit;
   font-weight: 400;
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
 }
-.customer-field input:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+.customer-field input::placeholder { color: #818a7d; }
+.customer-field input:hover { border-color: rgba(186, 252, 74, .34); }
+.customer-field input:focus { outline: none; border-color: var(--green); background: rgba(5, 8, 6, .9); box-shadow: 0 0 0 3px rgba(186, 252, 74, .12); }
+.customer-field input:user-invalid { border-color: rgba(255, 139, 112, .75); box-shadow: 0 0 0 3px rgba(255, 139, 112, .1); }
+@media (max-width: 560px) {
+  .customer-form { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 15px; border-radius: 15px; }
+  .customer-field-wide { grid-column: auto; }
+  .customer-field input { min-height: 46px; }
+  .cart-dialog { scroll-padding-block: 16px; }
+}
 .payment-details {
   display: grid;
   justify-items: center;
@@ -426,7 +448,9 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 .pix-qr-code { width: min(100%, 240px); height: auto; aspect-ratio: 1; padding: 8px; border-radius: 10px; background: white; }
 .pix-code-label { justify-self: start; color: var(--white); font-size: 11px; font-weight: 700; }
 .pix-code { width: 100%; padding: 10px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; color: var(--white); background: var(--panel); font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }
-.copy-pix-button, .send-order-button { width: 100%; min-height: 42px; padding: 10px; border: 1px solid var(--line-strong); border-radius: 11px; color: var(--green); background: var(--panel-2); font-size: 11px; font-weight: 700; cursor: pointer; }
+.copy-pix-button, .send-order-button { width: 100%; min-height: 42px; padding: 10px; border: 1px solid var(--line-strong); border-radius: 11px; color: var(--green); background: var(--panel-2); font-size: 11px; font-weight: 700; cursor: pointer; transition: transform .2s ease, filter .2s ease, box-shadow .2s ease; }
+.copy-pix-button:hover, .send-order-button:hover { transform: translateY(-1px); filter: brightness(1.08); }
+.copy-pix-button:active, .send-order-button:active { transform: translateY(0) scale(.99); }
 .send-order-button { color: var(--black); background: linear-gradient(135deg, var(--green), #d8ff86); }
 .send-order-button.click-effect { animation: send-order-click .55s ease-in-out; }
 @keyframes send-order-click {
@@ -445,20 +469,34 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 }
 @media (prefers-reduced-motion: reduce) {
   .send-order-button.click-effect,
-  .payment-details.return-animation { animation: none; }
+  .payment-details.return-animation,
+  .customer-form:not([hidden]) { animation: none; }
   .cart-added-animation { transition-duration: .15s; transition-delay: 0s; }
+  .checkout-button,
+  .copy-pix-button,
+  .send-order-button,
+  .customer-field input { transition-duration: .01ms; }
 }
 .payment-details small { color: var(--muted); font-size: 10px; line-height: 1.5; }
 
 .product-detail-backdrop { position: fixed; inset: 0; z-index: 12; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, .78); }
 .product-detail-backdrop[hidden] { display: none; }
 .product-detail-dialog { position: relative; width: min(100%, 760px); max-height: min(90vh, 760px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow-y: auto; border: 1px solid var(--line-strong); border-radius: 22px; color: var(--white); background: #0b0f0c; box-shadow: 0 24px 80px rgba(0, 0, 0, .65); }
-.product-detail-image { width: 100%; height: min(70vh, 560px); min-height: 0; align-self: start; object-fit: contain; background: var(--panel); }
+.product-detail-image-wrap { position: relative; width: 100%; height: min(70vh, 560px); min-height: 0; align-self: start; background: var(--panel); }
+.product-detail-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+.product-detail-discount-badge { position: absolute; top: 16px; right: 16px; z-index: 1; padding: 8px 11px; border-radius: 999px; color: var(--black); background: linear-gradient(135deg, var(--green), #d8ff86); font-size: 12px; font-weight: 800; box-shadow: 0 0 20px rgba(186, 252, 74, .3); }
+.product-detail-discount-badge[hidden] { display: none; }
 .product-detail-content { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 38px 30px; }
 .product-detail-content h2 { margin: 0; font-size: clamp(22px, 3vw, 30px); line-height: 1.2; letter-spacing: -.04em; }
 .product-detail-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
 .product-detail-price s { color: var(--muted); font-size: 14px; }
 .product-detail-price strong { color: var(--green); font-size: 24px; }
+.product-detail-variants { display: grid; gap: 7px; }
+.product-detail-variants[hidden] { display: none; }
+.product-detail-variants label { color: var(--muted); font-size: 11px; font-weight: 700; }
+.product-detail-variants select { width: 100%; min-height: 42px; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 10px; color: var(--white); background: var(--panel); font: inherit; font-size: 12px; }
+.product-detail-variants select:focus { outline: 2px solid var(--green); outline-offset: 2px; }
+.product-detail-variants select option { color: var(--white); background: var(--panel); }
 .product-detail-description { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
 .product-detail-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .product-detail-stats > div { display: grid; gap: 7px; }
@@ -509,7 +547,7 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 @media (max-width: 600px) {
   .product-detail-backdrop { padding: 12px; }
   .product-detail-dialog { width: min(100%, 420px); max-height: 92vh; grid-template-columns: 1fr; }
-  .product-detail-image { height: min(38vh, 290px); min-height: 0; }
+  .product-detail-image-wrap { height: min(38vh, 290px); min-height: 0; }
   .product-detail-content { gap: 10px; padding: 22px; }
   .product-detail-content h2 { padding-right: 28px; font-size: 22px; }
   .product-detail-description { font-size: 12px; }

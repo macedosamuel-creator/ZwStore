@@ -5,7 +5,7 @@ const reviewsImportStatus = document.querySelector("#reviews-import-status");
 const reviewForm = document.querySelector("#review-form");
 const reviewStatus = document.querySelector("#review-status");
 const reviewEmailFallback = document.querySelector("#review-email-fallback");
-const REVIEW_RECIPIENT = "macedo.samuel@escolar.ifrn.edu.br";
+const REVIEW_RECIPIENT = STORE.orderEmail;
 let activeProductId = null;
 let publishedReviews = [];
 

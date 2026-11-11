@@ -2,6 +2,7 @@
 const STORE = {
   name: "ZW Store RN",
   whatsapp: "5584981142531",
+  orderEmail: "zwstorern@gmail.com",
   pixKey: "ef303c07-7e05-4d5b-8a9c-aba04ac818cd",
   pixPayload:
     "00020126580014BR.GOV.BCB.PIX0136ef303c07-7e05-4d5b-8a9c-aba04ac818cd5204000053039865802BR5925Samuel Ferreira de Macedo6009SAO PAULO621405100GPLHLUiO86304BA9C",
@@ -17,6 +18,8 @@ const allProducts = [
   // Edite o campo stock de cada produto para atualizar as quantidades disponíveis.
   // Com stock: 0, o produto aparece como esgotado e não pode ser comprado.
   // Para dar desconto, adicione discount: 10 ao produto (percentual; omita ou use 0 para não dar desconto).
+  // Para reunir opções em um único anúncio, use o mesmo variantGroup e informe variantName
+  // em cada opção. Cada opção mantém seu próprio preço, desconto, imagem e estoque.
   // Edite rating (0 a 5) e purchaseCount em cada produto para mostrar estrelas e vendas.
   // Use null quando ainda não tiver uma avaliação ou quantidade de vendas real.
   // Cadastre avaliações reais na constante PRODUCT_REVIEWS abaixo, usando o ID do produto.
@@ -168,6 +171,8 @@ const allProducts = [
   {
     id: 14,
     name: "Kit 4 Pilotos Para Quadro + Apagador",
+    variantGroup: "kit-pilotos-quadro",
+    variantName: "4 pilotos + apagador",
     category: "Achadinhos",
     price: 39.99,
     stock: 10,
@@ -301,6 +306,8 @@ const allProducts = [
     id: 25,
     name: "78 Diamantes FF",
     category: "Jogos",
+    variantGroup:"ff",
+    variantName:"78 Diamantes",
     price: 4,
     stock: 100,
     rating: 4.9,
@@ -314,6 +321,8 @@ const allProducts = [
     id: 26,
     name: "120 Diamantes FF",
     category: "Jogos",
+    variantGroup:"ff",
+    variantName:"120 Diamantes",
     price: 6,
     stock: 100,
     rating: 4.5,
@@ -328,6 +337,8 @@ const allProducts = [
   id: 27,
   name: "372 Diamantes FF",
   category: "Jogos",
+  variantGroup:"ff",
+  variantName:"372 Diamantes",
   price: 16,
   stock: 100,
   rating: 4.8,
@@ -341,6 +352,8 @@ const allProducts = [
   id: 28,
   name: "624 Diamantes FF",
   category: "Jogos",
+  variantGroup:"ff",
+  variantName:"624 Diamantes",
   price: 25,
   stock: 100,
   rating: 4.0,
@@ -354,6 +367,8 @@ const allProducts = [
   id: 29,
   name: "1272 Diamantes FF",
   category: "Jogos",
+  variantGroup:"ff",
+  variantName:"1272 Diamantes",
   price: 50,
   stock: 100,
   rating: 4.0,
@@ -367,6 +382,8 @@ const allProducts = [
   id: 30,
   name: "2616 Diamantes FF",
   category: "Jogos",
+  variantGroup:"ff",
+  variantName:"2616 Diamantes",
   price: 99,
   stock: 100,
   rating: 4.7,
@@ -380,6 +397,8 @@ const allProducts = [
   id: 57,
   name: "6720 Diamantes FF",
   category: "Jogos",
+  variantGroup:"ff",
+  variantName:"6720 Diamantes",
   price: 235,
   stock: 100,
   rating: 5,
@@ -393,6 +412,8 @@ const allProducts = [
   id: 58,
   name: "26880 Diamantes FF",
   category: "Jogos",
+  variantGroup:"ff",
+  variantName:"26880 Diamantes",
   price: 929,
   stock: 100,
   rating: 4.8,
@@ -406,6 +427,7 @@ const allProducts = [
   id: 31,
   name: "Conta Blox Fruits | Level 2800 + Godhuman + 2 Frutas Míticas Garantidas + Outros",
   category: "Jogos",
+  variantGroup: "CBLF",
   price: 25,
   stock: 15,
   rating: 4.7,
@@ -418,6 +440,7 @@ const allProducts = [
 {id: 32,
   name: "Conta Blox Fruits | 3-5 Frutas Míticas Garantidas + Level 2800 + Godhuman + Outros",
   category: "Jogos",
+  variantGroup: "CBLF",
   price: 35,
   stock: 11,
   rating: 4.5,
@@ -431,6 +454,7 @@ const allProducts = [
   id: 33,
   name: "Conta Blox Fruits | 4-6 Frutas Míticas Garantidas + Level 2800 + Godhuman + Outros",
   category: "Jogos",
+  variantGroup: "CBLF",
   price: 55,
   stock: 7,
   rating: 4.8,
@@ -444,6 +468,8 @@ const allProducts = [
   id: 34, 
   name: "Conta Blox Fruits | Level 2800 + Godhuman + Portal + Outros",
   category: "Jogos",
+  variantGroup: "Frutas",
+  variantName:"Portal",
   price: 15,
   stock: 7,
   rating: 4.5,
@@ -457,6 +483,8 @@ const allProducts = [
   id: 35,
   name: "Conta Blox Fruits | Level 2800 + Godhuman + Lightning (Rumble) + Outros",
   category: "Jogos",
+  variantGroup: "Frutas",
+  variantName:"Rumble",
   price: 20,
   stock: 3,
   rating: 4.5,
@@ -470,6 +498,8 @@ const allProducts = [
   id: 36,
   name: "Conta Blox Fruits | Level 2800 + Godhuman + Gás + Outros",
   category: "Jogos",
+  variantGroup: "Frutas",
+  variantName:"Gás",
   price: 20,
   stock: 2,
   rating: 4.2,
@@ -495,6 +525,8 @@ const allProducts = [
 {
   id: 38,
   name: "Assinatura Semanal FF (7 dias)",
+  variantGroup:"assinatura-ff",
+  variantName:"Assinatura Semanal FF (7 dias)",
   category: "Jogos",
   price: 11.50,
   stock: 1000,
@@ -509,6 +541,8 @@ const allProducts = [
   id: 39,
   name: "Assinatura Mensal FF (30 dias)",
   category: "Jogos",
+  variantGroup:"assinatura-ff",
+  variantName:"Assinatura Mensal FF (30 dias)",
   price: 52.50,
   stock: 1000,
   rating: 4.0,
@@ -522,6 +556,8 @@ const allProducts = [
   id: 40,
   name: "Semanal Econômica FF (7 dias)",
   category: "Jogos",
+  variantGroup: "assinatura-ff",
+  variantName: "Semanal Econômica FF (7 dias)",
   price: 2.22,
   stock: 1000,
   rating: 4.0,
@@ -534,6 +570,8 @@ const allProducts = [
 {
   id: 41,
   name: "Passe Booyah FF",
+  variantGroup: "passe-booyah",
+  variantName: "Passe Booyah FF",
   category: "Jogos",
   price: 15.50,
   stock: 1000,
@@ -547,6 +585,8 @@ const allProducts = [
 {
   id: 42,
   name: "Passe Booyah Premium Plus FF ",
+  variantGroup: "passe-booyah",
+  variantName: "Passe Booyah Premium Plus FF",
   category: "Jogos",
   price: 45.50,
   stock: 1000,
@@ -668,6 +708,8 @@ const allProducts = [
 {
   id: 53,
   name: "Tapete Mousepad 80x30cm Ilustrações Mangá Monocromático com Efeitos Luminosos Azul Laranja Superfície à Água Setup Gamer",
+  variantGroup: "mousepad-80x30",
+  variantName: "Gojo",
   category: "Achadinhos",
   price: 100,
   stock: 5,
@@ -680,6 +722,8 @@ const allProducts = [
 {
   id: 54,
   name: "Tapete Mousepad 80x30cm Ilustrações Mangá Monocromático com Efeitos Luminosos Azul Laranja Superfície à Água Setup Gamer",
+  variantGroup: "mousepad-80x30",
+  variantName: "Bleach",
   category: "Achadinhos",
   price: 100,
   stock: 5,
@@ -692,6 +736,8 @@ const allProducts = [
 {
   id: 55,
   name: "Tapete Mousepad 80x30cm Ilustrações Mangá Monocromático com Efeitos Luminosos Azul Laranja Superfície à Água Setup Gamer",
+  variantGroup: "mousepad-80x30",
+  variantName: "Sukuna",
   category: "Achadinhos",
   price: 100,
   stock: 5,
@@ -737,6 +783,90 @@ const allProducts = [
   image: "./placagddr3.jpg.jpeg",
   discount: 25
 },
+{
+  id: 61,
+  name: "Uniwity Mouse Gamer Sem Fio Bluetooth 2.4G RGB Recarregável 1600 DPI Estampado Silencioso para PC NotebookUniwity Mouse Gamer Sem Fio Bluetooth 2.4G RGB Recarregável 1600 DPI Estampado Silencioso para PC Notebook",
+  category: ["Ofertas","Achadinhos"],
+  variantGroup:"mouses",
+  variantName:"Branco",
+  price: 139.99,
+  stock: 50,
+  rating: 4.7,
+  purchaseCount: 74,
+  label: "Prazo 30 dias",
+  image: "./mouseB.jpg",
+  discount: 5
+},
+{
+  id: 62,
+  name: "Uniwity Mouse Gamer Sem Fio Bluetooth 2.4G RGB Recarregável 1600 DPI Estampado Silencioso para PC NotebookUniwity Mouse Gamer Sem Fio Bluetooth 2.4G RGB Recarregável 1600 DPI Estampado Silencioso para PC Notebook",
+  category: ["Ofertas","Achadinhos"],
+  variantGroup:"mouses",
+  variantName:"Preto",
+  price: 139.99,
+  stock: 50,
+  rating: 4.7,
+  purchaseCount: 74,
+  label: "Prazo 30 dias",
+  image: "./mouseP.jpg.jpeg",
+  discount: 10
+},
+{
+  id: 63,
+  name: " Relógio Esporte Led unissex à prova d'agua da moda original watch U9",
+  category: "Ofertas",
+  variantGroup:"relogios",
+  variantName:"Amostra",
+  price: 59.99,
+  stock: 0,
+  rating: 4.7,
+  purchaseCount: 74,
+  label: "Prazo 30 dias",
+  image: "./Relogios.jpeg",
+  discount: 0
+},
+{
+  id: 64,
+  name: " Relógio Esporte Led unissex à prova d'agua da moda original watch U9",
+  category: "Ofertas",
+  variantGroup:"relogios",
+  variantName:"Preto",
+  price: 59.99,
+  stock: 64,
+  rating: 4.7,
+  purchaseCount: 74,
+  label: "Prazo 30 dias",
+  image: "./relogioP.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 65,
+  name: " Relógio Esporte Led unissex à prova d'agua da moda original watch U9",
+  category: "Ofertas",
+  variantGroup:"relogios",
+  variantName:"Dourado",
+  price: 59.99,
+  stock: 64,
+  rating: 4.7,
+  purchaseCount: 74,
+  label: "Prazo 30 dias",
+  image: "./relogioD.jpg.jpeg",
+  discount: 0
+},
+{
+  id: 66,
+  name: " Relógio Esporte Led unissex à prova d'agua da moda original watch U9",
+  category: "Ofertas",
+  variantGroup:"relogios",
+  variantName:"Branco",
+  price: 59.99,
+  stock: 64,
+  rating: 4.7,
+  purchaseCount: 74,
+  label: "Prazo 30 dias",
+  image: "./relogioB.jpg.jpeg",
+  discount: 5
+}
 ];
 
 const IS_GAMES_STORE = document.body.dataset.catalog === "games";
@@ -795,8 +925,11 @@ const REVIEW_EXAMPLES = [
 ];
 const products = allProducts
   .filter((product) => {
-    const isGameProduct = normalizeCategory(product.category) === "jogos";
-    return IS_GAMES_STORE ? isGameProduct : !isGameProduct;
+    const categories = getProductCategories(product);
+    const isGameProduct = categories.includes("jogos");
+    return IS_GAMES_STORE
+      ? isGameProduct
+      : categories.some((category) => category !== "jogos");
   })
   .map((product) => ({
     ...product,
@@ -818,9 +951,11 @@ const setupNotice = document.querySelector("#setup-notice");
 const productDetailBackdrop = document.querySelector("#product-detail-backdrop");
 const productDetailDialog = document.querySelector("#product-detail-dialog");
 const productDetailImage = document.querySelector("#product-detail-image");
+const productDetailDiscountBadge = document.querySelector("#product-detail-discount-badge");
 const productDetailTitle = document.querySelector("#product-detail-title");
 const productDetailCategory = document.querySelector("#product-detail-category");
 const productDetailPrice = document.querySelector("#product-detail-price");
+const productDetailVariants = document.querySelector("#product-detail-variants");
 const productDetailDescription = document.querySelector("#product-detail-description");
 const productDetailStars = document.querySelector("#product-detail-stars");
 const productDetailRating = document.querySelector("#product-detail-rating");
@@ -886,22 +1021,34 @@ function normalizeCategory(category) {
     .replace(/\s+/g, " ");
 }
 
+function getProductCategories(product) {
+  const categories = Array.isArray(product.category)
+    ? product.category
+    : [product.category];
+  return categories.map(normalizeCategory).filter(Boolean);
+}
+
 function matchesCategory(productCategory, selectedCategory) {
-  const normalizedProductCategory = normalizeCategory(productCategory);
+  const productCategories = (Array.isArray(productCategory)
+    ? productCategory
+    : [productCategory]).map(normalizeCategory);
   const normalizedSelectedCategory = normalizeCategory(selectedCategory);
 
   if (normalizedSelectedCategory === "todos") {
     return IS_GAMES_STORE
-      ? normalizedProductCategory === "jogos"
-      : !HIDDEN_FROM_ALL_PRODUCTS.has(normalizedProductCategory);
+      ? productCategories.includes("jogos")
+      : productCategories.some((category) => !HIDDEN_FROM_ALL_PRODUCTS.has(category));
   }
 
   const aliases = CATEGORY_ALIASES[normalizedSelectedCategory] || new Set([normalizedSelectedCategory]);
-  return aliases.has(normalizedProductCategory);
+  return productCategories.some((category) => aliases.has(category));
 }
 
 function getGameName(product) {
-  if (!IS_GAMES_STORE) return product.category;
+  if (!IS_GAMES_STORE) {
+    return (Array.isArray(product.category) ? product.category : [product.category])
+      .join(" · ");
+  }
   return Object.entries(GAME_PRODUCT_IDS).find(([, productIds]) =>
     productIds.has(product.id),
   )?.[0]
@@ -922,6 +1069,27 @@ function getDiscountPercent(product) {
 
 function getDiscountedPrice(product) {
   return Math.round(product.price * (1 - getDiscountPercent(product) / 100) * 100) / 100;
+}
+
+function getProductVariants(product) {
+  if (!product.variantGroup) return [product];
+  return products.filter((item) => item.variantGroup === product.variantGroup);
+}
+
+function getDisplayProductName(product) {
+  return product.variantName
+    ? `${product.name} — ${product.variantName}`
+    : product.name;
+}
+
+function getCatalogProducts() {
+  const seenGroups = new Set();
+  return products.filter((product) => {
+    const group = product.variantGroup || `product-${product.id}`;
+    if (seenGroups.has(group)) return false;
+    seenGroups.add(group);
+    return true;
+  });
 }
 
 function getCartDiscountPercent(eligibleSubtotalCents) {
@@ -1015,8 +1183,9 @@ function createPixPayload(amount) {
 function renderProducts() {
   const searchTerm = searchInput.value.trim().toLocaleLowerCase("pt-BR");
   const isTopSellers = normalizeCategory(activeCategory) === "mais vendidos";
+  const catalogProducts = getCatalogProducts();
   const topSellers = isTopSellers
-    ? products
+    ? catalogProducts
         .filter(
           (product) =>
             Number.isSafeInteger(product.purchaseCount) &&
@@ -1024,18 +1193,21 @@ function renderProducts() {
         )
         .sort((a, b) => b.purchaseCount - a.purchaseCount)
         .slice(0, 10)
-    : products;
+    : catalogProducts;
   const visibleProducts = topSellers.filter((product) => {
+    const variants = getProductVariants(product);
     const selectedGameIds = GAME_PRODUCT_IDS[normalizeCategory(activeCategory)];
     const matchesCategoryFilter = isTopSellers
       ? true
       : selectedGameIds
         ? selectedGameIds.has(product.id)
         : normalizeCategory(activeCategory) === "ofertas"
-        ? normalizeCategory(product.category) === "ofertas" ||
-          getDiscountPercent(product) >= 45
-        : matchesCategory(product.category, activeCategory);
-    const matchesSearch = `${product.name} ${product.category} ${getGameName(product)}`
+        ? variants.some((variant) => matchesCategory(variant.category, "Ofertas")) ||
+          variants.some((variant) => getDiscountPercent(variant) >= 45)
+        : variants.some((variant) =>
+            matchesCategory(variant.category, activeCategory),
+          );
+    const matchesSearch = `${product.name} ${variants.map((variant) => variant.variantName || "").join(" ")} ${product.category} ${getGameName(product)}`
       .toLocaleLowerCase("pt-BR")
       .includes(searchTerm);
     return matchesCategoryFilter && matchesSearch;
@@ -1044,11 +1216,15 @@ function renderProducts() {
   productGrid.innerHTML = visibleProducts
     .map(
       (product) => {
-        const quantityInCart = cart[product.id] || 0;
-        const outOfStock = product.stock <= 0;
-        const cannotAddMore = outOfStock || quantityInCart >= product.stock;
+        const variants = getProductVariants(product);
+        const hasVariants = variants.length > 1;
+        const availableVariants = variants.filter((variant) => variant.stock > 0);
+        const outOfStock = availableVariants.length === 0;
         const discountPercent = getDiscountPercent(product);
         const discountedPrice = getDiscountedPrice(product);
+        const priceVariants = availableVariants.length ? availableVariants : variants;
+        const bestVariantPrice = Math.min(...priceVariants.map(getDiscountedPrice));
+        const maxVariantDiscount = Math.max(...variants.map(getDiscountPercent));
         const productReviews = Array.isArray(product.reviews)
           ? product.reviews.filter(
               (review) =>
@@ -1077,13 +1253,13 @@ function renderProducts() {
               <img src="${product.image}" alt="" loading="lazy" />
             </button>
             <span class="product-label">${product.label}</span>
-            ${discountPercent ? `<span class="product-discount-badge">${discountPercent}% OFF</span>` : ""}
+            ${hasVariants ? maxVariantDiscount ? `<span class="product-discount-badge">ATÉ ${maxVariantDiscount}% OFF</span>` : "" : discountPercent ? `<span class="product-discount-badge">${discountPercent}% OFF</span>` : ""}
           </div>
           <div class="product-details">
             <span class="product-category">${getGameName(product)}</span>
             <h3 class="product-title"><button class="product-detail-title-trigger" type="button" data-product-details="${product.id}">${product.name}${outOfStock ? " (Esgotado)" : ""}</button></h3>
             <p class="product-stock${outOfStock ? " product-stock-empty" : ""}">
-              ${outOfStock ? "Estoque: 0 unidades" : `Estoque: ${product.stock} ${product.stock === 1 ? "unidade" : "unidades"}`}
+              ${outOfStock ? "Esgotado" : hasVariants ? `${availableVariants.length} opções disponíveis` : `Estoque: ${product.stock} ${product.stock === 1 ? "unidade" : "unidades"}`}
             </p>
             <div class="product-social-proof">
               <span class="product-card-rating" aria-label="${rating === null ? "Sem avaliações" : `Avaliação ${rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} de 5`}">
@@ -1094,16 +1270,18 @@ function renderProducts() {
             </div>
             <div class="product-bottom">
               <div class="product-pricing">
-                ${discountPercent ? `<span class="product-original-price">${formatPrice(product.price)}</span>` : ""}
-                <span class="product-price">${formatPrice(discountedPrice)}</span>
+                ${hasVariants ? `<span class="product-price">${formatPrice(bestVariantPrice)}</span>` : discountPercent ? `<span class="product-original-price">${formatPrice(product.price)}</span>` : ""}
+                ${hasVariants ? "" : `<span class="product-price">${formatPrice(discountedPrice)}</span>`}
               </div>
               <div class="product-actions">
-                <button class="order-button${cannotAddMore ? " out-of-stock" : ""}" type="button" data-add-to-cart="${product.id}" ${cannotAddMore ? "disabled" : ""}>
-                  ${outOfStock ? "Esgotado" : cannotAddMore ? "Estoque no carrinho" : "Adicionar ao carrinho +"}
-                </button>
-                <button class="direct-buy-button" type="button" data-buy-now="${product.id}" ${outOfStock ? "disabled" : ""}>
-                  ${outOfStock ? "Esgotado" : "Comprar"}
-                </button>
+                ${hasVariants
+                  ? `<button class="order-button" type="button" data-product-details="${product.id}" ${outOfStock ? "disabled" : ""}>${outOfStock ? "Esgotado" : "Escolher opção"}</button>`
+                  : `<button class="order-button${outOfStock || (cart[product.id] || 0) >= product.stock ? " out-of-stock" : ""}" type="button" data-add-to-cart="${product.id}" ${outOfStock || (cart[product.id] || 0) >= product.stock ? "disabled" : ""}>
+                    ${outOfStock ? "Esgotado" : (cart[product.id] || 0) >= product.stock ? "Estoque no carrinho" : "Adicionar ao carrinho +"}
+                  </button>
+                  <button class="direct-buy-button" type="button" data-buy-now="${product.id}" ${outOfStock ? "disabled" : ""}>
+                    ${outOfStock ? "Esgotado" : "Comprar"}
+                  </button>`}
               </div>
             </div>
           </div>
@@ -1290,7 +1468,7 @@ function renderCart() {
   paymentConfirmationAttempts = 0;
   paymentDetails.hidden = true;
   sendOrderButton.hidden = true;
-  sendOrderButton.textContent = "Já paguei — enviar pedido pelo WhatsApp";
+  sendOrderButton.textContent = "Já paguei — enviar pedido por e-mail";
   paymentNotice.textContent = "";
   const entries = Object.entries(cart)
     .map(([id, quantity]) => ({
@@ -1346,9 +1524,9 @@ function renderCart() {
         <article class="cart-item">
           <img src="${product.image}" alt="" />
           <div class="cart-item-info">
-            <h3>${product.name}</h3>
+            <h3>${getDisplayProductName(product)}</h3>
             <span>${discountPercent ? `<s>${formatPrice(product.price)}</s> ${formatPrice(discountedPrice)} cada · ${discountPercent}% OFF` : `${formatPrice(product.price)} cada`}</span>
-            <div class="quantity-controls" aria-label="Quantidade de ${product.name}">
+            <div class="quantity-controls" aria-label="Quantidade de ${getDisplayProductName(product)}">
               <button type="button" data-cart-action="decrease" data-product-id="${product.id}" aria-label="Diminuir quantidade">−</button>
               <span>${quantity}</span>
               <button type="button" data-cart-action="increase" data-product-id="${product.id}" aria-label="Aumentar quantidade">+</button>
@@ -1408,8 +1586,21 @@ function openProductDetails(productId, trigger) {
     throw new Error(`Produto não encontrado: ${productId}`);
   }
 
-  activeDetailProductId = product.id;
+  const variants = getProductVariants(product);
+  const initialVariant = variants.find((variant) => variant.stock > 0) || product;
+  activeDetailProductId = initialVariant.id;
   productDetailTrigger = trigger;
+  productDetailVariants.hidden = variants.length < 2;
+  productDetailVariants.innerHTML = variants.length > 1
+    ? `<label for="product-detail-variant-select">Escolha a opção</label><select id="product-detail-variant-select" aria-label="Escolha a opção">${variants.map((variant) => `<option value="${variant.id}" ${variant.id === initialVariant.id ? "selected" : ""} ${variant.stock <= 0 ? "disabled" : ""}>${variant.variantName || variant.name}${variant.stock <= 0 ? " (Esgotado)" : ""}</option>`).join("")}</select>`
+    : "";
+  renderProductDetail(initialVariant);
+  productDetailBackdrop.hidden = false;
+  document.querySelector("#product-detail-close").focus();
+}
+
+function renderProductDetail(product) {
+  activeDetailProductId = product.id;
   const discountPercent = getDiscountPercent(product);
   const productReviews = Array.isArray(product.reviews)
     ? product.reviews.filter(
@@ -1438,7 +1629,11 @@ function openProductDetails(productId, trigger) {
     : null;
 
   productDetailImage.src = product.image;
-  productDetailImage.alt = product.name;
+  productDetailImage.alt = getDisplayProductName(product);
+  productDetailDiscountBadge.hidden = discountPercent <= 0;
+  productDetailDiscountBadge.textContent = discountPercent
+    ? `${discountPercent}% OFF`
+    : "";
   productDetailTitle.textContent = product.name;
   productDetailCategory.textContent = getGameName(product);
   productDetailPrice.innerHTML = discountPercent
@@ -1446,7 +1641,7 @@ function openProductDetails(productId, trigger) {
     : `<strong>${formatPrice(product.price)}</strong>`;
   productDetailDescription.textContent =
     product.description ||
-    `${product.name}. Produto da categoria ${product.category}. Confira o modelo e os detalhes na imagem antes de comprar.`;
+    `${getDisplayProductName(product)}. Produto da categoria ${product.category}. Confira o modelo e os detalhes na imagem antes de comprar.`;
   productDetailStars.textContent = rating === null
     ? "☆☆☆☆☆"
     : `${"★".repeat(Math.round(rating))}${"☆".repeat(5 - Math.round(rating))}`;
@@ -1465,17 +1660,15 @@ function openProductDetails(productId, trigger) {
       : "Adicionar ao carrinho";
   productDetailBuyButton.disabled = outOfStock;
   productDetailBuyButton.textContent = outOfStock ? "Esgotado" : "Comprar";
-  productDetailBackdrop.hidden = false;
   document.dispatchEvent(
     new CustomEvent("product-detail-opened", {
-    detail: {
-      productId: product.id,
-      productName: product.name,
-      reviews: Array.isArray(product.reviews) ? product.reviews : [],
-    },
+      detail: {
+        productId: product.id,
+        productName: product.name,
+        reviews: Array.isArray(product.reviews) ? product.reviews : [],
+      },
     }),
   );
-  document.querySelector("#product-detail-close").focus();
 }
 
 function closeProductDetails(restoreFocus = true) {
@@ -1569,9 +1762,9 @@ function startPixPayment() {
 
   const order = getOrderDetails();
   if (!order) return;
-  if (!STORE.whatsapp || !STORE.pixKey) {
+  if (!STORE.orderEmail || !STORE.pixKey) {
     setupNotice.textContent =
-      "Para finalizar o pedido, preencha o WhatsApp e os dados Pix no início do arquivo app.js.";
+      "Para finalizar o pedido, preencha o e-mail da loja e os dados Pix no início do arquivo app.js.";
     setupNotice.hidden = false;
     return;
   }
@@ -1596,7 +1789,7 @@ function startPixPayment() {
   }
 }
 
-function sendOrderToWhatsApp() {
+function sendOrderByEmail() {
   if (paymentDetails.hidden || !pixCode.value) return;
   if (customerForm && !customerForm.reportValidity()) return;
   if (!saveCustomerDetails()) return;
@@ -1648,7 +1841,7 @@ function sendOrderToWhatsApp() {
     "",
     ...order.entries.map(
       ({ product, quantity }) =>
-        `• ${product.name} — ${quantity} x ${formatPrice(getDiscountedPrice(product))}${getDiscountPercent(product) ? ` (${getDiscountPercent(product)}% OFF)` : ""} = ${formatPrice(getDiscountedPrice(product) * quantity)}`,
+        `• ${getDisplayProductName(product)} — ${quantity} x ${formatPrice(getDiscountedPrice(product))}${getDiscountPercent(product) ? ` (${getDiscountPercent(product)}% OFF)` : ""} = ${formatPrice(getDiscountedPrice(product) * quantity)}`,
     ),
     "",
     `Subtotal: ${formatPrice(order.subtotal)}`,
@@ -1663,8 +1856,35 @@ function sendOrderToWhatsApp() {
       : []),
     `Total dos produtos: ${formatPrice(order.total)}`,
   ].join("\n");
-  const whatsappUrl = `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`;
-  window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  const customerName = customerForm
+    ? customerForm.elements.namedItem("name").value.trim()
+    : "cliente";
+  const emailSubject = `Pedido ${STORE.name} — ${customerName}`;
+  const mailtoLink = document.createElement("a");
+  mailtoLink.href =
+    `mailto:${STORE.orderEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(message)}`;
+  mailtoLink.hidden = true;
+  document.body.append(mailtoLink);
+  mailtoLink.click();
+  mailtoLink.remove();
+
+  const gmailComposeUrl = new URL("https://mail.google.com/mail/");
+  gmailComposeUrl.search = new URLSearchParams({
+    view: "cm",
+    fs: "1",
+    to: STORE.orderEmail,
+    su: emailSubject,
+    body: message,
+  }).toString();
+  paymentNotice.textContent =
+    "Seu app de e-mail deve abrir com o pedido pronto. Se não abrir, ";
+  const gmailFallback = document.createElement("a");
+  gmailFallback.className = "review-email-fallback";
+  gmailFallback.href = gmailComposeUrl.toString();
+  gmailFallback.target = "_blank";
+  gmailFallback.rel = "noopener noreferrer";
+  gmailFallback.textContent = "compor pelo Gmail";
+  paymentNotice.append(gmailFallback);
 }
 
 function selectCategory(category) {
@@ -1758,6 +1978,17 @@ productDetailDialog.addEventListener("click", (event) => {
   }
 });
 
+productDetailDialog.addEventListener("change", (event) => {
+  if (event.target.id !== "product-detail-variant-select") return;
+  const selectedProduct = products.find(
+    (product) => product.id === Number(event.target.value),
+  );
+  if (!selectedProduct) {
+    throw new Error(`Opção de produto não encontrada: ${event.target.value}`);
+  }
+  renderProductDetail(selectedProduct);
+});
+
 productDetailBackdrop.addEventListener("click", (event) => {
   if (event.target === productDetailBackdrop) closeProductDetails();
 });
@@ -1799,7 +2030,7 @@ if (customerForm) {
 } else {
   checkoutButton.addEventListener("click", startPixPayment);
 }
-document.querySelector("#send-order-button").addEventListener("click", sendOrderToWhatsApp);
+document.querySelector("#send-order-button").addEventListener("click", sendOrderByEmail);
 document.querySelector("#copy-pix-button").addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(pixCode.value);

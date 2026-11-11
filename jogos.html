@@ -97,11 +97,15 @@
       <div class="product-detail-backdrop" id="product-detail-backdrop" hidden>
         <section class="product-detail-dialog" id="product-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="product-detail-title">
           <button class="product-detail-close" id="product-detail-close" type="button" aria-label="Fechar detalhes do produto">×</button>
-          <img class="product-detail-image" id="product-detail-image" alt="" />
+          <div class="product-detail-image-wrap">
+            <img class="product-detail-image" id="product-detail-image" alt="" />
+            <span class="product-detail-discount-badge" id="product-detail-discount-badge" hidden></span>
+          </div>
           <div class="product-detail-content">
             <span class="product-category" id="product-detail-category"></span>
             <h2 id="product-detail-title"></h2>
             <div class="product-detail-price" id="product-detail-price"></div>
+            <div class="product-detail-variants" id="product-detail-variants" hidden></div>
             <p class="product-detail-description" id="product-detail-description"></p>
             <div class="product-detail-stats">
               <div>
@@ -128,7 +132,7 @@
               </div>
               <form class="review-form" id="review-form">
                 <h3>Avalie este produto</h3>
-                <p>Ao enviar, seu aplicativo de e-mail abrirá com a avaliação pronta para macedo.samuel@escolar.ifrn.edu.br. Se não abrir, você poderá compor a mensagem pelo Gmail no navegador. Revise e confirme o envio; seu e-mail não será publicado nas avaliações.</p>
+                <p>Ao enviar, seu aplicativo de e-mail abrirá com a avaliação pronta para zwstorern@gmail.com. Se não abrir, você poderá compor a mensagem pelo Gmail no navegador. Revise e confirme o envio; seu e-mail não será publicado nas avaliações.</p>
                 <div class="review-form-fields">
                   <label for="review-name">Seu nome</label>
                   <input id="review-name" name="name" type="text" maxlength="50" autocomplete="name" required />
@@ -176,7 +180,7 @@
             <div class="cart-discount" id="cart-volume-discount-row" hidden><span id="cart-volume-discount-label"></span><strong id="cart-volume-discount"></strong></div>
             <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
             <p class="cart-promotion-hint" id="cart-discount-hint" hidden></p>
-            <p>Entrega ou envio combinados pelo WhatsApp.</p>
+            <p>O pedido será enviado por e-mail; entrega combinada após a confirmação.</p>
             <form class="customer-form" id="game-customer-form" hidden>
               <h3>Dados do jogo</h3>
               <p>Preencha os dados da conta para entregar seu pedido.</p>
@@ -203,7 +207,7 @@
               <textarea id="pix-code" class="pix-code" readonly rows="4" aria-label="Código Pix copia e cola"></textarea>
               <button class="copy-pix-button" id="copy-pix-button" type="button">Copiar código Pix</button>
               <p class="payment-notice" id="payment-notice" role="status"></p>
-              <button class="send-order-button" id="send-order-button" type="button" hidden>Já paguei — enviar pedido pelo WhatsApp</button>
+              <button class="send-order-button" id="send-order-button" type="button" hidden>Já paguei — enviar pedido por e-mail</button>
             </section>
           </div>
         </section>
@@ -213,12 +217,12 @@
         <div class="how-copy">
           <span class="eyebrow">FÁCIL ASSIM</span>
           <h2>Escolha seu item.<br />A gente combina.</h2>
-          <p>Adicione ao carrinho ou compre direto. Gere o Pix do pedido e envie a confirmação pelo WhatsApp.</p>
+          <p>Adicione ao carrinho ou compre direto. Gere o Pix do pedido e envie a confirmação por e-mail.</p>
         </div>
         <div class="steps">
           <article class="step"><span class="step-number">01</span><div><h3>Escolha seus itens</h3><p>Confira os itens disponíveis para seus jogos favoritos.</p></div></article>
           <article class="step"><span class="step-number">02</span><div><h3>Pague com Pix</h3><p>O QR Code e o código copia e cola são gerados com o total do pedido.</p></div></article>
-          <article class="step"><span class="step-number">03</span><div><h3>Envie seu pedido</h3><p>Depois de confirmar o pagamento, envie o pedido pelo WhatsApp.</p></div></article>
+          <article class="step"><span class="step-number">03</span><div><h3>Envie seu pedido</h3><p>Depois de confirmar o pagamento, envie o pedido por e-mail para a loja.</p></div></article>
         </div>
       </section>
 
@@ -236,7 +240,7 @@
         <span class="brand-icon" aria-hidden="true">c</span>
         <span class="brand-name">ZW Store RN <span>· Jogos</span></span>
       </a>
-      <p>Itens de jogos. Pedido e entrega combinados pelo WhatsApp.</p>
+      <p>Itens de jogos. Pedidos por e-mail; entrega combinada após a confirmação.</p>
       <span class="copyright">© <span id="year"></span> ZW Store RN</span>
     </footer>
     <div class="setup-notice" id="setup-notice" role="status" hidden></div>

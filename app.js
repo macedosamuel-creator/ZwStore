@@ -24,7 +24,8 @@ const allProducts = [
   // Use null quando ainda não tiver uma avaliação ou quantidade de vendas real.
   // Cadastre avaliações reais na constante PRODUCT_REVIEWS abaixo, usando o ID do produto.
   // Modelos fictícios não entram na nota ou contagem.
-  // Detalhes opcionais: description e reviewCount.
+  // Edite description em cada produto para mostrar a descricao nos detalhes.
+  // O campo reviewCount e opcional.
   {
     id: 1,
     name: "Capinha iPhone 12 Transparente",
@@ -36,6 +37,7 @@ const allProducts = [
     label: "transparente",
     image: "./ip12transp.jpg.jpeg",
     discount: 0,
+    description: "Proteja seu iPhone 12 sem esconder sua beleza original! A capinha transparente combina elegância, praticidade e proteção para o dia a dia. Com design leve e discreto, oferece proteção contra arranhões e pequenos impactos, além de proporcionar encaixe perfeito e fácil acesso aos botões e entradas do aparelho. Ideal para quem busca manter o visual original do iPhone com mais segurança e estilo.",
   },
   {
     id: 2,
@@ -48,6 +50,7 @@ const allProducts = [
     label: "azul",
     image: "./ip13PMazul.jpg.jpeg",
     discount: 0,
+    description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Azul, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
   {
     id: 3,
@@ -60,6 +63,7 @@ const allProducts = [
     label: "bege",
     image: "./ip13PMbege.jpg.jpeg",
     discount: 0,
+    description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Bege, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
   {
     id: 4,
@@ -72,6 +76,7 @@ const allProducts = [
     label: "marrom",
     image: "./ip13PMmarrom.jpg.jpeg",
     discount: 0,
+    description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Marrom, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
   {
     id: 6,
@@ -84,6 +89,7 @@ const allProducts = [
     label: "verde",
     image: "./ip13PMverde.jpg.jpeg",
     discount: 0,
+    description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Verde, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
   {
     id: 7,
@@ -96,6 +102,7 @@ const allProducts = [
     label: "preta",
     image: "./ip13PMpreta.jpg.jpeg",
     discount: 0,
+    description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Preta, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
   {
     id: 8,
@@ -108,6 +115,7 @@ const allProducts = [
     label: "transparente",
     image: "./ip15transp.jpg.jpeg",
     discount: 0,
+    description: "Proteja seu iPhone 15 sem esconder seu design original! A capinha transparente oferece uma combinação perfeita de elegância, praticidade e proteção para o dia a dia. Com design leve e discreto, ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de proporcionar fácil acesso aos botões e entradas. Ideal para quem deseja manter a aparência original do iPhone com mais segurança e estilo.",
   },
   {
     id: 9,
@@ -120,6 +128,7 @@ const allProducts = [
     label: "azul",
     image: "./ip12azul.jpg.jpeg",
     discount: 0,
+    description: "Dê mais estilo ao seu iPhone 12 com esta capinha azul, que combina beleza, praticidade e proteção. Com design moderno e acabamento elegante, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e permite fácil acesso aos botões e entradas, garantindo conforto durante o uso. Ideal para quem busca proteger seu iPhone com personalidade e estilo.",
   },
   {
     id: 10,
@@ -132,6 +141,7 @@ const allProducts = [
     label: "bege escuro",
     image: "./ip12begeescuru.jpg.jpeg",
     discount: 0,
+    description: "Dê um toque de elegância ao seu iPhone 12 com esta capinha na cor bege escuro. Com visual moderno e sofisticado, combina estilo e praticidade para o dia a dia. Ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de oferecer encaixe adequado e fácil acesso aos botões e entradas. Ideal para quem procura proteção, conforto e um visual discreto e elegante para seu iPhone.",
   },
   {
     id: 11,
@@ -144,6 +154,7 @@ const allProducts = [
     label: "marrom",
     image: "./ip12marrom.jpg.jpeg",
     discount: 0,
+    description: "Dê um toque de sofisticação ao seu iPhone 12 com esta capinha marrom. Com design moderno e acabamento elegante, oferece estilo e praticidade para o dia a dia. Ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de proporcionar encaixe adequado e fácil acesso aos botões e entradas. Ideal para quem busca unir proteção, conforto e personalidade em um único acessório.",
   },
   {
     id: 12,
@@ -155,7 +166,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "verde",
     image: "./ip12verde..jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "Renove o visual do seu iPhone 12 com esta capinha verde, que combina estilo, praticidade e proteção. Com design moderno e acabamento elegante, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem deseja proteger seu iPhone com um toque de personalidade e cor.",
   },
   {id: 13,
     name: "Capinha iPhone 17 Pro Max transparente",
@@ -166,7 +178,8 @@ const allProducts = [
     purchaseCount: 10,
     label: "transparente",
     image: "./ip17PMtransp.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "Proteja seu iPhone 17 Pro Max sem esconder seu design original! Esta capinha transparente combina elegância, praticidade e proteção para o dia a dia. Com visual discreto e moderno, ajuda a proteger o aparelho contra arranhões e pequenos impactos, mantendo a beleza original do dispositivo em destaque. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem busca proteção sem abrir mão do estilo.",
   },
   {
     id: 14,
@@ -180,7 +193,8 @@ const allProducts = [
     purchaseCount: 85,
     label: "kit",
     image: "./kitPilotos.jpg.jpeg",
-    discount: 15
+    discount: 15,
+    description: "Kit completo com 4 pilotos para quadro branco e 1 apagador Masterprint, ideal para escolas, escritórios, professores e uso doméstico. Os pilotos oferecem praticidade na escrita e são perfeitos para anotações, explicações e apresentações. O apagador facilita a remoção da tinta, mantendo o quadro limpo e pronto para usar novamente. Um conjunto prático e econômico para facilitar sua rotina de estudos ou trabalho.",
   },
   {
     id: 15,
@@ -192,7 +206,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "azul",
     image: "./ip11azul.jpg.jpeg",
-    discount: 0 
+    discount: 0 ,
+    description: "",
   },
   {
     id: 16,
@@ -204,7 +219,8 @@ const allProducts = [
     purchaseCount: 3,
     label: "bege escuro",
     image: "./ip11bege_cinza.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
   },
   {
     id: 17,
@@ -216,7 +232,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "marrom",
     image: "./ip11marrom.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
   },
   {
     id: 18,
@@ -228,7 +245,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "verde",
     image: "./ip11verde.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
   },
   {
     id: 19,
@@ -240,7 +258,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "roxa escura",
     image: "./ip11roxaescuro.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
   },
   {
     id: 20,
@@ -252,7 +271,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "transparente",
     image: "./ip11transp.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
   },
   {
     id: 21,
@@ -264,7 +284,8 @@ const allProducts = [
     purchaseCount: 9,
     label: "azul",
     image: "./ip13azul.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
   },
   {
     id: 22,
@@ -276,7 +297,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "branca",
     image: "./ip13branca.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
   },
   {
     id: 23,
@@ -288,7 +310,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "verde",
     image: "./ip13verde.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
     },
     {
     id: 24,
@@ -300,7 +323,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "transparente",
     image: "./ip13transp.jpg.jpeg",
-    discount: 0
+    discount: 0,
+    description: "",
   },
   {
     id: 25,
@@ -315,7 +339,8 @@ const allProducts = [
     reviews: [],
     label: "diamantes",
     image: "./78dimas.jpg.jpeg",
-    discount: 5
+    discount: 5,
+    description: "",
   },
   {
     id: 26,
@@ -330,7 +355,8 @@ const allProducts = [
     reviews: [],
     label: "diamantes",
     image: "./120dimas.jpg.jpeg",
-    discount: 10
+    discount: 10,
+    description: "",
   },
 
 {
@@ -346,7 +372,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./372dimas.jpg.jpeg",
-  discount: 6
+  discount: 6,
+  description: "",
 },
 {
   id: 28,
@@ -361,7 +388,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./624dimas.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 29,
@@ -376,7 +404,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./1272dimas.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 30,
@@ -391,7 +420,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./2616dimas.jpg.jpeg",
-  discount: 9
+  discount: 9,
+  description: "",
 },
 {
   id: 57,
@@ -406,7 +436,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./6729dimas.jpg.jpeg",
-  discount: 5
+  discount: 5,
+  description: "",
 },
 {
   id: 58,
@@ -421,7 +452,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./26880dimas.jpg.jpeg",
-  discount: 3
+  discount: 3,
+  description: "",
 },
 {
   id: 31,
@@ -435,7 +467,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
-  discount: 20
+  discount: 20,
+  description: "",
 },
 {id: 32,
   name: "Conta Blox Fruits | 3-5 Frutas Míticas Garantidas + Level 2800 + Godhuman + Outros",
@@ -448,7 +481,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
-  discount: 20
+  discount: 20,
+  description: "",
 },
 {
   id: 33,
@@ -462,7 +496,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
-  discount: 30
+  discount: 30,
+  description: "",
 },
 {
   id: 34, 
@@ -477,7 +512,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./portal.jpg.jpeg",
-  discount: 15
+  discount: 15,
+  description: "",
 },
 {
   id: 35,
@@ -492,7 +528,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./rumble.jpg.jpeg",
-  discount: 25
+  discount: 25,
+  description: "",
 },
 {
   id: 36,
@@ -507,7 +544,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./gas.jpg.jpeg",
-  discount: 25
+  discount: 25,
+  description: "",
 },
 {
   id: 37,
@@ -520,7 +558,8 @@ const allProducts = [
   reviews: [],
   label: "robux",
   image: "./caixarubux.jpg.jpeg",
-  discount: 10
+  discount: 10,
+  description: "",
 },
 {
   id: 38,
@@ -535,7 +574,8 @@ const allProducts = [
   reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
-  discount: 10
+  discount: 10,
+  description: "",
 },
 {
   id: 39,
@@ -550,7 +590,8 @@ const allProducts = [
   reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
-  discount: 10
+  discount: 10,
+  description: "",
 },
 {
   id: 40,
@@ -565,7 +606,8 @@ const allProducts = [
   reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
-  discount: 10
+  discount: 10,
+  description: "",
 },
 {
   id: 41,
@@ -580,7 +622,8 @@ const allProducts = [
   reviews: [],
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
-  discount: 10
+  discount: 10,
+  description: "",
 },
 {
   id: 42,
@@ -595,7 +638,8 @@ const allProducts = [
   reviews: [],
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
-  discount: 28
+  discount: 28,
+  description: "",
 },
 {
   id: 44,
@@ -607,7 +651,8 @@ const allProducts = [
   purchaseCount: 9,
   label: "preto",
   image: "./suporteventosa.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 45,
@@ -619,7 +664,8 @@ const allProducts = [
   purchaseCount: 91,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 46,
@@ -631,7 +677,8 @@ const allProducts = [
   purchaseCount: 91,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 47,
@@ -643,7 +690,8 @@ const allProducts = [
   purchaseCount: 51,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 48,
@@ -655,7 +703,8 @@ const allProducts = [
   purchaseCount: 35,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 49,
@@ -667,7 +716,8 @@ const allProducts = [
   purchaseCount: 20,
   label: "pelicula 3d",
   image: "./ip16pelicula.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 50,
@@ -679,7 +729,8 @@ const allProducts = [
   purchaseCount: 20,
   label: "pelicula 3d",
   image: "./ip16pelicula.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 51,
@@ -691,7 +742,8 @@ const allProducts = [
   purchaseCount: 50,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 52,
@@ -703,7 +755,8 @@ const allProducts = [
   purchaseCount: 10,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 53,
@@ -717,7 +770,8 @@ const allProducts = [
   purchaseCount: 100,
   label: "prazo 30 dias",
   image: "./mousepadgojo.jpg.jpeg",
-  discount: 42
+  discount: 42,
+  description: "",
 },
 {
   id: 54,
@@ -731,7 +785,8 @@ const allProducts = [
   purchaseCount: 100,
   label: "prazo 30 dias",
   image: "./mousepadbleach.jpg.jpeg",
-  discount: 40
+  discount: 40,
+  description: "",
 },
 {
   id: 55,
@@ -745,7 +800,8 @@ const allProducts = [
   purchaseCount: 170,
   label: "prazo 30 dias",
   image: "./mousepadsukuna.jpg.jpeg",
-  discount: 45
+  discount: 45,
+  description: "",
 },
 {
   id: 56,
@@ -757,7 +813,8 @@ const allProducts = [
   purchaseCount: 953,
   label: "cores variadas",
   image: "./lapisinfinito.jpg.jpeg",
-  discount: 10
+  discount: 10,
+  description: "",
 },
 {
   id: 59,
@@ -769,7 +826,8 @@ const allProducts = [
   purchaseCount: 96,
   label: "Prazo 30 dias",
   image: "./monitor20.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 60,
@@ -781,7 +839,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./placagddr3.jpg.jpeg",
-  discount: 25
+  discount: 25,
+  description: "",
 },
 {
   id: 61,
@@ -795,7 +854,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./mouseB.jpg",
-  discount: 5
+  discount: 5,
+  description: "",
 },
 {
   id: 62,
@@ -809,7 +869,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./mouseP.jpg.jpeg",
-  discount: 10
+  discount: 10,
+  description: "",
 },
 {
   id: 63,
@@ -823,7 +884,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./relogioP.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 64,
@@ -837,7 +899,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./relogioD.jpg.jpeg",
-  discount: 0
+  discount: 0,
+  description: "",
 },
 {
   id: 65,
@@ -851,7 +914,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./relogioB.jpg.jpeg",
-  discount: 5
+  discount: 5,
+  description: "",
 }
 ];
 
@@ -869,7 +933,7 @@ const PRODUCT_REVIEWS = {
     {
       name:"f******m" ,
       rating: 5,
-      message: "Slk",
+      message: "Slk", 
     },
   ],
   21: [
@@ -948,6 +1012,9 @@ const productDetailRating = document.querySelector("#product-detail-rating");
 const productDetailPurchases = document.querySelector("#product-detail-purchases");
 const productDetailAddButton = document.querySelector("#product-detail-add");
 const productDetailBuyButton = document.querySelector("#product-detail-buy");
+const productDetailShareButton = document.querySelector("#product-detail-share");
+const productShareStatus = document.querySelector("#product-share-status");
+const productShareWhatsapp = document.querySelector("#product-share-whatsapp");
 const cartBackdrop = document.querySelector("#cart-backdrop");
 const cartItems = document.querySelector("#cart-items");
 const cartEmpty = document.querySelector("#cart-empty");
@@ -1450,7 +1517,9 @@ function renderCart() {
   cartTitle.textContent = isDirectPurchase ? "Compra direta" : "Meu carrinho";
   checkoutButton.textContent = IS_GAMES_STORE
     ? isDirectPurchase ? "Gerar Pix do pedido" : "Gerar Pix para pagar"
-    : isDirectPurchase ? "Salvar dados e gerar Pix do pedido" : "Salvar dados e gerar Pix";
+    : customerForm.hidden
+      ? "Comprar"
+      : isDirectPurchase ? "Salvar dados e gerar Pix do pedido" : "Salvar dados e gerar Pix";
   paymentConfirmationAttempts = 0;
   paymentDetails.hidden = true;
   sendOrderButton.hidden = true;
@@ -1621,6 +1690,9 @@ function renderProductDetail(product) {
     ? `${discountPercent}% OFF`
     : "";
   productDetailTitle.textContent = product.name;
+  productDetailShareButton.dataset.productId = String(product.id);
+  productShareStatus.hidden = true;
+  productShareWhatsapp.hidden = true;
   productDetailCategory.textContent = getGameName(product);
   productDetailPrice.innerHTML = discountPercent
     ? `<s>${formatPrice(product.price)}</s><strong>${formatPrice(getDiscountedPrice(product))}</strong>`
@@ -1655,6 +1727,51 @@ function renderProductDetail(product) {
       },
     }),
   );
+}
+
+function getProductShareUrl(productId) {
+  const shareUrl = new URL(window.location.href);
+  shareUrl.searchParams.set("produto", String(productId));
+  shareUrl.hash = "";
+  return shareUrl.toString();
+}
+
+async function shareProduct(productId) {
+  const product = products.find((item) => item.id === productId);
+  if (!product) {
+    throw new Error(`Produto não encontrado: ${productId}`);
+  }
+
+  const url = getProductShareUrl(product.id);
+  const shareData = {
+    title: product.name,
+    text: `${product.name} — ${formatPrice(getDiscountedPrice(product))}`,
+    url,
+  };
+
+  if (typeof navigator.share === "function") {
+    try {
+      await navigator.share(shareData);
+      return;
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
+      console.error("Não foi possível abrir o compartilhamento do produto.", error);
+    }
+  }
+
+  productShareWhatsapp.href =
+    `https://wa.me/?text=${encodeURIComponent(`${shareData.text} ${url}`)}`;
+  productShareWhatsapp.hidden = false;
+  try {
+    await navigator.clipboard.writeText(url);
+    productShareStatus.textContent =
+      "Link copiado. Cole no WhatsApp, Instagram ou onde quiser.";
+  } catch (error) {
+    console.error("Não foi possível copiar o link do produto.", error);
+    productShareStatus.textContent =
+      "Não foi possível copiar o link. Você ainda pode compartilhar pelo WhatsApp.";
+  }
+  productShareStatus.hidden = false;
 }
 
 function closeProductDetails(restoreFocus = true) {
@@ -2013,6 +2130,18 @@ if (customerForm) {
     event.preventDefault();
     startPixPayment();
   });
+  checkoutButton.addEventListener("click", () => {
+    if (customerForm.hidden) {
+      customerForm.hidden = false;
+      checkoutButton.textContent = cartBeforeDirectPurchase !== null
+        ? "Salvar dados e gerar Pix do pedido"
+        : "Salvar dados e gerar Pix";
+      customerForm.querySelector("input")?.focus();
+      return;
+    }
+
+    startPixPayment();
+  });
 } else {
   checkoutButton.addEventListener("click", startPixPayment);
 }
@@ -2093,3 +2222,12 @@ restoreCustomerDetails();
 restoreGameCustomerDetails();
 renderProducts();
 renderCart();
+const sharedProductId = new URLSearchParams(window.location.search).get("produto");
+if (sharedProductId && /^\d+$/.test(sharedProductId)) {
+  const sharedProduct = products.find((product) => product.id === Number(sharedProductId));
+  if (sharedProduct) openProductDetails(sharedProduct.id, null);
+}
+productDetailShareButton.addEventListener("click", () => {
+  const productId = Number(productDetailShareButton.dataset.productId);
+  shareProduct(productId);
+});

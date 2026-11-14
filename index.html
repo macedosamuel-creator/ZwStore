@@ -125,6 +125,9 @@
               <button class="order-button" id="product-detail-add" type="button">Adicionar ao carrinho</button>
               <button class="direct-buy-button" id="product-detail-buy" type="button">Comprar</button>
             </div>
+            <button class="share-product-button" id="product-detail-share" type="button">Compartilhar produto</button>
+            <p class="product-share-status" id="product-share-status" role="status" hidden></p>
+            <a class="product-share-whatsapp" id="product-share-whatsapp" target="_blank" rel="noopener noreferrer" hidden>Compartilhar pelo WhatsApp</a>
             <section class="product-reviews" aria-labelledby="product-reviews-title">
               <h3 id="product-reviews-title">Avaliações deste produto</h3>
               <div class="reviews-list" id="product-reviews-list" aria-live="polite">
@@ -182,7 +185,7 @@
             <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
             <p class="cart-promotion-hint" id="cart-discount-hint" hidden></p>
             <p>Entrega combinada pelo WhatsApp.</p>
-            <form class="customer-form" id="customer-form">
+            <form class="customer-form" id="customer-form" hidden>
               <h3>Dados para o pedido</h3>
               <p>Preencha antes de gerar o Pix. Os dados ficam salvos neste navegador e serão enviados por e-mail junto do pedido.</p>
               <label class="customer-field customer-field-wide" for="customer-name">
@@ -210,7 +213,7 @@
                 <input id="customer-email" name="email" type="email" autocomplete="email" required />
               </label>
             </form>
-            <button class="checkout-button" id="checkout-button" type="submit" form="customer-form">Salvar dados e gerar Pix <span aria-hidden="true">↗</span></button>
+            <button class="checkout-button" id="checkout-button" type="button">Comprar <span aria-hidden="true">↗</span></button>
             <section class="payment-details" id="payment-details" aria-labelledby="payment-title" hidden>
               <h3 id="payment-title">Pague com Pix</h3>
               <strong class="pix-amount" id="pix-amount"></strong>

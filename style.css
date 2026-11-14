@@ -507,6 +507,12 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 .product-detail-actions { display: grid; gap: 9px; }
 .product-detail-actions button { min-height: 42px; font-size: 11px; }
 .product-detail-actions button:disabled { cursor: not-allowed; opacity: .55; }
+.share-product-button { width: 100%; min-height: 42px; border: 1px solid var(--line-strong); border-radius: 11px; color: var(--green); background: var(--panel-2); font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
+.share-product-button:hover { border-color: var(--green); background: rgba(186, 252, 74, .08); }
+.product-share-status { margin: -5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.product-share-status[hidden] { display: none; }
+.product-share-whatsapp { justify-self: start; color: var(--green); font-size: 11px; font-weight: 700; }
+.product-share-whatsapp[hidden] { display: none; }
 .product-detail-close { position: absolute; z-index: 1; top: 12px; right: 12px; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--white); background: rgba(5, 5, 5, .82); font-size: 25px; line-height: 1; cursor: pointer; }
 
 .product-reviews { display: grid; gap: 15px; padding: 20px; border: 1px solid rgba(186, 252, 74, .2); border-radius: 20px; background: radial-gradient(ellipse at 100% 0, rgba(186, 252, 74, .08), transparent 48%), linear-gradient(145deg, rgba(19, 27, 20, .96), rgba(11, 15, 12, .98)); box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 12px 30px rgba(0,0,0,.18); }

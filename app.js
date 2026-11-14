@@ -1010,11 +1010,13 @@ const productDetailDescription = document.querySelector("#product-detail-descrip
 const productDetailStars = document.querySelector("#product-detail-stars");
 const productDetailRating = document.querySelector("#product-detail-rating");
 const productDetailPurchases = document.querySelector("#product-detail-purchases");
+const productDetailStock = document.querySelector("#product-detail-stock");
 const productDetailAddButton = document.querySelector("#product-detail-add");
 const productDetailBuyButton = document.querySelector("#product-detail-buy");
 const productDetailShareButton = document.querySelector("#product-detail-share");
 const productShareStatus = document.querySelector("#product-share-status");
 const productShareWhatsapp = document.querySelector("#product-share-whatsapp");
+const productShareUrlInput = document.querySelector("#product-share-url");
 const cartBackdrop = document.querySelector("#cart-backdrop");
 const cartItems = document.querySelector("#cart-items");
 const cartEmpty = document.querySelector("#cart-empty");
@@ -1305,6 +1307,7 @@ function renderProducts() {
             <button class="product-detail-trigger" type="button" data-product-details="${product.id}" aria-label="Ver detalhes de ${product.name}">
               <img src="${product.image}" alt="" loading="lazy" />
             </button>
+            <button class="product-image-share" type="button" data-share-product="${product.id}" aria-label="Compartilhar ${getDisplayProductName(product)}" title="Ícone de compartilhamento de Dave Gandy (Icon-Icons.com)"><svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12 16 7M8 12l8 5" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="18" cy="18" r="3" /></svg></button>
             <span class="product-label">${product.label}</span>
             ${hasVariants ? maxVariantDiscount ? `<span class="product-discount-badge">ATÉ ${maxVariantDiscount}% OFF</span>` : "" : discountPercent ? `<span class="product-discount-badge">${discountPercent}% OFF</span>` : ""}
           </div>
@@ -1635,19 +1638,22 @@ function closeCart() {
   document.querySelector("#cart-open").focus();
 }
 
-function openProductDetails(productId, trigger) {
+function openProductDetails(productId, trigger, preferredVariantId = null) {
   const product = products.find((item) => item.id === productId);
   if (!product) {
     throw new Error(`Produto não encontrado: ${productId}`);
   }
 
   const variants = getProductVariants(product);
-  const initialVariant = variants.find((variant) => variant.stock > 0) || product;
+  const initialVariant =
+    variants.find((variant) => variant.id === preferredVariantId) ||
+    variants.find((variant) => variant.stock > 0) ||
+    product;
   activeDetailProductId = initialVariant.id;
   productDetailTrigger = trigger;
   productDetailVariants.hidden = variants.length < 2;
   productDetailVariants.innerHTML = variants.length > 1
-    ? `<label for="product-detail-variant-select">Escolha a opção</label><select id="product-detail-variant-select" aria-label="Escolha a opção">${variants.map((variant) => `<option value="${variant.id}" ${variant.id === initialVariant.id ? "selected" : ""} ${variant.stock <= 0 ? "disabled" : ""}>${variant.variantName || variant.name}${variant.stock <= 0 ? " (Esgotado)" : ""}</option>`).join("")}</select>`
+    ? `<label for="product-detail-variant-select">Escolha a opção</label><select id="product-detail-variant-select" aria-label="Escolha a opção">${variants.map((variant) => `<option value="${variant.id}" ${variant.id === initialVariant.id ? "selected" : ""} ${variant.stock <= 0 && variant.id !== initialVariant.id ? "disabled" : ""}>${variant.variantName || variant.name}${variant.stock <= 0 ? " (Esgotado)" : ""}</option>`).join("")}</select>`
     : "";
   renderProductDetail(initialVariant);
   productDetailBackdrop.hidden = false;
@@ -1693,6 +1699,7 @@ function renderProductDetail(product) {
   productDetailShareButton.dataset.productId = String(product.id);
   productShareStatus.hidden = true;
   productShareWhatsapp.hidden = true;
+  productShareUrlInput.hidden = true;
   productDetailCategory.textContent = getGameName(product);
   productDetailPrice.innerHTML = discountPercent
     ? `<s>${formatPrice(product.price)}</s><strong>${formatPrice(getDiscountedPrice(product))}</strong>`
@@ -1708,6 +1715,10 @@ function renderProductDetail(product) {
     : `${rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}/5${reviewCount ? ` (${reviewCount} avaliações)` : ""}`;
   productDetailPurchases.textContent =
     purchaseCount === null ? "Vendas não informadas" : `${purchaseCount} vendidos`;
+  productDetailStock.textContent =
+    product.stock <= 0
+      ? "Esgotado"
+      : `${product.stock} ${product.stock === 1 ? "unidade" : "unidades"}`;
   const outOfStock = product.stock <= 0;
   productDetailAddButton.disabled =
     outOfStock || (cart[product.id] || 0) >= product.stock;
@@ -1762,6 +1773,8 @@ async function shareProduct(productId) {
   productShareWhatsapp.href =
     `https://wa.me/?text=${encodeURIComponent(`${shareData.text} ${url}`)}`;
   productShareWhatsapp.hidden = false;
+  productShareUrlInput.value = url;
+  productShareUrlInput.hidden = false;
   try {
     await navigator.clipboard.writeText(url);
     productShareStatus.textContent =
@@ -1769,7 +1782,9 @@ async function shareProduct(productId) {
   } catch (error) {
     console.error("Não foi possível copiar o link do produto.", error);
     productShareStatus.textContent =
-      "Não foi possível copiar o link. Você ainda pode compartilhar pelo WhatsApp.";
+      "Não foi possível copiar o link automaticamente. Selecione e copie o endereço abaixo ou compartilhe pelo WhatsApp.";
+    productShareUrlInput.focus();
+    productShareUrlInput.select();
   }
   productShareStatus.hidden = false;
 }
@@ -2021,6 +2036,14 @@ document.querySelector("#bestsellers-feature-button").addEventListener("click", 
 });
 
 productGrid.addEventListener("click", (event) => {
+  const shareTrigger = event.target.closest("[data-share-product]");
+  if (shareTrigger) {
+    const productId = Number(shareTrigger.dataset.shareProduct);
+    openProductDetails(productId, shareTrigger, productId);
+    shareProduct(productId);
+    return;
+  }
+
   const detailTrigger = event.target.closest("[data-product-details]");
   if (detailTrigger) {
     openProductDetails(Number(detailTrigger.dataset.productDetails), detailTrigger);
@@ -2052,6 +2075,11 @@ productGrid.addEventListener("click", (event) => {
 productDetailDialog.addEventListener("click", (event) => {
   if (event.target.closest("#product-detail-close")) {
     closeProductDetails();
+    return;
+  }
+
+  if (event.target.closest("#product-detail-share")) {
+    shareProduct(activeDetailProductId);
     return;
   }
 
@@ -2225,7 +2253,7 @@ renderCart();
 const sharedProductId = new URLSearchParams(window.location.search).get("produto");
 if (sharedProductId && /^\d+$/.test(sharedProductId)) {
   const sharedProduct = products.find((product) => product.id === Number(sharedProductId));
-  if (sharedProduct) openProductDetails(sharedProduct.id, null);
+  if (sharedProduct) openProductDetails(sharedProduct.id, null, sharedProduct.id);
 }
 productDetailShareButton.addEventListener("click", () => {
   const productId = Number(productDetailShareButton.dataset.productId);

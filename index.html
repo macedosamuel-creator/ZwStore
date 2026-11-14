@@ -101,13 +101,13 @@
           <div class="product-detail-image-wrap">
             <img class="product-detail-image" id="product-detail-image" alt="" />
             <span class="product-detail-discount-badge" id="product-detail-discount-badge" hidden></span>
+            <button class="share-product-button" id="product-detail-share" type="button" aria-label="Compartilhar este produto" title="Ícone de compartilhamento de Dave Gandy (Icon-Icons.com)"><svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12 16 7M8 12l8 5" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="18" cy="18" r="3" /></svg></button>
           </div>
           <div class="product-detail-content">
             <span class="product-category" id="product-detail-category"></span>
             <h2 id="product-detail-title"></h2>
             <div class="product-detail-price" id="product-detail-price"></div>
             <div class="product-detail-variants" id="product-detail-variants" hidden></div>
-            <p class="product-detail-description" id="product-detail-description"></p>
             <div class="product-detail-stats">
               <div>
                 <span class="product-detail-stat-label">Avaliação</span>
@@ -115,6 +115,10 @@
                   <span class="product-detail-stars" id="product-detail-stars" aria-hidden="true"></span>
                   <span id="product-detail-rating"></span>
                 </div>
+              </div>
+              <div>
+                <span class="product-detail-stat-label">Estoque</span>
+                <strong id="product-detail-stock"></strong>
               </div>
               <div>
                 <span class="product-detail-stat-label">Comprados</span>
@@ -125,9 +129,11 @@
               <button class="order-button" id="product-detail-add" type="button">Adicionar ao carrinho</button>
               <button class="direct-buy-button" id="product-detail-buy" type="button">Comprar</button>
             </div>
-            <button class="share-product-button" id="product-detail-share" type="button">Compartilhar produto</button>
+            <h3 class="product-detail-description-title">Descrição</h3>
+            <p class="product-detail-description" id="product-detail-description"></p>
             <p class="product-share-status" id="product-share-status" role="status" hidden></p>
             <a class="product-share-whatsapp" id="product-share-whatsapp" target="_blank" rel="noopener noreferrer" hidden>Compartilhar pelo WhatsApp</a>
+            <input class="product-share-url" id="product-share-url" type="url" readonly aria-label="Link direto do produto" hidden />
             <section class="product-reviews" aria-labelledby="product-reviews-title">
               <h3 id="product-reviews-title">Avaliações deste produto</h3>
               <div class="reviews-list" id="product-reviews-list" aria-live="polite">

@@ -1049,6 +1049,11 @@ const pixCode = document.querySelector("#pix-code");
 const pixQrCode = document.querySelector("#pix-qr-code");
 const paymentNotice = document.querySelector("#payment-notice");
 const sendOrderButton = document.querySelector("#send-order-button");
+const subscriptionPaymentPanel = document.querySelector("#subscription-payment");
+const subscriptionPixQr = document.querySelector("#subscription-pix-qr");
+const subscriptionPixCode = document.querySelector("#subscription-pix-code");
+const subscriptionPaymentStatus = document.querySelector("#subscription-payment-status");
+const subscriptionSendProof = document.querySelector("#subscription-send-proof");
 const ORDER_SEND_CLICK_LIMIT = 5;
 const CART_STORAGE_KEY = IS_GAMES_STORE
   ? "zw-store-rn-games-cart"
@@ -1237,6 +1242,54 @@ function createPixPayload(amount) {
     .join("")}6304`;
   return `${payload}${calculatePixCrc16(payload)}`;
 }
+
+function prepareSubscriptionPayment(user) {
+  if (!subscriptionPaymentPanel || !subscriptionPixQr || !subscriptionPixCode) {
+    return false;
+  }
+  if (!user?.email || !STORE.orderEmail || !STORE.pixKey) {
+    subscriptionPaymentStatus.textContent =
+      "Não foi possível preparar o Pix. Confira os dados de pagamento da loja.";
+    subscriptionPaymentPanel.hidden = false;
+    return false;
+  }
+
+  try {
+    const amount = 19.99;
+    const payload = createPixPayload(amount);
+    const subject = "Assinatura mensal ZW Store RN";
+    const body = [
+      "Olá! Estou enviando o comprovante da assinatura mensal da ZW Store RN.",
+      "",
+      "Valor: R$ 19,99",
+      `Nome: ${user.name}`,
+      `E-mail da conta: ${user.email}`,
+      "",
+      "O comprovante será anexado manualmente a este e-mail.",
+    ].join("\n");
+    subscriptionPixCode.value = payload;
+    subscriptionPixQr.src =
+      `https://api.qrserver.com/v1/create-qr-code/?size=240x240&format=png&data=${encodeURIComponent(payload)}`;
+    subscriptionPixQr.alt = "QR Code Pix da assinatura mensal de R$ 19,99";
+    subscriptionSendProof.href =
+      `mailto:${STORE.orderEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    subscriptionPaymentStatus.textContent =
+      "Após pagar, abra o e-mail, anexe o comprovante e aguarde a conferência manual. O envio deste e-mail não confirma o pagamento.";
+    subscriptionPaymentPanel.hidden = false;
+    subscriptionPaymentPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    return true;
+  } catch (error) {
+    console.error("Não foi possível preparar o Pix da assinatura.", error);
+    subscriptionPaymentStatus.textContent =
+      "Não foi possível preparar o Pix da assinatura. Confira a configuração Pix da loja.";
+    subscriptionPaymentPanel.hidden = false;
+    return false;
+  }
+}
+
+window.ZWStorePayments = {
+  prepareSubscriptionPayment,
+};
 
 function renderProducts() {
   const searchTerm = searchInput.value.trim().toLocaleLowerCase("pt-BR");
@@ -2219,6 +2272,16 @@ document.querySelector("#copy-pix-button").addEventListener("click", async () =>
     pixCode.focus();
     pixCode.select();
     paymentNotice.textContent =
+      "Não foi possível copiar automaticamente. Selecione e copie o código Pix.";
+  }
+});
+document.querySelector("#subscription-copy-pix")?.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(subscriptionPixCode.value);
+    subscriptionPaymentStatus.textContent = "Código Pix da assinatura copiado.";
+  } catch (error) {
+    console.error("Não foi possível copiar o código Pix da assinatura.", error);
+    subscriptionPaymentStatus.textContent =
       "Não foi possível copiar automaticamente. Selecione e copie o código Pix.";
   }
 });

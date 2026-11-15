@@ -248,10 +248,9 @@
       <section class="account-section section-wrap" id="conta" aria-labelledby="account-title">
         <div class="account-heading">
           <div>
-            <span class="eyebrow">ÁREA DO CLIENTE · MODO LOCAL</span>
+            <span class="eyebrow">ÁREA DO CLIENTE</span>
             <h2 id="account-title">Minha Conta</h2>
           </div>
-          <p>Esta versão de demonstração salva informações somente neste navegador. Não é uma autenticação segura nem sincroniza contas entre dispositivos.</p>
         </div>
         <div class="account-grid">
           <section class="account-card" aria-labelledby="account-access-title">
@@ -265,7 +264,7 @@
                 <button class="checkout-button" type="submit">Entrar</button>
               </form>
               <details class="account-register">
-                <summary>Criar uma conta local de demonstração</summary>
+                <summary>Criar Conta</summary>
                 <form id="account-register-form" class="account-form">
                   <label for="account-register-name">Nome</label>
                   <input id="account-register-name" name="name" type="text" autocomplete="name" maxlength="80" required />
@@ -277,14 +276,27 @@
                 </form>
               </details>
               <p class="account-status" id="account-auth-status" role="status"></p>
-              <p class="account-limitation">Recuperação de senha e envio de comprovante não estão disponíveis sem servidor/e-mail automático. Não use uma senha real.</p>
             </div>
             <div id="account-profile" hidden>
               <p><strong>Nome:</strong> <span id="account-profile-name"></span></p>
               <p><strong>E-mail:</strong> <span id="account-profile-email"></span></p>
               <p><strong>Assinatura:</strong> <span id="account-subscription-status"></span></p>
               <p><strong>Giros disponíveis:</strong> <span id="account-spins"></span></p>
-              <a class="account-secondary-button subscription-email-link" id="subscription-email-link">Preparar e-mail sobre assinatura</a>
+              <div class="account-signup-email" id="account-signup-email">
+                <p>Para avisar a loja, abra o e-mail pronto com seu nome e e-mail e toque em Enviar. Sua senha não será incluída.</p>
+                <a class="account-secondary-button" id="account-signup-email-link">Enviar cadastro à loja</a>
+              </div>
+              <button class="account-secondary-button" id="subscription-open" type="button">Contratar assinatura · R$ 19,99/mês</button>
+              <section class="subscription-payment" id="subscription-payment" hidden aria-labelledby="subscription-payment-title">
+                <h4 id="subscription-payment-title">Assinatura mensal · R$ 19,99</h4>
+                <p>Faça o Pix abaixo. Depois, envie o comprovante por e-mail para conferência manual. O pagamento não ativa a assinatura automaticamente.</p>
+                <img class="pix-qr-code" id="subscription-pix-qr" alt="" width="240" height="240" />
+                <label class="pix-code-label" for="subscription-pix-code">Código Pix copia e cola</label>
+                <textarea class="pix-code" id="subscription-pix-code" readonly rows="4" aria-label="Código Pix da assinatura"></textarea>
+                <button class="copy-pix-button" id="subscription-copy-pix" type="button">Copiar Pix da assinatura</button>
+                <a class="account-secondary-button" id="subscription-send-proof">Preparar e-mail e anexar comprovante</a>
+                <p class="payment-notice" id="subscription-payment-status" role="status"></p>
+              </section>
               <button class="account-secondary-button" id="account-logout" type="button">Sair da conta local</button>
             </div>
           </section>
@@ -294,7 +306,7 @@
             <p class="wheel-intro">Entre na sua conta local para testar a roleta. Cupons e giros ficam apenas neste navegador.</p>
             <div class="wheel-wrap">
               <span class="wheel-pointer" aria-hidden="true"></span>
-              <div class="discount-wheel" id="discount-wheel" aria-label="Roleta com cupons de 1%, 2%, 5%, 15% e 20%">
+              <div class="discount-wheel" id="discount-wheel" aria-label="Roleta com cinco faixas iguais: 1%, 2%, 5%, 15% e 20%">
                 <div class="wheel-labels" id="wheel-labels" aria-hidden="true"></div>
                 <button class="wheel-spin-button" id="wheel-spin" type="button">GIRAR</button>
               </div>
@@ -307,12 +319,30 @@
             <h3>Histórico de giros</h3>
             <div class="account-history-list" id="account-spin-history"></div>
           </section>
-          <section class="account-card account-wide account-admin" aria-labelledby="admin-title">
-            <span class="eyebrow">ADMINISTRAÇÃO LOCAL · SEM PROTEÇÃO</span>
-            <h3 id="admin-title">Painel administrativo de demonstração</h3>
-            <p class="account-limitation">Este painel não é exclusivo nem protegido: qualquer pessoa com acesso ao site neste navegador pode alterar os dados. Não use para aprovar pagamentos reais ou controlar clientes.</p>
-            <label for="admin-user-search">Pesquisar conta por nome ou e-mail</label>
-            <input id="admin-user-search" type="search" autocomplete="off" />
+          <section class="account-card account-wide account-admin" id="account-admin-panel" hidden aria-labelledby="admin-title">
+            <div class="admin-dashboard-heading">
+              <div>
+                <span class="eyebrow">ZW STORE · ADMINISTRAÇÃO</span>
+                <h3 id="admin-title">Painel do administrador</h3>
+              </div>
+              <span class="admin-account-badge">Conta da loja</span>
+            </div>
+            <div class="admin-overview" aria-label="Resumo das contas">
+              <article><span>Contas cadastradas</span><strong id="admin-total-users">0</strong></article>
+              <article><span>Assinaturas ativas</span><strong id="admin-active-subscriptions">0</strong></article>
+              <article><span>Giros disponíveis</span><strong id="admin-total-spins">0</strong></article>
+            </div>
+            <div class="admin-search-row">
+              <label for="admin-user-search">Buscar cliente</label>
+              <input id="admin-user-search" type="search" placeholder="Nome ou e-mail" autocomplete="off" />
+              <label class="admin-filter-label" for="admin-subscription-filter">Assinatura</label>
+              <select id="admin-subscription-filter">
+                <option value="all">Todas</option>
+                <option value="active">Ativas</option>
+                <option value="inactive">Inativas</option>
+              </select>
+            </div>
+            <p class="admin-data-notice">A lista mostra apenas contas salvas neste navegador. Para definir o status e os giros de cada e-mail no código, edite CUSTOMER_ENTITLEMENTS em account-system.js e incremente revision. Essa configuração fica pública no site.</p>
             <div class="admin-user-list" id="admin-user-list"></div>
             <div id="admin-user-details" hidden>
               <h4 id="admin-selected-name"></h4>

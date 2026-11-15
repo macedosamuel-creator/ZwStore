@@ -4,16 +4,17 @@
   const STORAGE_KEY = "zw-store-rn-local-accounts-v1";
   const ACTIVE_COUPON_KEY = "zw-store-rn-active-coupon";
   const STORE_EMAIL = "zwstorern@gmail.com";
-  const PRIZES = [
-    { percent: 5, count: 5 },
-    { percent: 15, count: 2 },
-    { percent: 20, count: 3 },
-    { percent: 2, count: 1 },
-    { percent: 1, count: 2 },
+  const CUSTOMER_ENTITLEMENTS = {
+    // Use e-mail minúsculo; incremente revision a cada alteração de active/spins.
+    // Ex.: "cliente@example.com": { active: true, spins: 5, revision: 1 },
+  };
+  const PRIZE_ODDS = [
+    { percent: 1, probability: 24750 },
+    { percent: 2, probability: 12375 },
+    { percent: 5, probability: 61875 },
+    { percent: 15, probability: 400 },
+    { percent: 20, probability: 600 },
   ];
-  const SEGMENTS = PRIZES.flatMap((prize) =>
-    Array.from({ length: prize.count }, () => prize.percent),
-  );
   const COLORS = ["#bafc4a", "#d8ff86", "#9af51b", "#e9ffd0", "#77c91a"];
   const byId = (id) => document.getElementById(id);
   const accountSection = byId("conta");
@@ -135,6 +136,38 @@
     });
   }
 
+  function applyConfiguredEntitlement(user) {
+    const config = CUSTOMER_ENTITLEMENTS[user.email];
+    if (!config) return true;
+    if (
+      typeof config.active !== "boolean" ||
+      !Number.isSafeInteger(config.spins) ||
+      config.spins < 0 ||
+      !Number.isSafeInteger(config.revision) ||
+      config.revision < 1
+    ) {
+      throw new Error(`Configuração inválida para ${user.email} em CUSTOMER_ENTITLEMENTS.`);
+    }
+    if (user.appliedEntitlementRevision === config.revision) return true;
+
+    const index = store.users.findIndex((entry) => entry.email === user.email);
+    const previous = JSON.parse(JSON.stringify(user));
+    const renewedAt = new Date().toISOString();
+    user.subscription.active = config.active;
+    user.spins = config.spins;
+    user.appliedEntitlementRevision = config.revision;
+    if (config.active) {
+      user.subscription.renewedAt = renewedAt;
+      user.subscription.cycles.push({ renewedAt, spinsGranted: config.spins });
+    }
+    addLog(user, `Assinatura e giros atualizados pela configuração do site (revisão ${config.revision}).`);
+    if (!saveStore()) {
+      store.users[index] = previous;
+      return false;
+    }
+    return true;
+  }
+
   function hashPassword(password, salt) {
     if (!crypto.subtle || !crypto.getRandomValues) {
       throw new Error("Este navegador precisa oferecer Web Crypto em uma conexão HTTPS para criar e validar contas de demonstração.");
@@ -154,6 +187,21 @@
     return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
   }
 
+  function drawPrizeIndex() {
+    const range = 100000;
+    const limit = Math.floor(0x100000000 / range) * range;
+    let value;
+    do {
+      value = crypto.getRandomValues(new Uint32Array(1))[0];
+    } while (value >= limit);
+    const draw = value % range;
+    let threshold = 0;
+    return PRIZE_ODDS.findIndex((prize) => {
+      threshold += prize.probability;
+      return draw < threshold;
+    });
+  }
+
   function getDateLabel(value) {
     return new Date(value).toLocaleDateString("pt-BR");
   }
@@ -162,16 +210,16 @@
     const wheel = byId("discount-wheel");
     const labels = byId("wheel-labels");
     if (!wheel || !labels) return;
-    const slice = 360 / SEGMENTS.length;
-    const stops = SEGMENTS.map((_, index) =>
-      `${COLORS[index % COLORS.length]} ${index * slice}deg ${(index + 1) * slice}deg`,
+    const slice = 360 / PRIZE_ODDS.length;
+    const stops = PRIZE_ODDS.map((_, index) =>
+      `${COLORS[index]} ${index * slice}deg ${(index + 1) * slice}deg`,
     );
     wheel.style.background = `conic-gradient(${stops.join(", ")})`;
     labels.replaceChildren();
-    SEGMENTS.forEach((percent, index) => {
+    PRIZE_ODDS.forEach((prize, index) => {
       const label = document.createElement("span");
       label.className = "wheel-segment-label";
-      label.textContent = `${percent}%`;
+      label.textContent = `${prize.percent}%`;
       label.style.transform =
         `translate(-50%, -50%) rotate(${(index + 0.5) * slice}deg) translateY(-104px) rotate(90deg)`;
       labels.append(label);
@@ -215,6 +263,14 @@
     couponCard.hidden = !user;
 
     if (user) {
+      try {
+        if (!applyConfiguredEntitlement(user)) {
+          setStatus(authStatus, storageError, true);
+        }
+      } catch (error) {
+        console.error("Configuração de assinatura/giros inválida.", error);
+        setStatus(authStatus, error.message, true);
+      }
       byId("account-profile-name").textContent = user.name;
       byId("account-profile-email").textContent = user.email;
       byId("account-subscription-status").textContent =
@@ -222,8 +278,17 @@
           ? `Ativa${user.subscription.renewedAt ? ` · renovada em ${getDateLabel(user.subscription.renewedAt)}` : ""}`
           : "Inativa";
       byId("account-spins").textContent = user.spins;
-      const emailLink = byId("subscription-email-link");
-      emailLink.href = `mailto:${STORE_EMAIL}?subject=${encodeURIComponent("Assinatura ZW Store RN")}&body=${encodeURIComponent(`Olá! Quero falar sobre minha assinatura.\n\nNome: ${user.name}\nE-mail: ${user.email}\n\nVou anexar o comprovante de pagamento neste e-mail.`)}`;
+      const subject = "Novo cadastro na ZW Store RN";
+      const body = [
+        "Novo cadastro recebido:",
+        "",
+        `Nome: ${user.name}`,
+        `E-mail: ${user.email}`,
+        "",
+        "Para liberar assinatura e giros, edite CUSTOMER_ENTITLEMENTS em account-system.js e publique o site.",
+      ].join("\n");
+      byId("account-signup-email-link").href =
+        `mailto:${STORE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       byId("wheel-result").textContent =
         latestSpinOwner === user.email && latestSpinMessage
           ? latestSpinMessage
@@ -244,6 +309,7 @@
           `).join("")
         : '<p class="account-empty">Nenhuma alteração ou giro registrado.</p>';
     } else {
+      byId("subscription-payment").hidden = true;
       byId("wheel-result").textContent =
         "Entre na sua conta local para ver seus giros.";
     }
@@ -261,11 +327,28 @@
 
   function renderAdmin() {
     if (!accountSection) return;
+    const adminPanel = byId("account-admin-panel");
+    const currentUser = getCurrentUser();
+    const isAdmin = currentUser?.email === STORE_EMAIL;
+    adminPanel.hidden = !isAdmin;
+    if (!isAdmin) {
+      selectedAdminEmail = "";
+      return;
+    }
     const search = (byId("admin-user-search").value || "").trim().toLocaleLowerCase("pt-BR");
+    const filter = byId("admin-subscription-filter").value;
+    byId("admin-total-users").textContent = store.users.length;
+    byId("admin-active-subscriptions").textContent =
+      store.users.filter((user) => user.subscription.active).length;
+    byId("admin-total-spins").textContent =
+      store.users.reduce((total, user) => total + user.spins, 0);
     const matchingUsers = store.users.filter(
       (user) =>
         user.name.toLocaleLowerCase("pt-BR").includes(search) ||
         user.email.includes(search),
+    ).filter((user) =>
+      filter === "all" ||
+      (filter === "active" ? user.subscription.active : !user.subscription.active),
     );
     byId("admin-user-list").innerHTML = matchingUsers.length
       ? matchingUsers.map((user) => `
@@ -274,7 +357,7 @@
           </button>
         `).join("")
       : '<p class="account-empty">Nenhuma conta local encontrada neste navegador.</p>';
-    const user = store.users.find((entry) => entry.email === selectedAdminEmail);
+    const user = matchingUsers.find((entry) => entry.email === selectedAdminEmail);
     const details = byId("admin-user-details");
     details.hidden = !user;
     if (!user) return;
@@ -309,6 +392,7 @@
     if (accountSection) {
       if (storageError) setStatus(authStatus, storageError, true);
       byId("admin-user-search").addEventListener("input", renderAdmin);
+      byId("admin-subscription-filter").addEventListener("change", renderAdmin);
       byId("admin-user-list").addEventListener("click", (event) => {
         const button = event.target.closest("[data-admin-email]");
         if (!button) return;
@@ -329,6 +413,10 @@
           const hash = await hashPassword(password, user.salt);
           if (hash !== user.passwordHash) {
             setStatus(authStatus, "E-mail ou senha incorretos.", true);
+            return;
+          }
+          if (!applyConfiguredEntitlement(user)) {
+            setStatus(authStatus, storageError, true);
             return;
           }
           localStorage.setItem("zw-store-rn-local-session", user.email);
@@ -360,10 +448,16 @@
             passwordHash: await hashPassword(password, salt),
             subscription: { active: false, renewedAt: null, cycles: [] },
             spins: 0,
+            appliedEntitlementRevision: 0,
             coupons: [],
             history: [],
           };
           store.users.push(user);
+          if (!applyConfiguredEntitlement(user)) {
+            store.users.pop();
+            setStatus(authStatus, storageError, true);
+            return;
+          }
           if (!saveStore()) {
             store.users.pop();
             setStatus(authStatus, storageError, true);
@@ -384,6 +478,14 @@
         localStorage.removeItem(ACTIVE_COUPON_KEY);
         renderAccount();
         document.dispatchEvent(new CustomEvent("zwstorecouponchange"));
+      });
+      byId("subscription-open").addEventListener("click", () => {
+        const user = getCurrentUser();
+        if (!user || !window.ZWStorePayments?.prepareSubscriptionPayment) {
+          setStatus(authStatus, "Não foi possível preparar o Pix da assinatura.", true);
+          return;
+        }
+        window.ZWStorePayments.prepareSubscriptionPayment(user);
       });
       byId("wheel-spin").addEventListener("click", spinWheel);
       byId("admin-toggle-subscription").addEventListener("click", () => {
@@ -483,8 +585,8 @@
       byId("wheel-result").textContent = "Você não tem giros disponíveis.";
       return;
     }
-    const resultIndex = crypto.getRandomValues(new Uint32Array(1))[0] % SEGMENTS.length;
-    const percent = SEGMENTS[resultIndex];
+    const resultIndex = drawPrizeIndex();
+    const percent = PRIZE_ODDS[resultIndex].percent;
     const couponId = randomHex(12);
     const receivedAt = new Date();
     const expiresAt = new Date(receivedAt);
@@ -517,9 +619,9 @@
     isSpinning = true;
     renderAccount();
     byId("wheel-result").classList.remove("is-winner");
-    const slice = 360 / SEGMENTS.length;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const duration = reducedMotion ? 10 : 4200;
+    const slice = 360 / PRIZE_ODDS.length;
     const turn = 360 * 6 + (360 - (resultIndex + 0.5) * slice);
     wheel.style.transition = "none";
     wheel.style.transform = "rotate(0deg)";

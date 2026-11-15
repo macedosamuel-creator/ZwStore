@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="account-system.js" defer></script>
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -32,8 +33,10 @@
       <nav class="main-nav" aria-label="Navegação principal">
         <a href="#produtos">Produtos</a>
         <a href="./jogos.html">Jogos</a>
+        <a href="#conta">Minha Conta</a>
         <a href="#sobre">Sobre a loja</a>
       </nav>
+      <a class="header-cta account-trigger" href="#conta">Minha Conta</a>
       <button class="header-cta cart-trigger" id="cart-open" type="button" aria-haspopup="dialog" aria-controls="cart-dialog">
         Carrinho <span class="cart-count" id="cart-count">0</span>
       </button>
@@ -190,6 +193,13 @@
             <div class="cart-discount" id="cart-volume-discount-row" hidden><span id="cart-volume-discount-label"></span><strong id="cart-volume-discount"></strong></div>
             <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
             <p class="cart-promotion-hint" id="cart-discount-hint" hidden></p>
+            <label class="cart-coupon-field" for="cart-coupon-select">
+              Cupom da sua conta
+              <select id="cart-coupon-select">
+                <option value="">Não usar cupom</option>
+              </select>
+            </label>
+            <div class="cart-discount" id="account-coupon-row" hidden><span id="account-coupon-label">Cupom</span><strong id="account-coupon-discount"></strong></div>
             <p>Entrega combinada pelo WhatsApp.</p>
             <form class="customer-form" id="customer-form" hidden>
               <h3>Dados para o pedido</h3>
@@ -234,6 +244,101 @@
           </div>
         </section>
       </div>
+
+      <section class="account-section section-wrap" id="conta" aria-labelledby="account-title">
+        <div class="account-heading">
+          <div>
+            <span class="eyebrow">ÁREA DO CLIENTE · MODO LOCAL</span>
+            <h2 id="account-title">Minha Conta</h2>
+          </div>
+          <p>Esta versão de demonstração salva informações somente neste navegador. Não é uma autenticação segura nem sincroniza contas entre dispositivos.</p>
+        </div>
+        <div class="account-grid">
+          <section class="account-card" aria-labelledby="account-access-title">
+            <h3 id="account-access-title">Acesse sua conta</h3>
+            <div id="account-auth">
+              <form id="account-login-form" class="account-form">
+                <label for="account-login-email">E-mail</label>
+                <input id="account-login-email" name="email" type="email" autocomplete="email" required />
+                <label for="account-login-password">Senha</label>
+                <input id="account-login-password" name="password" type="password" autocomplete="current-password" minlength="8" required />
+                <button class="checkout-button" type="submit">Entrar</button>
+              </form>
+              <details class="account-register">
+                <summary>Criar uma conta local de demonstração</summary>
+                <form id="account-register-form" class="account-form">
+                  <label for="account-register-name">Nome</label>
+                  <input id="account-register-name" name="name" type="text" autocomplete="name" maxlength="80" required />
+                  <label for="account-register-email">E-mail</label>
+                  <input id="account-register-email" name="email" type="email" autocomplete="email" required />
+                  <label for="account-register-password">Senha (mínimo 8 caracteres)</label>
+                  <input id="account-register-password" name="password" type="password" autocomplete="new-password" minlength="8" required />
+                  <button class="checkout-button" type="submit">Criar conta neste navegador</button>
+                </form>
+              </details>
+              <p class="account-status" id="account-auth-status" role="status"></p>
+              <p class="account-limitation">Recuperação de senha e envio de comprovante não estão disponíveis sem servidor/e-mail automático. Não use uma senha real.</p>
+            </div>
+            <div id="account-profile" hidden>
+              <p><strong>Nome:</strong> <span id="account-profile-name"></span></p>
+              <p><strong>E-mail:</strong> <span id="account-profile-email"></span></p>
+              <p><strong>Assinatura:</strong> <span id="account-subscription-status"></span></p>
+              <p><strong>Giros disponíveis:</strong> <span id="account-spins"></span></p>
+              <a class="account-secondary-button subscription-email-link" id="subscription-email-link">Preparar e-mail sobre assinatura</a>
+              <button class="account-secondary-button" id="account-logout" type="button">Sair da conta local</button>
+            </div>
+          </section>
+          <section class="account-card wheel-card" aria-labelledby="wheel-title">
+            <span class="eyebrow">PRÊMIOS EM MODO DE DEMONSTRAÇÃO</span>
+            <h3 id="wheel-title">Roleta de descontos</h3>
+            <p class="wheel-intro">Entre na sua conta local para testar a roleta. Cupons e giros ficam apenas neste navegador.</p>
+            <div class="wheel-wrap">
+              <span class="wheel-pointer" aria-hidden="true"></span>
+              <div class="discount-wheel" id="discount-wheel" aria-label="Roleta com cupons de 1%, 2%, 5%, 15% e 20%">
+                <div class="wheel-labels" id="wheel-labels" aria-hidden="true"></div>
+                <button class="wheel-spin-button" id="wheel-spin" type="button">GIRAR</button>
+              </div>
+            </div>
+            <p class="wheel-result" id="wheel-result" role="status">Cadastre-se ou entre para ver seus giros.</p>
+          </section>
+          <section class="account-card account-wide" id="account-coupons-card" hidden aria-labelledby="my-coupons-title">
+            <h3 id="my-coupons-title">Meus Cupons</h3>
+            <div class="account-coupon-list" id="account-coupon-list"></div>
+            <h3>Histórico de giros</h3>
+            <div class="account-history-list" id="account-spin-history"></div>
+          </section>
+          <section class="account-card account-wide account-admin" aria-labelledby="admin-title">
+            <span class="eyebrow">ADMINISTRAÇÃO LOCAL · SEM PROTEÇÃO</span>
+            <h3 id="admin-title">Painel administrativo de demonstração</h3>
+            <p class="account-limitation">Este painel não é exclusivo nem protegido: qualquer pessoa com acesso ao site neste navegador pode alterar os dados. Não use para aprovar pagamentos reais ou controlar clientes.</p>
+            <label for="admin-user-search">Pesquisar conta por nome ou e-mail</label>
+            <input id="admin-user-search" type="search" autocomplete="off" />
+            <div class="admin-user-list" id="admin-user-list"></div>
+            <div id="admin-user-details" hidden>
+              <h4 id="admin-selected-name"></h4>
+              <p id="admin-selected-email"></p>
+              <p>Assinatura local: <strong id="admin-selected-subscription"></strong> · giros: <strong id="admin-selected-spins"></strong></p>
+              <div class="admin-actions">
+                <button class="account-secondary-button" id="admin-toggle-subscription" type="button">Ativar/desativar assinatura</button>
+                <label for="admin-spin-amount">Ajustar giros (+/-)</label>
+                <input id="admin-spin-amount" type="number" step="1" value="5" />
+                <button class="account-secondary-button" id="admin-adjust-spins" type="button">Aplicar ajuste e registrar renovação</button>
+              </div>
+              <h4>Cupons e alterações</h4>
+              <div class="account-history-list" id="admin-customer-history"></div>
+            </div>
+            <details class="account-rules">
+              <summary>Regras locais para novos cupons</summary>
+              <label for="coupon-expiry-days">Validade (dias)</label>
+              <input id="coupon-expiry-days" type="number" min="1" max="365" value="30" />
+              <label for="coupon-minimum">Compra mínima (R$)</label>
+              <input id="coupon-minimum" type="number" min="0" step="0.01" value="0" />
+              <button class="account-secondary-button" id="save-coupon-rules" type="button">Salvar regras neste navegador</button>
+            </details>
+            <p class="account-status" id="admin-status" role="status"></p>
+          </section>
+        </div>
+      </section>
 
       <section class="how-it-works" id="sobre">
         <div class="how-copy">

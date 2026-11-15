@@ -568,3 +568,86 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
   .customer-review { padding: 12px; }
   .review-form { padding: 14px; }
 }
+
+.account-section { background: linear-gradient(180deg, #0a0d0a, #0c110c); }
+.account-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.account-heading h2 { margin: 8px 0 0; font-size: clamp(28px, 4vw, 40px); letter-spacing: -.055em; }
+.account-heading > p { max-width: 470px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.account-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.account-card { min-width: 0; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(155deg, rgba(20, 27, 20, .92), rgba(11, 15, 11, .96)); box-shadow: 0 12px 30px rgba(0,0,0,.2); }
+.account-card h3 { margin: 0 0 14px; font-family: Manrope, sans-serif; font-size: 19px; letter-spacing: -.025em; }
+.account-card h4 { margin: 20px 0 10px; font-family: Manrope, sans-serif; font-size: 13px; }
+.account-card > p, #account-profile > p { color: var(--muted); font-size: 12px; line-height: 1.65; }
+.account-card strong, #account-profile strong { color: var(--white); }
+.account-wide { grid-column: 1 / -1; }
+.account-form { display: grid; gap: 8px; margin-top: 12px; }
+.account-form label, .account-admin > label, .account-rules label, .admin-actions label, .cart-coupon-field { color: var(--muted); font-size: 11px; font-weight: 700; }
+.account-form input, .account-admin input, .account-rules input, .admin-actions input, .cart-coupon-field select { width: 100%; min-height: 43px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; outline: 0; color: var(--white); background: var(--panel-3); font: inherit; font-size: 12px; }
+.account-form input:focus, .account-admin input:focus, .account-rules input:focus, .admin-actions input:focus, .cart-coupon-field select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(186,252,74,.1); }
+.account-form .checkout-button { margin-top: 8px; }
+.account-register { margin-top: 17px; color: var(--green); font-size: 12px; }
+.account-register summary, .account-rules summary { cursor: pointer; font-weight: 700; }
+.account-register[open] { padding-top: 14px; border-top: 1px solid var(--line); }
+.account-status { min-height: 18px; margin: 10px 0 0; color: var(--green); font-size: 11px; line-height: 1.5; }
+.account-status.is-error { color: #ffb28f; }
+.account-limitation { margin: 12px 0 0 !important; color: #ffcfad !important; font-size: 10px !important; line-height: 1.6 !important; }
+.account-secondary-button { min-height: 39px; padding: 9px 13px; border: 1px solid var(--line-strong); border-radius: 10px; color: var(--green); background: rgba(186,252,74,.06); font-size: 11px; font-weight: 700; cursor: pointer; }
+.account-secondary-button:hover { background: rgba(186,252,74,.13); }
+.account-secondary-button:disabled { cursor: not-allowed; opacity: .55; }
+.wheel-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.wheel-card .eyebrow { margin-bottom: 8px; }
+.wheel-intro { max-width: 360px; }
+.wheel-wrap { position: relative; width: min(100%, 300px); aspect-ratio: 1; display: grid; place-items: center; margin: 8px auto 13px; }
+.discount-wheel { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border: 8px solid #101710; border-radius: 50%; box-shadow: 0 0 0 2px var(--line-strong), 0 10px 32px rgba(0,0,0,.45), 0 0 28px rgba(186,252,74,.18); transition: transform 4.2s cubic-bezier(.12,.72,.08,1); }
+.discount-wheel::after { position: absolute; inset: 3px; border: 1px solid rgba(4,4,4,.35); border-radius: 50%; content: ""; pointer-events: none; }
+.wheel-pointer { position: absolute; top: -3px; z-index: 3; width: 0; height: 0; border-right: 14px solid transparent; border-left: 14px solid transparent; border-top: 27px solid var(--white); filter: drop-shadow(0 3px 4px rgba(0,0,0,.45)); }
+.wheel-labels { position: absolute; inset: 0; }
+.wheel-segment-label { position: absolute; top: 50%; left: 50%; z-index: 1; color: #101510; font-size: 11px; font-weight: 900; line-height: 1; text-shadow: 0 1px 0 rgba(255,255,255,.25); white-space: nowrap; }
+.wheel-spin-button { position: absolute; top: 50%; left: 50%; z-index: 2; width: 82px; height: 82px; border: 5px solid #111711; border-radius: 50%; color: var(--black); background: linear-gradient(135deg, var(--green), #e3ffac); box-shadow: 0 0 0 2px rgba(255,255,255,.6), 0 4px 14px rgba(0,0,0,.38); font-size: 12px; font-weight: 900; cursor: pointer; transform: translate(-50%, -50%); }
+.wheel-spin-button:disabled { cursor: not-allowed; filter: grayscale(.65); opacity: .68; }
+.wheel-result { min-height: 38px; margin: 0; color: var(--green) !important; font-size: 12px !important; font-weight: 700; }
+.wheel-result.is-winner { animation: coupon-win .7s ease-out; }
+@keyframes coupon-win {
+  0% { opacity: .45; transform: scale(.94); text-shadow: 0 0 0 rgba(186,252,74,0); }
+  55% { opacity: 1; transform: scale(1.04); text-shadow: 0 0 18px rgba(186,252,74,.72); }
+  100% { transform: scale(1); text-shadow: 0 0 0 rgba(186,252,74,0); }
+}
+.account-coupon-list, .account-history-list { display: grid; gap: 8px; }
+.account-coupon { display: grid; gap: 5px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 12px; background: rgba(0,0,0,.18); color: var(--muted); font-size: 11px; }
+.account-coupon > strong { color: var(--green); font-size: 14px; }
+.account-coupon code { color: var(--white); }
+.account-history-item, .account-empty { margin: 0; padding: 9px 11px; border-left: 2px solid rgba(186,252,74,.35); color: var(--muted); background: rgba(255,255,255,.02); font-size: 10px; line-height: 1.55; }
+.account-admin { border-color: rgba(255,178,143,.28); }
+.account-admin > input { margin-top: 7px; }
+.admin-user-list { display: grid; gap: 6px; max-height: 180px; margin-top: 10px; overflow-y: auto; }
+.admin-user-button { padding: 10px 12px; border: 1px solid var(--line); border-radius: 9px; color: var(--white); background: rgba(255,255,255,.025); text-align: left; font-size: 11px; cursor: pointer; }
+.admin-user-button:hover { border-color: var(--green); }
+.admin-actions { display: flex; flex-wrap: wrap; align-items: end; gap: 9px; }
+.admin-actions label { flex-basis: 100%; }
+.admin-actions input { width: 110px; }
+.account-rules { display: grid; gap: 9px; margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--line); color: var(--green); font-size: 12px; }
+.account-rules[open] summary { margin-bottom: 5px; }
+.cart-coupon-field { display: grid; gap: 6px; margin-top: 13px; }
+.cart-coupon-field select { cursor: pointer; }
+.cart-coupon-field select option { color: var(--white); background: var(--panel); }
+
+@media (max-width: 800px) {
+  .account-section { padding-right: 7%; padding-left: 7%; }
+}
+@media (max-width: 600px) {
+  .account-section { padding: 55px 6%; }
+  .account-heading { align-items: start; flex-direction: column; gap: 12px; }
+  .account-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .account-card { padding: 19px; }
+  .account-wide { grid-column: auto; }
+  .wheel-wrap { width: min(100%, 280px); }
+  .wheel-segment-label { font-size: 10px; }
+  .wheel-spin-button { width: 72px; height: 72px; }
+  .account-trigger { padding: 9px 10px; gap: 0; font-size: 9px; }
+  .site-header .brand-name { font-size: 15px; }
+  .site-header .brand-icon { width: 27px; height: 27px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .discount-wheel { transition-duration: .01ms; }
+  .wheel-result.is-winner { animation: none; }
+}

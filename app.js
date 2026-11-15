@@ -207,7 +207,7 @@ const allProducts = [
     label: "azul",
     image: "./ip11azul.jpg.jpeg",
     discount: 0 ,
-    description: "",
+    description: "Dê um novo visual ao seu iPhone 11 com esta capinha azul, que combina estilo, praticidade e proteção. Com design moderno e acabamento elegante, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem deseja manter seu iPhone protegido com um toque de personalidade.",
   },
   {
     id: 16,
@@ -220,7 +220,7 @@ const allProducts = [
     label: "bege escuro",
     image: "./ip11bege_cinza.jpg.jpeg",
     discount: 0,
-    description: "",
+    description: "Dê um toque de sofisticação ao seu iPhone 11 com esta capinha na cor bege escuro. Com design moderno e acabamento elegante, combina beleza, praticidade e proteção para o dia a dia. Ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de oferecer encaixe adequado e fácil acesso aos botões e entradas. Ideal para quem busca proteger seu iPhone com estilo e elegância.",
   },
   {
     id: 17,
@@ -233,7 +233,7 @@ const allProducts = [
     label: "marrom",
     image: "./ip11marrom.jpg.jpeg",
     discount: 0,
-    description: "",
+    description: "Dê um toque de elegância ao seu iPhone 11 com esta capinha marrom. Com design moderno e acabamento sofisticado, oferece estilo e praticidade para o dia a dia. Ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de proporcionar encaixe adequado e fácil acesso aos botões e entradas. Ideal para quem deseja manter seu iPhone protegido com conforto, personalidade e sofisticação.",
   },
   {
     id: 18,
@@ -246,7 +246,7 @@ const allProducts = [
     label: "verde",
     image: "./ip11verde.jpg.jpeg",
     discount: 0,
-    description: "",
+    description: "Renove o visual do seu iPhone 11 com esta capinha verde, que combina estilo, praticidade e proteção. Com design moderno e acabamento elegante, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e fácil acesso aos botões e entradas, proporcionando conforto e praticidade durante o uso. Ideal para quem busca proteger seu iPhone com um toque de cor e personalidade.",
   },
   {
     id: 19,
@@ -259,7 +259,7 @@ const allProducts = [
     label: "roxa escura",
     image: "./ip11roxaescuro.jpg.jpeg",
     discount: 0,
-    description: "",
+    description: "Dê mais personalidade ao seu iPhone 11 com esta capinha roxa escura, que combina elegância, estilo e proteção. Com design moderno e acabamento sofisticado, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem busca um visual diferenciado sem abrir mão da proteção.",
   },
   {
     id: 20,
@@ -272,7 +272,7 @@ const allProducts = [
     label: "transparente",
     image: "./ip11transp.jpg.jpeg",
     discount: 0,
-    description: "",
+    description: "Proteja seu iPhone 11 sem esconder seu design original! Esta capinha transparente combina praticidade, elegância e proteção para o dia a dia. Com visual leve e discreto, ajuda a proteger o aparelho contra arranhões e pequenos impactos, mantendo a aparência original do iPhone em destaque. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem busca proteção com simplicidade e estilo.",
   },
   {
     id: 21,
@@ -340,7 +340,7 @@ const allProducts = [
     label: "diamantes",
     image: "./78dimas.jpg.jpeg",
     discount: 5,
-    description: "",
+    description: "Adquira 78 diamantes no Free Fire de forma rápida e prática! Ideal para quem deseja comprar itens na loja do jogo, participar de eventos, adquirir skins e aproveitar novas oportunidades dentro do Free Fire. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite ainda mais sua experiência no jogo!",
   },
   {
     id: 26,
@@ -356,7 +356,7 @@ const allProducts = [
     label: "diamantes",
     image: "./120dimas.jpg.jpeg",
     discount: 10,
-    description: "",
+    description: "Adquira 120 diamantes no Free Fire de forma rápida e prática! Ideal para quem deseja comprar skins, personagens, itens especiais e aproveitar os eventos disponíveis no jogo. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite ainda mais sua experiência no Free Fire!",
   },
 
 {
@@ -373,7 +373,7 @@ const allProducts = [
   label: "diamantes",
   image: "./372dimas.jpg.jpeg",
   discount: 6,
-  description: "",
+  description: "Adquira 372 diamantes no Free Fire de forma rápida e prática! Aproveite para comprar skins, personagens, pacotes exclusivos e participar dos eventos especiais do jogo. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite todas as novidades do Free Fire!",
 },
 {
   id: 28,
@@ -389,7 +389,7 @@ const allProducts = [
   label: "diamantes",
   image: "./624dimas.jpg.jpeg",
   discount: 0,
-  description: "",
+  description: "Adquira 624 diamantes no Free Fire de forma rápida e prática! Tenha mais possibilidades para aproveitar o jogo, comprar skins, personagens, pacotes especiais e participar de eventos exclusivos. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e deixe sua experiência no Free Fire ainda melhor!",
 },
 {
   id: 29,
@@ -405,7 +405,7 @@ const allProducts = [
   label: "diamantes",
   image: "./1272dimas.jpg.jpeg",
   discount: 0,
-  description: "",
+  description: "Adquira 1.272 diamantes no Free Fire de forma rápida e prática! Aproveite uma quantidade ainda maior de diamantes para desbloquear skins, personagens, pacotes exclusivos, passes e diversos itens especiais dentro do jogo. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite tudo o que o Free Fire tem a oferecer!",
 },
 {
   id: 30,
@@ -421,7 +421,7 @@ const allProducts = [
   label: "diamantes",
   image: "./2616dimas.jpg.jpeg",
   discount: 9,
-  description: "",
+  description: "Adquira 2.616 diamantes no Free Fire de forma rápida e prática! Com essa quantidade, você terá ainda mais liberdade para aproveitar o jogo, adquirir skins, personagens, pacotes especiais, passes e participar de eventos exclusivos. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite ao máximo sua experiência no Free Fire!",
 },
 {
   id: 57,
@@ -437,7 +437,7 @@ const allProducts = [
   label: "diamantes",
   image: "./6729dimas.jpg.jpeg",
   discount: 5,
-  description: "",
+  description: "Adquira 6.720 diamantes no Free Fire de forma rápida e prática! Aproveite uma grande quantidade de diamantes para desbloquear skins raras, personagens, pacotes exclusivos, passes e diversos itens especiais. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e tenha ainda mais possibilidades para aproveitar tudo o que o Free Fire oferece!",
 },
 {
   id: 58,
@@ -453,7 +453,7 @@ const allProducts = [
   label: "diamantes",
   image: "./26880dimas.jpg.jpeg",
   discount: 3,
-  description: "",
+  description: "Adquira 26.880 diamantes no Free Fire de forma rápida e prática! Com essa quantidade, você terá muitas possibilidades para aproveitar o jogo, adquirir skins exclusivas, personagens, pacotes especiais, passes e participar de diversos eventos. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite uma experiência ainda mais completa no Free Fire!",
 },
 {
   id: 31,
@@ -468,7 +468,7 @@ const allProducts = [
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 20,
-  description: "",
+  description: "Conta de Blox Fruits nível máximo (2800), ideal para quem deseja começar com vantagem e aproveitar ao máximo o universo do jogo! A conta acompanha Godhuman, 2 frutas míticas garantidas e outros itens e recursos para melhorar sua experiência. Uma ótima opção para jogadores que procuram uma conta avançada, com bastante progresso e diversas possibilidades para explorar, evoluir e participar de batalhas. Adquira sua conta e entre na aventura com muito mais recursos!",
 },
 {id: 32,
   name: "Conta Blox Fruits | 3-5 Frutas Míticas Garantidas + Level 2800 + Godhuman + Outros",
@@ -482,7 +482,7 @@ const allProducts = [
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 20,
-  description: "",
+  description: "Conta de Blox Fruits nível máximo (2800), perfeita para jogadores que desejam começar com muito progresso e recursos! A conta acompanha de 3 a 5 frutas míticas garantidas, estilo de luta Godhuman e outros itens que tornam a experiência ainda mais completa. Ideal para quem gosta de explorar, enfrentar chefes, participar de batalhas PvP e aproveitar tudo o que o jogo oferece. Garanta uma conta avançada e esteja pronto para novas aventuras no Blox Fruits!",
 },
 {
   id: 33,
@@ -497,7 +497,7 @@ const allProducts = [
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
   discount: 30,
-  description: "",
+  description: "Conta de Blox Fruits nível máximo (2800), ideal para jogadores que buscam uma experiência avançada e cheia de recursos! A conta acompanha de 4 a 6 frutas míticas garantidas, estilo de luta Godhuman e diversos outros itens para aproveitar ao máximo o jogo. Perfeita para quem gosta de batalhas PvP, exploração, desafios e evolução dentro do universo de Blox Fruits. Comece sua jornada com uma conta avançada e aproveite todas as possibilidades do jogo!",
 },
 {
   id: 34, 
@@ -513,7 +513,7 @@ const allProducts = [
   label: "blox-fruits",
   image: "./portal.jpg.jpeg",
   discount: 15,
-  description: "",
+  description: "Conta de Blox Fruits nível máximo (2800), ideal para jogadores que procuram uma experiência avançada e cheia de possibilidades! A conta acompanha o estilo de luta Godhuman, fruta Portal e outros itens para aproveitar ao máximo o jogo. Perfeita para quem gosta de batalhas PvP, exploração, desafios e aventuras pelos mares. Comece com uma conta já evoluída e aproveite tudo o que Blox Fruits tem a oferecer!",
 },
 {
   id: 35,
@@ -529,7 +529,7 @@ const allProducts = [
   label: "blox-fruits",
   image: "./rumble.jpg.jpeg",
   discount: 25,
-  description: "",
+  description: "Conta de Blox Fruits nível máximo (2800), perfeita para jogadores que buscam uma experiência avançada e cheia de recursos! A conta acompanha o estilo de luta Godhuman, fruta Lightning (Rumble) e outros itens para melhorar sua experiência no jogo. Ideal para quem gosta de batalhas PvP, exploração, desafios e combates estratégicos. Comece sua jornada com uma conta evoluída e aproveite todas as possibilidades que Blox Fruits oferece!",
 },
 {
   id: 36,
@@ -545,7 +545,7 @@ const allProducts = [
   label: "blox-fruits",
   image: "./gas.jpg.jpeg",
   discount: 25,
-  description: "",
+  description: "Conta de Blox Fruits nível máximo (2800), ideal para jogadores que desejam começar com bastante progresso e recursos! A conta acompanha o estilo de luta Godhuman, fruta Gás e outros itens para tornar sua experiência ainda mais completa. Perfeita para quem gosta de batalhas PvP, exploração, desafios e combates estratégicos. Aproveite uma conta avançada e esteja pronto para novas aventuras no universo de Blox Fruits!",
 },
 {
   id: 37,
@@ -559,7 +559,7 @@ const allProducts = [
   label: "robux",
   image: "./caixarubux.jpg.jpeg",
   discount: 10,
-  description: "",
+  description: "🎁 Surpreenda-se com a Caixa Robux da Sorte! 🍀 Uma oportunidade de receber quantidades variadas de Robux, podendo ganhar de 1.000 até 50.000 Robux! Cada caixa reserva uma surpresa diferente, tornando a experiência ainda mais emocionante. Ideal para quem deseja adquirir Robux e aproveitar ainda mais o universo Roblox. Escolha sua caixa, descubra sua sorte e divirta-se! 🔥",
 },
 {
   id: 38,
@@ -575,7 +575,7 @@ const allProducts = [
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
   discount: 10,
-  description: "",
+  description: "Aproveite a Assinatura Semanal do Free Fire e tenha acesso a benefícios exclusivos durante 7 dias! Receba recompensas especiais, diamantes e vantagens disponíveis no período da assinatura. Ideal para jogadores que desejam aproveitar ainda mais os eventos, adquirir itens e melhorar sua experiência dentro do jogo. Garanta sua assinatura e aproveite todos os benefícios por uma semana!",
 },
 {
   id: 39,
@@ -1030,6 +1030,9 @@ const cartVolumeDiscountRow = document.querySelector("#cart-volume-discount-row"
 const cartVolumeDiscountLabel = document.querySelector("#cart-volume-discount-label");
 const cartVolumeDiscount = document.querySelector("#cart-volume-discount");
 const cartDiscountHint = document.querySelector("#cart-discount-hint");
+const accountCouponRow = document.querySelector("#account-coupon-row");
+const accountCouponLabel = document.querySelector("#account-coupon-label");
+const accountCouponDiscount = document.querySelector("#account-coupon-discount");
 const cartTitle = document.querySelector("#cart-title");
 const checkoutButton = document.querySelector("#checkout-button");
 const customerForm = document.querySelector("#customer-form");
@@ -1570,8 +1573,18 @@ function renderCart() {
         : discountHintText;
     }
     cartTotal.textContent = formatPrice(order.total);
+    accountCouponRow.hidden = !order.coupon;
+    if (order.coupon) {
+      accountCouponLabel.textContent =
+        `Cupom ${order.coupon.percent}%${order.couponReason ? ` · ${order.couponReason}` : order.couponDiscountCents === 0 ? " · adicione produtos elegíveis" : ""}`;
+      accountCouponDiscount.textContent =
+        order.couponDiscountCents > 0
+          ? `− ${formatPrice(order.couponDiscountCents / 100)}`
+          : formatPrice(0);
+    }
   } else {
     cartDiscountHint.hidden = true;
+    accountCouponRow.hidden = true;
   }
   cartItems.innerHTML = entries
     .map(
@@ -1856,7 +1869,13 @@ function getOrderDetails() {
   const cartDiscountCents = Math.round(
     eligibleSubtotalCents * cartDiscountPercent / 100,
   );
-  const totalCents = gamesSubtotalCents + eligibleSubtotalCents - cartDiscountCents;
+  const couponResult = window.ZWStoreAccount?.getCouponAdjustment(
+    eligibleSubtotalCents,
+    cartDiscountCents,
+  );
+  const couponDiscountCents = couponResult?.discountCents || 0;
+  const totalCents =
+    gamesSubtotalCents + eligibleSubtotalCents - cartDiscountCents - couponDiscountCents;
   return {
     entries,
     total: totalCents / 100,
@@ -1870,6 +1889,9 @@ function getOrderDetails() {
     productSavingsCents: subtotalCents - productDiscountedSubtotalCents,
     cartDiscountPercent,
     cartDiscountCents,
+    coupon: couponResult?.coupon || null,
+    couponDiscountCents,
+    couponReason: couponResult?.reason || "",
   };
 }
 
@@ -1925,6 +1947,15 @@ function sendOrderByEmail() {
 
   const order = getOrderDetails();
   if (!order) return;
+  if (
+    order.couponDiscountCents > 0 &&
+    !window.ZWStoreAccount?.consumeCoupon(order.coupon.id)
+  ) {
+    paymentNotice.textContent =
+      "Não foi possível validar ou marcar o cupom como usado. Atualize o carrinho e tente novamente.";
+    paymentDetails.hidden = false;
+    return;
+  }
   const savings = order.subtotalCents - order.totalCents;
 
   const message = [
@@ -1968,6 +1999,9 @@ function sendOrderByEmail() {
       : []),
     ...(order.cartDiscountCents > 0
       ? [`Desconto no carrinho (${order.cartDiscountPercent}%): − ${formatPrice(order.cartDiscountCents / 100)}`]
+      : []),
+    ...(order.couponDiscountCents > 0
+      ? [`Cupom ${order.coupon.code} (${order.coupon.percent}%): − ${formatPrice(order.couponDiscountCents / 100)}`]
       : []),
     ...(savings > 0
       ? [`Total de descontos: − ${formatPrice(savings / 100)}`]
@@ -2148,6 +2182,8 @@ cartItems.addEventListener("click", (event) => {
 searchInput.addEventListener("input", renderProducts);
 document.querySelector("#cart-open").addEventListener("click", openCart);
 document.querySelector("#cart-close").addEventListener("click", closeCart);
+document.querySelector("#cart-coupon-select")?.addEventListener("change", renderCart);
+document.addEventListener("zwstorecouponchange", renderCart);
 if (gameCustomerForm) {
   gameCustomerForm.addEventListener("submit", (event) => {
     event.preventDefault();

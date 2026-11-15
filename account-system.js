@@ -4,7 +4,13 @@
   const STORAGE_KEY = "zw-store-rn-local-accounts-v1";
   const ACTIVE_COUPON_KEY = "zw-store-rn-active-coupon";
   const STORE_EMAIL = "zwstorern@gmail.com";
+  const ADMIN_EMAILS = [
+    STORE_EMAIL,
+    // Adicione outros e-mails aqui; isso só controla a exibição local do painel.
+    
+  ];
   const CUSTOMER_ENTITLEMENTS = {
+    "zwstorern@gmail.com": { active: true, spins: 5, revision: 1 },
     // Use e-mail minúsculo; incremente revision a cada alteração de active/spins.
     // Ex.: "cliente@example.com": { active: true, spins: 5, revision: 1 },
   };
@@ -329,7 +335,7 @@
     if (!accountSection) return;
     const adminPanel = byId("account-admin-panel");
     const currentUser = getCurrentUser();
-    const isAdmin = currentUser?.email === STORE_EMAIL;
+    const isAdmin = ADMIN_EMAILS.includes(currentUser?.email);
     adminPanel.hidden = !isAdmin;
     if (!isAdmin) {
       selectedAdminEmail = "";

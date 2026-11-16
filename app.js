@@ -20,6 +20,9 @@ const allProducts = [
   // Para dar desconto, adicione discount: 10 ao produto (percentual; omita ou use 0 para não dar desconto).
   // Para reunir opções em um único anúncio, use o mesmo variantGroup e informe variantName
   // em cada opção. Cada opção mantém seu próprio preço, desconto, imagem e estoque.
+  // Para adicionar outras fotos, inclua images: ["./foto-extra-1.jpg", "./foto-extra-2.jpg"] no produto.
+  // A foto principal continua no campo image; cada lista images pode ter qualquer quantidade de caminhos.
+  // Para adicionar vídeos, inclua videos: ["./video.mp4"] no produto; eles aparecem depois das fotos.
   // Edite rating (0 a 5) e purchaseCount em cada produto para mostrar estrelas e vendas.
   // Use null quando ainda não tiver uma avaliação ou quantidade de vendas real.
   // Cadastre avaliações reais na constante PRODUCT_REVIEWS abaixo, usando o ID do produto.
@@ -36,6 +39,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "transparente",
     image: "./ip12transp.jpg.jpeg",
+    images: ["./ip12transp.jpg.jpeg", "./ip12transp.jpg.jpeg"],
+    videos: [],
     discount: 0,
     description: "Proteja seu iPhone 12 sem esconder sua beleza original! A capinha transparente combina elegância, praticidade e proteção para o dia a dia. Com design leve e discreto, oferece proteção contra arranhões e pequenos impactos, além de proporcionar encaixe perfeito e fácil acesso aos botões e entradas do aparelho. Ideal para quem busca manter o visual original do iPhone com mais segurança e estilo.",
   },
@@ -49,6 +54,8 @@ const allProducts = [
     purchaseCount: 4,
     label: "azul",
     image: "./ip13PMazul.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Azul, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
@@ -62,6 +69,8 @@ const allProducts = [
     purchaseCount: 3,
     label: "bege",
     image: "./ip13PMbege.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Bege, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
@@ -75,6 +84,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "marrom",
     image: "./ip13PMmarrom.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Marrom, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
@@ -88,6 +99,8 @@ const allProducts = [
     purchaseCount: 5,
     label: "verde",
     image: "./ip13PMverde.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Verde, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
@@ -101,6 +114,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "preta",
     image: "./ip13PMpreta.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um novo visual ao seu iPhone 13 Pro Max com esta capinha Preta, que combina estilo, elegância e proteção. Com acabamento moderno e design pensado para oferecer praticidade no dia a dia, ajuda a proteger o aparelho contra arranhões e pequenos impactos. Possui encaixe adequado, fácil acesso aos botões e entradas, garantindo conforto e segurança durante o uso. Ideal para quem deseja proteger seu iPhone sem abrir mão do estilo.",
   },
@@ -114,6 +129,8 @@ const allProducts = [
     purchaseCount: 10,
     label: "transparente",
     image: "./ip15transp.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Proteja seu iPhone 15 sem esconder seu design original! A capinha transparente oferece uma combinação perfeita de elegância, praticidade e proteção para o dia a dia. Com design leve e discreto, ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de proporcionar fácil acesso aos botões e entradas. Ideal para quem deseja manter a aparência original do iPhone com mais segurança e estilo.",
   },
@@ -127,6 +144,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "azul",
     image: "./ip12azul.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê mais estilo ao seu iPhone 12 com esta capinha azul, que combina beleza, praticidade e proteção. Com design moderno e acabamento elegante, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e permite fácil acesso aos botões e entradas, garantindo conforto durante o uso. Ideal para quem busca proteger seu iPhone com personalidade e estilo.",
   },
@@ -140,6 +159,8 @@ const allProducts = [
     purchaseCount: 3,
     label: "bege escuro",
     image: "./ip12begeescuru.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um toque de elegância ao seu iPhone 12 com esta capinha na cor bege escuro. Com visual moderno e sofisticado, combina estilo e praticidade para o dia a dia. Ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de oferecer encaixe adequado e fácil acesso aos botões e entradas. Ideal para quem procura proteção, conforto e um visual discreto e elegante para seu iPhone.",
   },
@@ -153,6 +174,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "marrom",
     image: "./ip12marrom.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um toque de sofisticação ao seu iPhone 12 com esta capinha marrom. Com design moderno e acabamento elegante, oferece estilo e praticidade para o dia a dia. Ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de proporcionar encaixe adequado e fácil acesso aos botões e entradas. Ideal para quem busca unir proteção, conforto e personalidade em um único acessório.",
   },
@@ -166,6 +189,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "verde",
     image: "./ip12verde..jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Renove o visual do seu iPhone 12 com esta capinha verde, que combina estilo, praticidade e proteção. Com design moderno e acabamento elegante, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem deseja proteger seu iPhone com um toque de personalidade e cor.",
   },
@@ -178,6 +203,8 @@ const allProducts = [
     purchaseCount: 10,
     label: "transparente",
     image: "./ip17PMtransp.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Proteja seu iPhone 17 Pro Max sem esconder seu design original! Esta capinha transparente combina elegância, praticidade e proteção para o dia a dia. Com visual discreto e moderno, ajuda a proteger o aparelho contra arranhões e pequenos impactos, mantendo a beleza original do dispositivo em destaque. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem busca proteção sem abrir mão do estilo.",
   },
@@ -193,6 +220,8 @@ const allProducts = [
     purchaseCount: 85,
     label: "kit",
     image: "./kitPilotos.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 15,
     description: "Kit completo com 4 pilotos para quadro branco e 1 apagador Masterprint, ideal para escolas, escritórios, professores e uso doméstico. Os pilotos oferecem praticidade na escrita e são perfeitos para anotações, explicações e apresentações. O apagador facilita a remoção da tinta, mantendo o quadro limpo e pronto para usar novamente. Um conjunto prático e econômico para facilitar sua rotina de estudos ou trabalho.",
   },
@@ -206,6 +235,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "azul",
     image: "./ip11azul.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0 ,
     description: "Dê um novo visual ao seu iPhone 11 com esta capinha azul, que combina estilo, praticidade e proteção. Com design moderno e acabamento elegante, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem deseja manter seu iPhone protegido com um toque de personalidade.",
   },
@@ -219,6 +250,8 @@ const allProducts = [
     purchaseCount: 3,
     label: "bege escuro",
     image: "./ip11bege_cinza.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um toque de sofisticação ao seu iPhone 11 com esta capinha na cor bege escuro. Com design moderno e acabamento elegante, combina beleza, praticidade e proteção para o dia a dia. Ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de oferecer encaixe adequado e fácil acesso aos botões e entradas. Ideal para quem busca proteger seu iPhone com estilo e elegância.",
   },
@@ -232,6 +265,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "marrom",
     image: "./ip11marrom.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê um toque de elegância ao seu iPhone 11 com esta capinha marrom. Com design moderno e acabamento sofisticado, oferece estilo e praticidade para o dia a dia. Ajuda a proteger o aparelho contra arranhões e pequenos impactos, além de proporcionar encaixe adequado e fácil acesso aos botões e entradas. Ideal para quem deseja manter seu iPhone protegido com conforto, personalidade e sofisticação.",
   },
@@ -245,6 +280,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "verde",
     image: "./ip11verde.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Renove o visual do seu iPhone 11 com esta capinha verde, que combina estilo, praticidade e proteção. Com design moderno e acabamento elegante, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e fácil acesso aos botões e entradas, proporcionando conforto e praticidade durante o uso. Ideal para quem busca proteger seu iPhone com um toque de cor e personalidade.",
   },
@@ -258,6 +295,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "roxa escura",
     image: "./ip11roxaescuro.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Dê mais personalidade ao seu iPhone 11 com esta capinha roxa escura, que combina elegância, estilo e proteção. Com design moderno e acabamento sofisticado, ajuda a proteger o aparelho contra arranhões e pequenos impactos do dia a dia. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem busca um visual diferenciado sem abrir mão da proteção.",
   },
@@ -271,6 +310,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "transparente",
     image: "./ip11transp.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "Proteja seu iPhone 11 sem esconder seu design original! Esta capinha transparente combina praticidade, elegância e proteção para o dia a dia. Com visual leve e discreto, ajuda a proteger o aparelho contra arranhões e pequenos impactos, mantendo a aparência original do iPhone em destaque. Possui encaixe adequado e fácil acesso aos botões e entradas, garantindo conforto e praticidade durante o uso. Ideal para quem busca proteção com simplicidade e estilo.",
   },
@@ -284,6 +325,8 @@ const allProducts = [
     purchaseCount: 9,
     label: "azul",
     image: "./ip13azul.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "",
   },
@@ -297,6 +340,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "branca",
     image: "./ip13branca.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "",
   },
@@ -310,6 +355,8 @@ const allProducts = [
     purchaseCount: 2,
     label: "verde",
     image: "./ip13verde.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "",
     },
@@ -323,6 +370,8 @@ const allProducts = [
     purchaseCount: 1,
     label: "transparente",
     image: "./ip13transp.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 0,
     description: "",
   },
@@ -339,6 +388,8 @@ const allProducts = [
     reviews: [],
     label: "diamantes",
     image: "./78dimas.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 5,
     description: "Adquira 78 diamantes no Free Fire de forma rápida e prática! Ideal para quem deseja comprar itens na loja do jogo, participar de eventos, adquirir skins e aproveitar novas oportunidades dentro do Free Fire. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite ainda mais sua experiência no jogo!",
   },
@@ -355,6 +406,8 @@ const allProducts = [
     reviews: [],
     label: "diamantes",
     image: "./120dimas.jpg.jpeg",
+    images: [],
+    videos: [],
     discount: 10,
     description: "Adquira 120 diamantes no Free Fire de forma rápida e prática! Ideal para quem deseja comprar skins, personagens, itens especiais e aproveitar os eventos disponíveis no jogo. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite ainda mais sua experiência no Free Fire!",
   },
@@ -372,6 +425,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./372dimas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 6,
   description: "Adquira 372 diamantes no Free Fire de forma rápida e prática! Aproveite para comprar skins, personagens, pacotes exclusivos e participar dos eventos especiais do jogo. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite todas as novidades do Free Fire!",
 },
@@ -388,6 +443,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./624dimas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "Adquira 624 diamantes no Free Fire de forma rápida e prática! Tenha mais possibilidades para aproveitar o jogo, comprar skins, personagens, pacotes especiais e participar de eventos exclusivos. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e deixe sua experiência no Free Fire ainda melhor!",
 },
@@ -404,6 +461,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./1272dimas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "Adquira 1.272 diamantes no Free Fire de forma rápida e prática! Aproveite uma quantidade ainda maior de diamantes para desbloquear skins, personagens, pacotes exclusivos, passes e diversos itens especiais dentro do jogo. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite tudo o que o Free Fire tem a oferecer!",
 },
@@ -420,6 +479,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./2616dimas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 9,
   description: "Adquira 2.616 diamantes no Free Fire de forma rápida e prática! Com essa quantidade, você terá ainda mais liberdade para aproveitar o jogo, adquirir skins, personagens, pacotes especiais, passes e participar de eventos exclusivos. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite ao máximo sua experiência no Free Fire!",
 },
@@ -436,6 +497,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./6729dimas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 5,
   description: "Adquira 6.720 diamantes no Free Fire de forma rápida e prática! Aproveite uma grande quantidade de diamantes para desbloquear skins raras, personagens, pacotes exclusivos, passes e diversos itens especiais. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e tenha ainda mais possibilidades para aproveitar tudo o que o Free Fire oferece!",
 },
@@ -452,6 +515,8 @@ const allProducts = [
   reviews: [],
   label: "diamantes",
   image: "./26880dimas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 3,
   description: "Adquira 26.880 diamantes no Free Fire de forma rápida e prática! Com essa quantidade, você terá muitas possibilidades para aproveitar o jogo, adquirir skins exclusivas, personagens, pacotes especiais, passes e participar de diversos eventos. A recarga é realizada diretamente pelo ID do jogador, sem necessidade de fornecer senha ou acesso à sua conta. Garanta seus diamantes e aproveite uma experiência ainda mais completa no Free Fire!",
 },
@@ -467,6 +532,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 20,
   description: "Conta de Blox Fruits nível máximo (2800), ideal para quem deseja começar com vantagem e aproveitar ao máximo o universo do jogo! A conta acompanha Godhuman, 2 frutas míticas garantidas e outros itens e recursos para melhorar sua experiência. Uma ótima opção para jogadores que procuram uma conta avançada, com bastante progresso e diversas possibilidades para explorar, evoluir e participar de batalhas. Adquira sua conta e entre na aventura com muito mais recursos!",
 },
@@ -481,6 +548,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 20,
   description: "Conta de Blox Fruits nível máximo (2800), perfeita para jogadores que desejam começar com muito progresso e recursos! A conta acompanha de 3 a 5 frutas míticas garantidas, estilo de luta Godhuman e outros itens que tornam a experiência ainda mais completa. Ideal para quem gosta de explorar, enfrentar chefes, participar de batalhas PvP e aproveitar tudo o que o jogo oferece. Garanta uma conta avançada e esteja pronto para novas aventuras no Blox Fruits!",
 },
@@ -496,6 +565,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./contas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 30,
   description: "Conta de Blox Fruits nível máximo (2800), ideal para jogadores que buscam uma experiência avançada e cheia de recursos! A conta acompanha de 4 a 6 frutas míticas garantidas, estilo de luta Godhuman e diversos outros itens para aproveitar ao máximo o jogo. Perfeita para quem gosta de batalhas PvP, exploração, desafios e evolução dentro do universo de Blox Fruits. Comece sua jornada com uma conta avançada e aproveite todas as possibilidades do jogo!",
 },
@@ -512,6 +583,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./portal.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 15,
   description: "Conta de Blox Fruits nível máximo (2800), ideal para jogadores que procuram uma experiência avançada e cheia de possibilidades! A conta acompanha o estilo de luta Godhuman, fruta Portal e outros itens para aproveitar ao máximo o jogo. Perfeita para quem gosta de batalhas PvP, exploração, desafios e aventuras pelos mares. Comece com uma conta já evoluída e aproveite tudo o que Blox Fruits tem a oferecer!",
 },
@@ -528,6 +601,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./rumble.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 25,
   description: "Conta de Blox Fruits nível máximo (2800), perfeita para jogadores que buscam uma experiência avançada e cheia de recursos! A conta acompanha o estilo de luta Godhuman, fruta Lightning (Rumble) e outros itens para melhorar sua experiência no jogo. Ideal para quem gosta de batalhas PvP, exploração, desafios e combates estratégicos. Comece sua jornada com uma conta evoluída e aproveite todas as possibilidades que Blox Fruits oferece!",
 },
@@ -544,6 +619,8 @@ const allProducts = [
   reviews: [],
   label: "blox-fruits",
   image: "./gas.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 25,
   description: "Conta de Blox Fruits nível máximo (2800), ideal para jogadores que desejam começar com bastante progresso e recursos! A conta acompanha o estilo de luta Godhuman, fruta Gás e outros itens para tornar sua experiência ainda mais completa. Perfeita para quem gosta de batalhas PvP, exploração, desafios e combates estratégicos. Aproveite uma conta avançada e esteja pronto para novas aventuras no universo de Blox Fruits!",
 },
@@ -558,6 +635,8 @@ const allProducts = [
   reviews: [],
   label: "robux",
   image: "./caixarubux.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 10,
   description: "🎁 Surpreenda-se com a Caixa Robux da Sorte! 🍀 Uma oportunidade de receber quantidades variadas de Robux, podendo ganhar de 1.000 até 50.000 Robux! Cada caixa reserva uma surpresa diferente, tornando a experiência ainda mais emocionante. Ideal para quem deseja adquirir Robux e aproveitar ainda mais o universo Roblox. Escolha sua caixa, descubra sua sorte e divirta-se! 🔥",
 },
@@ -574,6 +653,8 @@ const allProducts = [
   reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 10,
   description: "Aproveite a Assinatura Semanal do Free Fire e tenha acesso a benefícios exclusivos durante 7 dias! Receba recompensas especiais, diamantes e vantagens disponíveis no período da assinatura. Ideal para jogadores que desejam aproveitar ainda mais os eventos, adquirir itens e melhorar sua experiência dentro do jogo. Garanta sua assinatura e aproveite todos os benefícios por uma semana!",
 },
@@ -590,6 +671,8 @@ const allProducts = [
   reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 10,
   description: "",
 },
@@ -606,6 +689,8 @@ const allProducts = [
   reviews: [],
   label: "assinatura pelo ID",
   image: "./FF.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 10,
   description: "",
 },
@@ -622,6 +707,8 @@ const allProducts = [
   reviews: [],
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 10,
   description: "",
 },
@@ -638,6 +725,8 @@ const allProducts = [
   reviews: [],
   label: "envio pelo ID",
   image: "./Passe.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 28,
   description: "",
 },
@@ -651,6 +740,8 @@ const allProducts = [
   purchaseCount: 9,
   label: "preto",
   image: "./suporteventosa.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -664,6 +755,8 @@ const allProducts = [
   purchaseCount: 91,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -677,6 +770,8 @@ const allProducts = [
   purchaseCount: 91,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -690,6 +785,8 @@ const allProducts = [
   purchaseCount: 51,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -703,6 +800,8 @@ const allProducts = [
   purchaseCount: 35,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -716,6 +815,8 @@ const allProducts = [
   purchaseCount: 20,
   label: "pelicula 3d",
   image: "./ip16pelicula.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -729,6 +830,8 @@ const allProducts = [
   purchaseCount: 20,
   label: "pelicula 3d",
   image: "./ip16pelicula.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -742,6 +845,8 @@ const allProducts = [
   purchaseCount: 50,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -755,6 +860,8 @@ const allProducts = [
   purchaseCount: 10,
   label: "pelicula 3d",
   image: "./ip13_13pm_13p_14_16e_17e.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -770,6 +877,8 @@ const allProducts = [
   purchaseCount: 100,
   label: "prazo 30 dias",
   image: "./mousepadgojo.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 42,
   description: "",
 },
@@ -785,6 +894,8 @@ const allProducts = [
   purchaseCount: 100,
   label: "prazo 30 dias",
   image: "./mousepadbleach.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 40,
   description: "",
 },
@@ -800,6 +911,8 @@ const allProducts = [
   purchaseCount: 170,
   label: "prazo 30 dias",
   image: "./mousepadsukuna.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 45,
   description: "",
 },
@@ -813,6 +926,8 @@ const allProducts = [
   purchaseCount: 953,
   label: "cores variadas",
   image: "./lapisinfinito.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 10,
   description: "",
 },
@@ -826,6 +941,8 @@ const allProducts = [
   purchaseCount: 96,
   label: "Prazo 30 dias",
   image: "./monitor20.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -839,6 +956,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./placagddr3.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 25,
   description: "",
 },
@@ -854,6 +973,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./mouseB.jpg",
+  images: [],
+  videos: [],
   discount: 5,
   description: "",
 },
@@ -869,6 +990,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./mouseP.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 10,
   description: "",
 },
@@ -884,6 +1007,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./relogioP.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -899,6 +1024,8 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./relogioD.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 0,
   description: "",
 },
@@ -914,8 +1041,25 @@ const allProducts = [
   purchaseCount: 74,
   label: "Prazo 30 dias",
   image: "./relogioB.jpg.jpeg",
+  images: [],
+  videos: [],
   discount: 5,
   description: "",
+},
+{
+  id: 66,
+  name: "Mouse Fibra De Carbono",
+  category: ["Ofertas","Achadinhos"],
+  price: 84.21,
+  stock: 64,
+  rating: 4.7,
+  purchaseCount: 74,
+  label: "Prazo 30 dias",
+  image: "./mouseFDC.jpg.jpeg",
+  images: [],
+  //videos: ["./mouseFDC.mp4"],
+  discount: 5,
+  description: "🖱️ Mouse Sem Fio em Fibra de Carbono – Dual Mode. Modernidade, praticidade e desempenho em um único produto! Com design elegante e acabamento em fibra de carbono, é ideal para quem busca conforto e versatilidade no dia a dia. Possui conexão Dual Mode (2.4G e Bluetooth 5.4), DPI ajustável de 800/1200/1600, Polling Rate de até 250Hz, bateria recarregável de 300mAh e sensor Sigma 8650. Acompanha cabo de carregamento, receptor USB e manual do usuário. Ideal para estudos, trabalho e uso cotidiano!",
 }
 ];
 
@@ -1001,6 +1145,11 @@ const setupNotice = document.querySelector("#setup-notice");
 const productDetailBackdrop = document.querySelector("#product-detail-backdrop");
 const productDetailDialog = document.querySelector("#product-detail-dialog");
 const productDetailImage = document.querySelector("#product-detail-image");
+const productDetailVideo = document.querySelector("#product-detail-video");
+const productDetailImagePrevious = document.querySelector("#product-detail-image-previous");
+const productDetailImageNext = document.querySelector("#product-detail-image-next");
+const productDetailImageCount = document.querySelector("#product-detail-image-count");
+const productDetailThumbnails = document.querySelector("#product-detail-thumbnails");
 const productDetailDiscountBadge = document.querySelector("#product-detail-discount-badge");
 const productDetailTitle = document.querySelector("#product-detail-title");
 const productDetailCategory = document.querySelector("#product-detail-category");
@@ -1071,6 +1220,8 @@ let cart = loadCart();
 let cartBeforeDirectPurchase = null;
 let activeDetailProductId = null;
 let productDetailTrigger = null;
+let productDetailMedia = [];
+let productDetailImageIndex = 0;
 let paymentConfirmationAttempts = 0;
 let paymentTabWasHidden = false;
 saveCart();
@@ -1137,6 +1288,25 @@ function getDiscountedPrice(product) {
 function getProductVariants(product) {
   if (!product.variantGroup) return [product];
   return products.filter((item) => item.variantGroup === product.variantGroup);
+}
+
+function getProductImages(product) {
+  const additionalImages = Array.isArray(product.images)
+    ? product.images
+    : [];
+  return [product.image, ...additionalImages]
+    .filter((image) => typeof image === "string" && image.trim())
+    .map((image) => image.trim());
+}
+
+function getProductMedia(product) {
+  const images = getProductImages(product).map((src) => ({ type: "image", src }));
+  const videos = Array.isArray(product.videos)
+    ? product.videos
+        .filter((src) => typeof src === "string" && src.trim())
+        .map((src) => ({ type: "video", src: src.trim() }))
+    : [];
+  return [...images, ...videos];
 }
 
 function getDisplayProductName(product) {
@@ -1361,7 +1531,7 @@ function renderProducts() {
         <article class="product-card">
           <div class="product-image">
             <button class="product-detail-trigger" type="button" data-product-details="${product.id}" aria-label="Ver detalhes de ${product.name}">
-              <img src="${product.image}" alt="" loading="lazy" />
+              <img src="${getProductImages(product)[0] || ""}" alt="" loading="lazy" />
             </button>
             <button class="product-image-share" type="button" data-share-product="${product.id}" aria-label="Compartilhar ${getDisplayProductName(product)}" title="Ícone de compartilhamento de Dave Gandy (Icon-Icons.com)"><svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12 16 7M8 12l8 5" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="18" cy="18" r="3" /></svg></button>
             <span class="product-label">${product.label}</span>
@@ -1626,8 +1796,8 @@ function renderCart() {
         : discountHintText;
     }
     cartTotal.textContent = formatPrice(order.total);
-    accountCouponRow.hidden = !order.coupon;
-    if (order.coupon) {
+    if (accountCouponRow) accountCouponRow.hidden = !order.coupon;
+    if (order.coupon && accountCouponRow) {
       accountCouponLabel.textContent =
         `Cupom ${order.coupon.percent}%${order.couponReason ? ` · ${order.couponReason}` : order.couponDiscountCents === 0 ? " · adicione produtos elegíveis" : ""}`;
       accountCouponDiscount.textContent =
@@ -1637,7 +1807,7 @@ function renderCart() {
     }
   } else {
     cartDiscountHint.hidden = true;
-    accountCouponRow.hidden = true;
+    if (accountCouponRow) accountCouponRow.hidden = true;
   }
   cartItems.innerHTML = entries
     .map(
@@ -1646,7 +1816,7 @@ function renderCart() {
         const discountedPrice = getDiscountedPrice(product);
         return `
         <article class="cart-item">
-          <img src="${product.image}" alt="" />
+          <img src="${getProductImages(product)[0] || ""}" alt="" />
           <div class="cart-item-info">
             <h3>${getDisplayProductName(product)}</h3>
             <span>${discountPercent ? `<s>${formatPrice(product.price)}</s> ${formatPrice(discountedPrice)} cada · ${discountPercent}% OFF` : `${formatPrice(product.price)} cada`}</span>
@@ -1755,8 +1925,7 @@ function renderProductDetail(product) {
     ? Math.max(0, product.purchaseCount)
     : null;
 
-  productDetailImage.src = product.image;
-  productDetailImage.alt = getDisplayProductName(product);
+  renderProductGallery(product);
   productDetailDiscountBadge.hidden = discountPercent <= 0;
   productDetailDiscountBadge.textContent = discountPercent
     ? `${discountPercent}% OFF`
@@ -1855,7 +2024,94 @@ async function shareProduct(productId) {
   productShareStatus.hidden = false;
 }
 
+function renderProductGallery(product) {
+  productDetailMedia = getProductMedia(product);
+  productDetailImageIndex = 0;
+  const hasMultipleMedia = productDetailMedia.length > 1;
+  productDetailImagePrevious.hidden = !hasMultipleMedia;
+  productDetailImageNext.hidden = !hasMultipleMedia;
+  productDetailImageCount.hidden = !hasMultipleMedia;
+  productDetailThumbnails.hidden = !hasMultipleMedia;
+  productDetailThumbnails.replaceChildren();
+
+  if (hasMultipleMedia) {
+    productDetailMedia.forEach((media, index) => {
+      const thumbnail = document.createElement("button");
+      thumbnail.type = "button";
+      thumbnail.className = "product-detail-thumbnail";
+      thumbnail.id = `product-detail-${media.type}-thumb-${index + 1}`;
+      thumbnail.dataset.galleryIndex = String(index);
+      thumbnail.setAttribute(
+        "aria-label",
+        `Mostrar ${media.type === "video" ? "vídeo" : "foto"} ${index + 1}`,
+      );
+      thumbnail.setAttribute("aria-pressed", String(index === productDetailImageIndex));
+      if (media.type === "video") {
+        const videoIcon = document.createElement("span");
+        videoIcon.className = "product-detail-thumbnail-video";
+        videoIcon.setAttribute("aria-hidden", "true");
+        videoIcon.textContent = "▶";
+        thumbnail.append(videoIcon);
+      } else {
+        const thumbnailImage = document.createElement("img");
+        thumbnailImage.src = media.src;
+        thumbnailImage.alt = "";
+        thumbnailImage.loading = "lazy";
+        thumbnail.append(thumbnailImage);
+      }
+      productDetailThumbnails.append(thumbnail);
+    });
+  }
+
+  updateProductGalleryImage(product);
+}
+
+function updateProductGalleryImage(product) {
+  const media = productDetailMedia[productDetailImageIndex];
+  if (!media) return;
+  const isVideo = media.type === "video";
+  productDetailVideo.pause();
+  productDetailVideo.hidden = !isVideo;
+  productDetailImage.hidden = isVideo;
+  if (isVideo) {
+    productDetailVideo.src = media.src;
+    productDetailVideo.setAttribute(
+      "aria-label",
+      `${getDisplayProductName(product)} — vídeo ${productDetailImageIndex + 1}`,
+    );
+    productDetailVideo.load();
+  } else {
+    productDetailVideo.removeAttribute("src");
+    productDetailVideo.load();
+    productDetailImage.src = media.src;
+    productDetailImage.alt =
+      `${getDisplayProductName(product)} — foto ${productDetailImageIndex + 1}`;
+  }
+  productDetailImage.dataset.imageId = String(productDetailImageIndex + 1);
+  productDetailImageCount.textContent =
+    `${isVideo ? "Vídeo" : "Foto"} ${productDetailImageIndex + 1} de ${productDetailMedia.length}`;
+  productDetailThumbnails
+    .querySelectorAll("[data-gallery-index]")
+    .forEach((thumbnail, index) => {
+      thumbnail.setAttribute("aria-pressed", String(index === productDetailImageIndex));
+    });
+}
+
+function selectProductGalleryMedia(index) {
+  if (!productDetailMedia.length || activeDetailProductId === null) return;
+  productDetailImageIndex =
+    (index + productDetailMedia.length) % productDetailMedia.length;
+  const product = products.find((item) => item.id === activeDetailProductId);
+  if (!product) {
+    throw new Error(`Produto não encontrado: ${activeDetailProductId}`);
+  }
+  updateProductGalleryImage(product);
+}
+
 function closeProductDetails(restoreFocus = true) {
+  productDetailVideo.pause();
+  productDetailVideo.removeAttribute("src");
+  productDetailVideo.load();
   productDetailBackdrop.hidden = true;
   activeDetailProductId = null;
   if (restoreFocus && productDetailTrigger?.isConnected) {
@@ -2167,6 +2423,22 @@ productDetailDialog.addEventListener("click", (event) => {
 
   if (event.target.closest("#product-detail-share")) {
     shareProduct(activeDetailProductId);
+    return;
+  }
+
+  if (event.target.closest("#product-detail-image-previous")) {
+    selectProductGalleryMedia(productDetailImageIndex - 1);
+    return;
+  }
+
+  if (event.target.closest("#product-detail-image-next")) {
+    selectProductGalleryMedia(productDetailImageIndex + 1);
+    return;
+  }
+
+  const thumbnail = event.target.closest("[data-gallery-index]");
+  if (thumbnail) {
+    selectProductGalleryMedia(Number(thumbnail.dataset.galleryIndex));
     return;
   }
 

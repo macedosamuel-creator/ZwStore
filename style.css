@@ -485,8 +485,24 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
 .product-detail-backdrop { position: fixed; inset: 0; z-index: 12; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, .78); }
 .product-detail-backdrop[hidden] { display: none; }
 .product-detail-dialog { position: relative; width: min(100%, 760px); max-height: min(90vh, 760px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow-y: auto; border: 1px solid var(--line-strong); border-radius: 22px; color: var(--white); background: #0b0f0c; box-shadow: 0 24px 80px rgba(0, 0, 0, .65); }
-.product-detail-image-wrap { position: relative; width: 100%; height: min(70vh, 560px); min-height: 0; align-self: start; background: var(--panel); }
+.product-detail-image-wrap { position: relative; width: 100%; height: min(70vh, 560px); min-height: 0; align-self: start; overflow: hidden; background: var(--panel); }
 .product-detail-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+.product-detail-image[hidden],
+.product-detail-video[hidden] { display: none; }
+.product-detail-video { display: block; width: 100%; height: 100%; background: #000; object-fit: contain; }
+.product-detail-image-nav { position: absolute; top: 50%; z-index: 2; display: grid; width: 38px; height: 48px; place-items: center; transform: translateY(-50%); border: 1px solid rgba(255,255,255,.2); border-radius: 12px; color: var(--white); background: rgba(0,0,0,.62); font: inherit; font-size: 32px; line-height: 1; cursor: pointer; }
+.product-detail-image-nav:hover { border-color: var(--green); color: var(--green); }
+.product-detail-image-nav[hidden] { display: none; }
+.product-detail-image-previous { left: 12px; }
+.product-detail-image-next { right: 12px; }
+.product-detail-image-count { position: absolute; bottom: 76px; left: 50%; z-index: 2; transform: translateX(-50%); padding: 5px 9px; border-radius: 999px; color: var(--white); background: rgba(0,0,0,.72); font-size: 11px; }
+.product-detail-image-count[hidden] { display: none; }
+.product-detail-thumbnails { position: absolute; right: 12px; bottom: 12px; left: 12px; z-index: 2; display: flex; gap: 7px; overflow-x: auto; padding: 5px; border-radius: 12px; background: rgba(0,0,0,.62); scrollbar-color: var(--green) transparent; }
+.product-detail-thumbnails[hidden] { display: none; }
+.product-detail-thumbnail { flex: 0 0 48px; width: 48px; height: 48px; overflow: hidden; padding: 0; border: 1px solid rgba(255,255,255,.3); border-radius: 8px; background: var(--panel); cursor: pointer; }
+.product-detail-thumbnail[aria-pressed="true"] { border: 2px solid var(--green); }
+.product-detail-thumbnail img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.product-detail-thumbnail-video { display: grid; width: 100%; height: 100%; place-items: center; color: var(--green); background: linear-gradient(135deg, #171d17, #080a08); font-size: 19px; }
 .product-detail-discount-badge { position: absolute; top: 16px; right: 16px; z-index: 1; padding: 8px 11px; border-radius: 999px; color: var(--black); background: linear-gradient(135deg, var(--green), #d8ff86); font-size: 12px; font-weight: 800; box-shadow: 0 0 20px rgba(186, 252, 74, .3); }
 .product-detail-discount-badge[hidden] { display: none; }
 .product-detail-content { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 38px 30px; }
@@ -560,6 +576,9 @@ body[data-catalog="games"] .hero-photo { background-image: url("./FF.jpg.jpeg");
   .product-detail-backdrop { padding: 12px; }
   .product-detail-dialog { width: min(100%, 420px); max-height: 92vh; grid-template-columns: 1fr; }
   .product-detail-image-wrap { height: min(38vh, 290px); min-height: 0; }
+  .product-detail-thumbnails { right: 8px; bottom: 8px; left: 8px; gap: 5px; }
+  .product-detail-thumbnail { flex-basis: 42px; width: 42px; height: 42px; }
+  .product-detail-image-count { bottom: 66px; }
   .product-detail-content { gap: 10px; padding: 22px; }
   .product-detail-content h2 { padding-right: 28px; font-size: 22px; }
   .product-detail-description { font-size: 12px; }

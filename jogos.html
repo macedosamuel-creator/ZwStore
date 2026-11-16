@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="account-system.js" defer></script>
+    <!-- <script src="account-system.js" defer></script> -->
     <script src="app.js" defer></script>
   </head>
   <body data-catalog="games">
@@ -32,11 +32,11 @@
       </a>
       <nav class="main-nav" aria-label="Navegação principal">
         <a href="#produtos">Jogos</a>
-        <a href="./index.html#conta">Minha Conta</a>
+        <!-- <a href="./index.html#conta">Minha Conta</a> -->
         <a href="#sobre">Sobre a loja</a>
         <a href="./index.html">Loja principal</a>
       </nav>
-      <a class="header-cta account-trigger" href="./index.html#conta">Minha Conta</a>
+      <!-- <a class="header-cta account-trigger" href="./index.html#conta">Minha Conta</a> -->
       <button class="header-cta cart-trigger" id="cart-open" type="button" aria-haspopup="dialog" aria-controls="cart-dialog">
         Carrinho <span class="cart-count" id="cart-count">0</span>
       </button>
@@ -102,7 +102,12 @@
           <button class="product-detail-close" id="product-detail-close" type="button" aria-label="Fechar detalhes do produto">×</button>
           <div class="product-detail-image-wrap">
             <img class="product-detail-image" id="product-detail-image" alt="" />
+            <video class="product-detail-video" id="product-detail-video" controls playsinline preload="metadata" hidden aria-label="Vídeo do produto"></video>
             <span class="product-detail-discount-badge" id="product-detail-discount-badge" hidden></span>
+            <button class="product-detail-image-nav product-detail-image-previous" id="product-detail-image-previous" type="button" aria-label="Mídia anterior" hidden>‹</button>
+            <button class="product-detail-image-nav product-detail-image-next" id="product-detail-image-next" type="button" aria-label="Próxima mídia" hidden>›</button>
+            <span class="product-detail-image-count" id="product-detail-image-count" aria-live="polite" hidden></span>
+            <div class="product-detail-thumbnails" id="product-detail-thumbnails" role="group" aria-label="Fotos e vídeos do produto" hidden></div>
             <button class="share-product-button" id="product-detail-share" type="button" aria-label="Compartilhar este produto" title="Ícone de compartilhamento de Dave Gandy (Icon-Icons.com)"><svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12 16 7M8 12l8 5" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="18" cy="18" r="3" /></svg></button>
           </div>
           <div class="product-detail-content">
@@ -192,13 +197,13 @@
             <div class="cart-discount" id="cart-volume-discount-row" hidden><span id="cart-volume-discount-label"></span><strong id="cart-volume-discount"></strong></div>
             <div class="cart-total"><span>Total dos produtos</span><strong id="cart-total"></strong></div>
             <p class="cart-promotion-hint" id="cart-discount-hint" hidden></p>
-            <label class="cart-coupon-field" for="cart-coupon-select">
+            <!-- <label class="cart-coupon-field" for="cart-coupon-select">
               Cupom da sua conta
               <select id="cart-coupon-select">
                 <option value="">Não usar cupom</option>
               </select>
             </label>
-            <div class="cart-discount" id="account-coupon-row" hidden><span id="account-coupon-label">Cupom</span><strong id="account-coupon-discount"></strong></div>
+            <div class="cart-discount" id="account-coupon-row" hidden><span id="account-coupon-label">Cupom</span><strong id="account-coupon-discount"></strong></div> -->
             <p>O pedido será enviado por e-mail; entrega combinada após a confirmação.</p>
             <form class="customer-form" id="game-customer-form" hidden>
               <h3>Dados do jogo</h3>

@@ -215,7 +215,7 @@ const allProducts = [
     variantName: "4 pilotos + apagador",
     category: "Achadinhos",
     price: 39.99,
-    stock: 10,
+    stock: 0,
     rating: 4.5,
     purchaseCount: 85,
     label: "kit",

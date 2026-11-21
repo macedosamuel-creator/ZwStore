@@ -222,7 +222,7 @@ const allProducts = [
     image: "./kitPilotos.jpg.jpeg",
     images: [],
     videos: [],
-    discount: 15,
+    discount: 0,
     description: "Kit completo com 4 pilotos para quadro branco e 1 apagador Masterprint, ideal para escolas, escritórios, professores e uso doméstico. Os pilotos oferecem praticidade na escrita e são perfeitos para anotações, explicações e apresentações. O apagador facilita a remoção da tinta, mantendo o quadro limpo e pronto para usar novamente. Um conjunto prático e econômico para facilitar sua rotina de estudos ou trabalho.",
   },
   {
@@ -1057,9 +1057,78 @@ const allProducts = [
   label: "Prazo 30 dias",
   image: "./mouseFDC.jpg.jpeg",
   images: [],
-  //videos: ["./mouseFDC.mp4"],
   discount: 5,
   description: "🖱️ Mouse Sem Fio em Fibra de Carbono – Dual Mode. Modernidade, praticidade e desempenho em um único produto! Com design elegante e acabamento em fibra de carbono, é ideal para quem busca conforto e versatilidade no dia a dia. Possui conexão Dual Mode (2.4G e Bluetooth 5.4), DPI ajustável de 800/1200/1600, Polling Rate de até 250Hz, bateria recarregável de 300mAh e sensor Sigma 8650. Acompanha cabo de carregamento, receptor USB e manual do usuário. Ideal para estudos, trabalho e uso cotidiano!",
+},
+{ 
+  id: 67,
+  name: "Mouse Gamer M711 Cobra Chroma Redragon Com fio Para Jogos 12.400 DPI Com Led RGB Preto",
+  category: ["Ofertas","Achadinhos"],
+  price: 124.27,
+  stock: 64,
+  rating: 4.1,
+  purchaseCount: 74,
+  label: "Prazo 30 dias",
+  image: "./min.jpg.jpeg",
+  images: ["./min2.jpg.jpeg", "./min3.jpg.jpeg","./min4.jpg.jpeg", "./min5.jpg.jpeg",  "./min6.jpg.jpeg"],
+  discount: 5,
+  description: "Mouse gamer com sensor de até 12000 DPI, oferecendo alta precisão e desempenho durante os jogos. Possui velocidade máxima de 100 IPS para respostas rápidas, conexão USB 2.0 para maior estabilidade e design ergonômico que proporciona conforto durante longas sessões de uso. Conta também com iluminação RGB personalizável e cabo de nylon trançado de 1,5 metro, garantindo mais estilo e durabilidade.",
+},
+{ 
+  id: 68,
+  name: "Mouse Gamer Sem Fio Bluetooth 2.4g Rgb Recarregável 12800dpi",
+  category: ["Ofertas","Achadinhos"],
+  price: 164.27,
+  stock: 0,
+  rating: 4.3,
+  purchaseCount: 724,
+  label: "Prazo 30 dias",
+  image: "./mt.jpg.jpeg",
+  images: ["./mt2.jpg.jpeg", "./mt3.jpg.jpeg","./mt4.jpg.jpeg", "./mt5.jpg.jpeg",  "./mt6.jpg.jpeg", "./mt7.jpg.jpeg",  "./mt8.jpg.jpeg"],
+  discount: 5,
+  description: "Mouse gamer com resolução de até 12800 DPI, proporcionando alta precisão e desempenho. Possui conectividade sem fio via Bluetooth, permitindo a conexão com diferentes dispositivos, além de contar com opção de uso por cabo. Seu design moderno conta com iluminação RGB, oferecendo mais estilo e uma experiência de uso diferenciada.",
+},
+{ 
+  id: 69,
+  name: "Mouse Gamer Attack Shark X11 Branco 22000 Dpi Usb Bluetooth",
+  category: ["Ofertas","Achadinhos"],
+  price: 324.27,
+  stock: 1219,
+  rating: 4.9,
+  purchaseCount: 821,
+  label: "Prazo 30 dias",
+  image: "./atksh.jpg.jpeg",
+  images: ["./atksh2.jpg.jpeg", "./atksh3.jpg.jpeg","./atksh4.jpg.jpeg", "./atksh5.jpg.jpeg",  "./atksh6.jpg.jpeg"],
+  discount: 25,
+  description: "Mouse gamer sem fio com sensor óptico de até 22000 DPI, oferecendo alta precisão e desempenho. Possui conectividade Bluetooth, permitindo conexão com diferentes dispositivos, além de opção de uso com cabo. Conta com bateria recarregável, roda de rolagem, iluminação RGB e alcance de até 10 metros, proporcionando praticidade, liberdade de movimento e uma experiência de uso moderna.",
+},
+{ 
+  id: 70,
+  name: "Teclado Redragon Gamer 60% Fizz Rainbow Switch Brown Mecanico Cor de teclado Preto Idioma Português Brasil",
+  category: ["Ofertas","Achadinhos"],
+  price: 224.27,
+  stock: 1219,
+  rating: 4.9,
+  purchaseCount: 5000,
+  label: "Prazo 30 dias",
+  image: "./tgm.jpg.jpeg",
+  images: ["./tgm2.jpg.jpeg", "./tgm3.jpg.jpeg","./tgm4.jpg.jpeg", "./tgm5.jpg.jpeg",  "./tgm6.jpg.jpeg"],
+  discount: 15,
+  description: "Teclado mecânico compacto com switches Brown, proporcionando uma digitação suave e confortável. Possui retroiluminação Rainbow, que oferece um visual moderno e facilita o uso em ambientes com pouca iluminação. Conta com conexão USB-C, teclas programáveis para personalização, tecnologia antighosting para maior precisão durante os jogos e design compacto, ideal para otimizar o espaço na sua mesa.",
+},
+{ 
+  id: 71,
+  name: "Teclado Mecânico Gamer 60% 61 Teclas Rgb Azul Usb-c Com Fio",
+  category: ["Ofertas","Achadinhos"],
+  price: 424.27,
+  stock: 15,
+  rating: 4.9,
+  purchaseCount: 500,
+  label: "Prazo 30 dias",
+  image: "./tgma.jpg.jpeg",
+  images: ["./tgma2.jpg.jpeg", "./tgma3.jpg.jpeg","./tgma4.jpg.jpeg", "./tgma5.jpg.jpeg",  "./tgma6.jpg.jpeg"],
+  discount: 32,
+  description: "Teclado com layout ANSI e idioma Inglês US, oferecendo praticidade e conforto durante o uso. Possui estrutura resistente a salpicos, cabo removível para facilitar o transporte e a organização, além de design compacto que otimiza o espaço na mesa. Suas dimensões são 4 cm de altura, 29,1 cm de largura e 9,9 cm de profundidade.",
 }
 ];
 
@@ -1132,6 +1201,84 @@ const products = allProducts
         ? product.reviews
         : REVIEW_EXAMPLES.map((review) => ({ ...review }))),
   }));
+
+function shuffleProductsForPageLoad(items) {
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] =
+      [shuffled[randomIndex], shuffled[index]];
+  }
+  return shuffled;
+}
+
+const RECENT_PRODUCTS_STORAGE_KEY = IS_GAMES_STORE
+  ? "zw-store-rn-games-recent-products"
+  : "zw-store-rn-main-recent-products";
+
+function loadRecentlyClickedProducts() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(RECENT_PRODUCTS_STORAGE_KEY) || "[]");
+    return Array.isArray(saved)
+      ? saved.filter((id) => Number.isSafeInteger(id)).slice(0, 3)
+      : [];
+  } catch (error) {
+    console.warn("Não foi possível carregar os produtos recentes.", error);
+    return [];
+  }
+}
+
+function rememberRecentlyClickedProduct(productId) {
+  if (!Number.isSafeInteger(productId)) return;
+  const recent = loadRecentlyClickedProducts()
+    .filter((id) => id !== productId);
+  recent.unshift(productId);
+  try {
+    localStorage.setItem(
+      RECENT_PRODUCTS_STORAGE_KEY,
+      JSON.stringify(recent.slice(0, 3)),
+    );
+  } catch (error) {
+    console.warn("Não foi possível salvar os produtos recentes.", error);
+  }
+}
+
+const pageLoadProducts = shuffleProductsForPageLoad(products);
+const initialRecentIds = loadRecentlyClickedProducts();
+const productGroups = new Map();
+pageLoadProducts.forEach((product) => {
+  const groupKey = product.variantGroup || `product-${product.id}`;
+  if (!productGroups.has(groupKey)) productGroups.set(groupKey, []);
+  productGroups.get(groupKey).push(product);
+});
+const recentGroupKeys = [];
+initialRecentIds.forEach((productId) => {
+  const recentProduct = pageLoadProducts.find((product) => product.id === productId);
+  if (!recentProduct) return;
+  const groupKey = recentProduct.variantGroup || `product-${recentProduct.id}`;
+  if (!recentGroupKeys.includes(groupKey)) recentGroupKeys.push(groupKey);
+});
+const orderedProductGroups = [
+  ...recentGroupKeys.map((groupKey) => productGroups.get(groupKey)),
+  ...Array.from(productGroups.entries())
+    .filter(([groupKey]) => !recentGroupKeys.includes(groupKey))
+    .map(([, group]) => group),
+];
+
+products.splice(
+  0,
+  products.length,
+  ...orderedProductGroups.flat(),
+);
+
+if (initialRecentIds.length > 0) {
+  try {
+    localStorage.removeItem(RECENT_PRODUCTS_STORAGE_KEY);
+  } catch (error) {
+    console.warn("Não foi possível limpar os produtos recentes.", error);
+  }
+}
+
 const GAME_PRODUCT_IDS = {
   "free fire": new Set([25, 26, 27, 28, 29, 30, 38, 39, 40, 41, 42, 57, 58]),
   roblox: new Set([37]),
@@ -1145,6 +1292,7 @@ const setupNotice = document.querySelector("#setup-notice");
 const productDetailBackdrop = document.querySelector("#product-detail-backdrop");
 const productDetailDialog = document.querySelector("#product-detail-dialog");
 const productDetailImage = document.querySelector("#product-detail-image");
+const productDetailImageWrap = document.querySelector(".product-detail-image-wrap");
 const productDetailVideo = document.querySelector("#product-detail-video");
 const productDetailImagePrevious = document.querySelector("#product-detail-image-previous");
 const productDetailImageNext = document.querySelector("#product-detail-image-next");
@@ -1222,6 +1370,9 @@ let activeDetailProductId = null;
 let productDetailTrigger = null;
 let productDetailMedia = [];
 let productDetailImageIndex = 0;
+let gallerySwipeStartX = null;
+let gallerySwipeStartY = null;
+let gallerySwipeDeltaX = 0;
 let paymentConfirmationAttempts = 0;
 let paymentTabWasHidden = false;
 saveCart();
@@ -1274,6 +1425,17 @@ function formatPrice(price) {
     style: "currency",
     currency: "BRL",
   }).format(price);
+}
+
+function formatCompactCount(count) {
+  if (!Number.isSafeInteger(count) || count < 0) return null;
+  if (count >= 1_000_000) {
+    return `+${Math.floor(count / 1_000_000)}mi`;
+  }
+  if (count >= 1_000) {
+    return `+${Math.floor(count / 1_000)}mil`;
+  }
+  return String(count);
 }
 
 function getDiscountPercent(product) {
@@ -1541,14 +1703,14 @@ function renderProducts() {
             <span class="product-category">${getGameName(product)}</span>
             <h3 class="product-title"><button class="product-detail-title-trigger" type="button" data-product-details="${product.id}">${product.name}${outOfStock ? " (Esgotado)" : ""}</button></h3>
             <p class="product-stock${outOfStock ? " product-stock-empty" : ""}">
-              ${outOfStock ? "Esgotado" : hasVariants ? `${availableVariants.length} opções disponíveis` : `Estoque: ${product.stock} ${product.stock === 1 ? "unidade" : "unidades"}`}
+              ${outOfStock ? "Esgotado" : hasVariants ? `${availableVariants.length} opções disponíveis` : `Estoque: ${formatCompactCount(product.stock)}${product.stock >= 1_000 ? "" : ` ${product.stock === 1 ? "unidade" : "unidades"}`}`}
             </p>
             <div class="product-social-proof">
               <span class="product-card-rating" aria-label="${rating === null ? "Sem avaliações" : `Avaliação ${rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} de 5`}">
                 <span class="product-card-stars" aria-hidden="true">${"★".repeat(roundedRating)}${"☆".repeat(5 - roundedRating)}</span>
                 <span>${rating === null ? "Sem avaliações" : rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}</span>
               </span>
-              <span class="product-card-purchases">${purchaseCount === null ? "Vendas não informadas" : `${purchaseCount} vendidos`}</span>
+              <span class="product-card-purchases">${purchaseCount === null ? "Vendas não informadas" : `${formatCompactCount(purchaseCount)} vendidos`}</span>
             </div>
             <div class="product-bottom">
               <div class="product-pricing">
@@ -1874,7 +2036,12 @@ function closeCart() {
   document.querySelector("#cart-open").focus();
 }
 
-function openProductDetails(productId, trigger, preferredVariantId = null) {
+function openProductDetails(
+  productId,
+  trigger,
+  preferredVariantId = null,
+  rememberProduct = true,
+) {
   const product = products.find((item) => item.id === productId);
   if (!product) {
     throw new Error(`Produto não encontrado: ${productId}`);
@@ -1882,14 +2049,27 @@ function openProductDetails(productId, trigger, preferredVariantId = null) {
 
   const variants = getProductVariants(product);
   const initialVariant =
-    variants.find((variant) => variant.id === preferredVariantId) ||
+    variants.find(
+      (variant) => variant.id === preferredVariantId && variant.stock > 0,
+    ) ||
     variants.find((variant) => variant.stock > 0) ||
     product;
+  if (rememberProduct) {
+    rememberRecentlyClickedProduct(initialVariant.id);
+  }
   activeDetailProductId = initialVariant.id;
   productDetailTrigger = trigger;
   productDetailVariants.hidden = variants.length < 2;
   productDetailVariants.innerHTML = variants.length > 1
-    ? `<label for="product-detail-variant-select">Escolha a opção</label><select id="product-detail-variant-select" aria-label="Escolha a opção">${variants.map((variant) => `<option value="${variant.id}" ${variant.id === initialVariant.id ? "selected" : ""} ${variant.stock <= 0 && variant.id !== initialVariant.id ? "disabled" : ""}>${variant.variantName || variant.name}${variant.stock <= 0 ? " (Esgotado)" : ""}</option>`).join("")}</select>`
+    ? `<fieldset class="product-detail-variant-options"><legend>Escolha uma opção</legend><div class="product-detail-variant-list">${variants.map((variant) => {
+        const isOutOfStock = variant.stock <= 0;
+        const optionLabel = variant.variantName || variant.name;
+        return `<label class="product-detail-variant-option${isOutOfStock ? " is-out-of-stock" : ""}">
+          <input type="radio" name="product-detail-variant" value="${variant.id}" aria-label="${optionLabel}${isOutOfStock ? ", esgotado" : ""}" ${variant.id === initialVariant.id ? "checked" : ""} ${isOutOfStock ? "disabled" : ""} />
+          <span>${optionLabel}${isOutOfStock ? " · Esgotado" : ""}</span>
+          <strong>${formatPrice(getDiscountedPrice(variant))}</strong>
+        </label>`;
+      }).join("")}</div></fieldset>`
     : "";
   renderProductDetail(initialVariant);
   productDetailBackdrop.hidden = false;
@@ -1949,11 +2129,11 @@ function renderProductDetail(product) {
     ? "Sem avaliações"
     : `${rating.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}/5${reviewCount ? ` (${reviewCount} avaliações)` : ""}`;
   productDetailPurchases.textContent =
-    purchaseCount === null ? "Vendas não informadas" : `${purchaseCount} vendidos`;
+    purchaseCount === null ? "Vendas não informadas" : `${formatCompactCount(purchaseCount)} vendidos`;
   productDetailStock.textContent =
     product.stock <= 0
       ? "Esgotado"
-      : `${product.stock} ${product.stock === 1 ? "unidade" : "unidades"}`;
+      : `${formatCompactCount(product.stock)}${product.stock >= 1_000 ? "" : ` ${product.stock === 1 ? "unidade" : "unidades"}`}`;
   const outOfStock = product.stock <= 0;
   productDetailAddButton.disabled =
     outOfStock || (cart[product.id] || 0) >= product.stock;
@@ -2070,6 +2250,7 @@ function updateProductGalleryImage(product) {
   const media = productDetailMedia[productDetailImageIndex];
   if (!media) return;
   const isVideo = media.type === "video";
+  productDetailImage.classList.remove("is-ready");
   productDetailVideo.pause();
   productDetailVideo.hidden = !isVideo;
   productDetailImage.hidden = isVideo;
@@ -2083,6 +2264,10 @@ function updateProductGalleryImage(product) {
   } else {
     productDetailVideo.removeAttribute("src");
     productDetailVideo.load();
+    productDetailImage.style.transform = "";
+    productDetailImage.onload = () => {
+      productDetailImage.classList.add("is-ready");
+    };
     productDetailImage.src = media.src;
     productDetailImage.alt =
       `${getDisplayProductName(product)} — foto ${productDetailImageIndex + 1}`;
@@ -2469,7 +2654,7 @@ productDetailDialog.addEventListener("click", (event) => {
 });
 
 productDetailDialog.addEventListener("change", (event) => {
-  if (event.target.id !== "product-detail-variant-select") return;
+  if (!event.target.matches('input[name="product-detail-variant"]')) return;
   const selectedProduct = products.find(
     (product) => product.id === Number(event.target.value),
   );
@@ -2621,12 +2806,66 @@ restoreCustomerDetails();
 restoreGameCustomerDetails();
 renderProducts();
 renderCart();
+productGrid.addEventListener("pointermove", (event) => {
+  const card = event.target.closest(".product-card");
+  if (!card) return;
+  const rect = card.getBoundingClientRect();
+  card.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
+  card.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
+});
 const sharedProductId = new URLSearchParams(window.location.search).get("produto");
 if (sharedProductId && /^\d+$/.test(sharedProductId)) {
   const sharedProduct = products.find((product) => product.id === Number(sharedProductId));
-  if (sharedProduct) openProductDetails(sharedProduct.id, null, sharedProduct.id);
+  if (sharedProduct) openProductDetails(sharedProduct.id, null, sharedProduct.id, false);
 }
 productDetailShareButton.addEventListener("click", () => {
   const productId = Number(productDetailShareButton.dataset.productId);
   shareProduct(productId);
+});
+
+productDetailImageWrap.addEventListener("pointerdown", (event) => {
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+  if (event.target.closest("button, video, a")) return;
+  if (productDetailMedia.length < 2) return;
+  gallerySwipeStartX = event.clientX;
+  gallerySwipeStartY = event.clientY;
+  gallerySwipeDeltaX = 0;
+  productDetailImageWrap.setPointerCapture?.(event.pointerId);
+  productDetailImageWrap.classList.add("is-swiping");
+});
+
+productDetailImageWrap.addEventListener("pointermove", (event) => {
+  if (gallerySwipeStartX === null) return;
+  const deltaX = event.clientX - gallerySwipeStartX;
+  const deltaY = event.clientY - gallerySwipeStartY;
+  if (Math.abs(deltaX) < Math.abs(deltaY) && gallerySwipeDeltaX === 0) return;
+  gallerySwipeDeltaX = deltaX;
+  productDetailImage.style.transform =
+    `translateX(${deltaX * 0.24}px) scale(${1 - Math.min(Math.abs(deltaX) / 2400, 0.035)})`;
+});
+
+productDetailImageWrap.addEventListener("pointerup", (event) => {
+  if (gallerySwipeStartX === null) return;
+  const deltaX = event.clientX - gallerySwipeStartX;
+  const wasHorizontalSwipe = Math.abs(deltaX) >= 45 &&
+    Math.abs(deltaX) > Math.abs(event.clientY - gallerySwipeStartY);
+  gallerySwipeStartX = null;
+  gallerySwipeStartY = null;
+  gallerySwipeDeltaX = 0;
+  productDetailImageWrap.classList.remove("is-swiping");
+  productDetailImage.style.transform = "";
+  if (!wasHorizontalSwipe) return;
+  selectProductGalleryMedia(
+    deltaX < 0
+      ? productDetailImageIndex + 1
+      : productDetailImageIndex - 1,
+  );
+});
+
+productDetailImageWrap.addEventListener("pointercancel", () => {
+  gallerySwipeStartX = null;
+  gallerySwipeStartY = null;
+  gallerySwipeDeltaX = 0;
+  productDetailImageWrap.classList.remove("is-swiping");
+  productDetailImage.style.transform = "";
 });
